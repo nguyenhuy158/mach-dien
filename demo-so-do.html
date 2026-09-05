@@ -5,6 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Demo 2 cách vẽ sơ đồ mạch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0e1117;--card:#161b22;--card2:#1c2230;--bd:#2a3140;--tx:#e6edf3;--dim:#8b949e;--acc:#58a6ff;--l3:#f85149}
@@ -30,10 +35,27 @@ pre{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding
 code{background:var(--card2);padding:2px 6px;border-radius:4px;font:12.5px ui-monospace,Menlo,monospace}
 footer{max-width:1000px;margin:40px auto 0;padding:0 20px;color:var(--dim);font-size:13px}
 </style>
+<style type="text/tailwindcss">
+@theme{
+  --font-sans:"Be Vietnam Pro","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --font-display:"Plus Jakarta Sans","Be Vietnam Pro",ui-sans-serif,system-ui,sans-serif;
+}
+/* Tailwind browser chèn output ở ĐẦU <head> nên phải dùng "!" mới đè được CSS cũ */
+body{@apply font-sans! text-[15px]! antialiased!;}
+header{@apply sticky! top-0! z-10! backdrop-blur-md! bg-[color-mix(in_srgb,var(--bg)_85%,transparent)]!;}
+h1{@apply font-display! text-[26px]! font-extrabold! tracking-tight! flex! items-center! gap-2!;}
+h2{@apply font-display! text-[20px]! font-bold! tracking-tight!;}
+.card{@apply rounded-2xl! p-5! shadow-[0_1px_2px_rgb(0_0_0/.06)]! transition-shadow! hover:shadow-[0_8px_28px_-10px_rgb(0_0_0/.35)]!;}
+.tag{@apply inline-flex! items-center! gap-1.5! rounded-full! px-3! py-1! font-display!;}
+iframe,pre,code{@apply rounded-xl!;}
+.warn{@apply rounded-xl! border-l-4! p-3!;}
+.ico{@apply inline-block! size-4! shrink-0!;}
+.ico-lg{@apply inline-block! size-6! shrink-0! text-[var(--acc)]!;}
+</style>
 </head>
 <body>
 <header>
-  <h1>Demo 2 cách vẽ sơ đồ mạch</h1>
+  <h1><i data-lucide="pencil-ruler" class="ico-lg"></i> Demo 2 cách vẽ sơ đồ mạch</h1>
   <div class="sub">Cách 1 — Falstad nhúng iframe (mô phỏng chạy thật) · Cách 2 — schemdraw xuất SVG (tĩnh, đẹp, nhẹ)</div>
 </header>
 <main>
@@ -41,12 +63,12 @@ footer{max-width:1000px;margin:40px auto 0;padding:0 20px;color:var(--dim);font-
 <h2>Mạch cơ bản <small>1.1 — LED + điện trở hạn dòng</small></h2>
 <div class="grid">
   <div class="card">
-    <span class="tag">CÁCH 2 · schemdraw SVG</span>
+    <span class="tag"><i data-lucide="image" class="ico"></i> CÁCH 2 · schemdraw SVG</span>
     <p>Ảnh tĩnh, ~3KB, load tức thì, in giấy được. Ký hiệu chuẩn IEC.</p>
     <img src="svg/1-1.svg" alt="Sơ đồ LED + điện trở 220Ω">
   </div>
   <div class="card">
-    <span class="tag">CÁCH 1 · Falstad iframe</span>
+    <span class="tag"><i data-lucide="circle-play" class="ico"></i> CÁCH 1 · Falstad iframe</span>
     <p>Chạy mô phỏng thật — thấy dòng điện chảy, LED sáng. Bấm vào linh kiện để đổi giá trị.</p>
     <iframe loading="lazy" title="Mô phỏng LED + điện trở"
       src="https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+176+336+176+128+0+0+40+5+0+0+0.5%0Ar+176+128+336+128+0+220%0A162+336+128+336+336+2+default-led+1+0+0+0.01%0Aw+176+336+336+336+0%0Ag+176+336+176+384+0%0Ax+60+240+130+240+4+20+5V%0Ax+370+250+440+250+4+20+LED&hideSidebar=true&hideMenu=true&running=true"></iframe>
@@ -63,18 +85,18 @@ g 176 336 176 384 0                     ← mass</pre>
 <h2>Mạch nâng cao <small>2.2 — Relay + diode chống xung ngược</small></h2>
 <div class="grid">
   <div class="card">
-    <span class="tag">CÁCH 2 · schemdraw SVG</span>
+    <span class="tag"><i data-lucide="image" class="ico"></i> CÁCH 2 · schemdraw SVG</span>
     <p>Transistor, cuộn relay, diode flyback — vẫn gọn và rõ trên 1 ảnh.</p>
     <img src="svg/2-2.svg" alt="Sơ đồ relay + diode 1N4007 + transistor NPN">
   </div>
   <div class="card">
-    <span class="tag">CÁCH 1 · Falstad iframe</span>
+    <span class="tag"><i data-lucide="circle-play" class="ico"></i> CÁCH 1 · Falstad iframe</span>
     <p>Nguồn vuông 40Hz thay MCU. <b>Xoá diode</b> (click → Delete) sẽ thấy áp cực C vọt lên hàng trăm volt.</p>
     <iframe loading="lazy" title="Mô phỏng relay + diode chống xung ngược"
       src="https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+128+400+128+272+0+2+40+5+0+0+0.5%0Ag+128+400+128+432+0%0Ar+128+272+240+272+0+1000%0At+240+272+288+272+0+1+0+0+100%0Ag+288+288+288+336+0%0Al+288+144+288+256+0+0.1+0%0Ad+368+256+368+144+1+default%0Aw+288+256+368+256+0%0Aw+288+144+368+144+0%0Av+288+144+288+96+0+0+40+5+0+0+0.5%0Ag+288+96+288+64+0%0Ax+40+250+120+250+4+20+MCU%0Ax+190+210+260+210+4+20+relay%0Ax+300+90+360+90+4+20+5V%0Ax+390+210+470+210+4+20+1N4007&hideSidebar=true&hideMenu=true&running=true"></iframe>
   </div>
 </div>
-<div class="warn">Cuộn relay mô phỏng bằng cuộn cảm 100mH — đúng về mặt điện, đủ để thấy xung ngược. Falstad có element relay thật (<code>178</code>) nếu cần vẽ cả tiếp điểm.</div>
+<div class="warn"><i data-lucide="triangle-alert" class="ico"></i> Cuộn relay mô phỏng bằng cuộn cảm 100mH — đúng về mặt điện, đủ để thấy xung ngược. Falstad có element relay thật (<code>178</code>) nếu cần vẽ cả tiếp điểm.</div>
 
 <h2>Chốt lại</h2>
 <div class="card">
@@ -86,5 +108,6 @@ g 176 336 176 384 0                     ← mass</pre>
 
 </main>
 <footer>Sinh SVG: <code>schemdraw</code> (Python) · Mô phỏng: <a href="https://www.falstad.com/circuit/" style="color:var(--acc)">falstad.com/circuit</a></footer>
+<script>window.lucide&&lucide.createIcons();</script>
 </body>
 </html>
