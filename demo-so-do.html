@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<link rel="icon" href="brand/logo-icon.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo 2 cách vẽ sơ đồ mạch</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1117;--card:#161b22;--card2:#1c2230;--bd:#2a3140;--tx:#e6edf3;--dim:#8b949e;--acc:#58a6ff;--l3:#f85149}
+@media (prefers-color-scheme:light){
+  :root{--bg:#f6f8fa;--card:#fff;--card2:#f0f3f6;--bd:#d8dee4;--tx:#1f2328;--dim:#59636e;--acc:#0969da;--l3:#cf222e}
+}
+body{background:var(--bg);color:var(--tx);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 0 60px}
+header{border-bottom:1px solid var(--bd);padding:18px 20px}
+main{max-width:1000px;margin:0 auto;padding:0 20px}
+h1{font-size:22px;letter-spacing:-.3px;max-width:1000px;margin:0 auto}
+.sub{color:var(--dim);font-size:13px;margin-top:2px;max-width:1000px;margin-left:auto;margin-right:auto}
+h2{font-size:18px;margin-top:34px;padding-bottom:10px;border-bottom:2px solid var(--bd)}
+h2 small{color:var(--dim);font-weight:400;font-size:13px;margin-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 9px;border-radius:5px;background:var(--acc);color:#fff}
+.card p{color:var(--dim);font-size:12.5px;margin-top:8px}
+.card img{display:block;width:100%;max-width:340px;margin:14px auto 4px}
+iframe{width:100%;height:340px;border:0;border-radius:8px;background:#000;margin-top:12px}
+pre{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-top:12px;overflow-x:auto;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+.warn{margin-top:12px;background:var(--card2);border-left:3px solid var(--l3);padding:9px 12px;border-radius:0 6px 6px 0;font-size:13px}
+code{background:var(--card2);padding:2px 6px;border-radius:4px;font:12.5px ui-monospace,Menlo,monospace}
+footer{max-width:1000px;margin:40px auto 0;padding:0 20px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Demo 2 cách vẽ sơ đồ mạch</h1>
+  <div class="sub">Cách 1 — Falstad nhúng iframe (mô phỏng chạy thật) · Cách 2 — schemdraw xuất SVG (tĩnh, đẹp, nhẹ)</div>
+</header>
+<main>
+
+<h2>Mạch cơ bản <small>1.1 — LED + điện trở hạn dòng</small></h2>
+<div class="grid">
+  <div class="card">
+    <span class="tag">CÁCH 2 · schemdraw SVG</span>
+    <p>Ảnh tĩnh, ~3KB, load tức thì, in giấy được. Ký hiệu chuẩn IEC.</p>
+    <img src="svg/1-1.svg" alt="Sơ đồ LED + điện trở 220Ω">
+  </div>
+  <div class="card">
+    <span class="tag">CÁCH 1 · Falstad iframe</span>
+    <p>Chạy mô phỏng thật — thấy dòng điện chảy, LED sáng. Bấm vào linh kiện để đổi giá trị.</p>
+    <iframe loading="lazy" title="Mô phỏng LED + điện trở"
+      src="https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+176+336+176+128+0+0+40+5+0+0+0.5%0Ar+176+128+336+128+0+220%0A162+336+128+336+336+2+default-led+1+0+0+0.01%0Aw+176+336+336+336+0%0Ag+176+336+176+384+0%0Ax+60+240+130+240+4+20+5V%0Ax+370+250+440+250+4+20+LED&hideSidebar=true&hideMenu=true&running=true"></iframe>
+  </div>
+</div>
+<pre>Netlist Falstad (mỗi dòng 1 linh kiện, URL-encode rồi gắn vào ?cct=)
+$ 1 0.000005 10.2 50 5 50
+v 176 336 176 128 0 0 40 5 0 0 0.5      ← nguồn DC 5V
+r 176 128 336 128 0 220                 ← điện trở 220Ω
+162 336 128 336 336 2 default-led 1 0 0 0.01   ← LED đỏ
+w 176 336 336 336 0                     ← dây nối
+g 176 336 176 384 0                     ← mass</pre>
+
+<h2>Mạch nâng cao <small>2.2 — Relay + diode chống xung ngược</small></h2>
+<div class="grid">
+  <div class="card">
+    <span class="tag">CÁCH 2 · schemdraw SVG</span>
+    <p>Transistor, cuộn relay, diode flyback — vẫn gọn và rõ trên 1 ảnh.</p>
+    <img src="svg/2-2.svg" alt="Sơ đồ relay + diode 1N4007 + transistor NPN">
+  </div>
+  <div class="card">
+    <span class="tag">CÁCH 1 · Falstad iframe</span>
+    <p>Nguồn vuông 40Hz thay MCU. <b>Xoá diode</b> (click → Delete) sẽ thấy áp cực C vọt lên hàng trăm volt.</p>
+    <iframe loading="lazy" title="Mô phỏng relay + diode chống xung ngược"
+      src="https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+128+400+128+272+0+2+40+5+0+0+0.5%0Ag+128+400+128+432+0%0Ar+128+272+240+272+0+1000%0At+240+272+288+272+0+1+0+0+100%0Ag+288+288+288+336+0%0Al+288+144+288+256+0+0.1+0%0Ad+368+256+368+144+1+default%0Aw+288+256+368+256+0%0Aw+288+144+368+144+0%0Av+288+144+288+96+0+0+40+5+0+0+0.5%0Ag+288+96+288+64+0%0Ax+40+250+120+250+4+20+MCU%0Ax+190+210+260+210+4+20+relay%0Ax+300+90+360+90+4+20+5V%0Ax+390+210+470+210+4+20+1N4007&hideSidebar=true&hideMenu=true&running=true"></iframe>
+  </div>
+</div>
+<div class="warn">Cuộn relay mô phỏng bằng cuộn cảm 100mH — đúng về mặt điện, đủ để thấy xung ngược. Falstad có element relay thật (<code>178</code>) nếu cần vẽ cả tiếp điểm.</div>
+
+<h2>Chốt lại</h2>
+<div class="card">
+  <p style="color:var(--tx);font-size:14px">
+  <b>schemdraw</b> — chạy 1 lần lúc build, ra file SVG. Trang không thêm dep, không gọi mạng, in được, đọc nhanh. Sửa mạch = sửa 5 dòng Python.<br><br>
+  <b>Falstad</b> — 0 dòng code, chỉ 1 thẻ iframe. Nhưng nặng (~1MB GWT app mỗi iframe), phụ thuộc falstad.com, và mất chữ tiếng Việt có dấu trong element text.<br><br>
+  Dùng schemdraw làm mặc định cho cả 23 mạch, chèn Falstad chỉ ở vài mạch mà việc "chạy thử" mới là bài học (relay flyback, 555, cầu H).</p>
+</div>
+
+</main>
+<footer>Sinh SVG: <code>schemdraw</code> (Python) · Mô phỏng: <a href="https://www.falstad.com/circuit/" style="color:var(--acc)">falstad.com/circuit</a></footer>
+</body>
+</html>

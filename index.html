@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<link rel="icon" href="brand/logo-icon.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mạch điện tử cơ bản — 3 Level</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e1117; --card:#161b22; --card2:#1c2230; --bd:#2a3140;
+  --tx:#e6edf3; --dim:#8b949e; --acc:#58a6ff;
+  --l1:#3fb950; --l2:#d29922; --l3:#f85149;
+}
+@media (prefers-color-scheme:light){
+  :root{--bg:#f6f8fa;--card:#fff;--card2:#f0f3f6;--bd:#d8dee4;--tx:#1f2328;--dim:#59636e;--acc:#0969da;
+        --l1:#1a7f37;--l2:#9a6700;--l3:#cf222e}
+}
+body{background:var(--bg);color:var(--tx);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:0 0 60px}
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--bd);padding:18px 20px 12px}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:22px;letter-spacing:-.3px}
+.sub{color:var(--dim);font-size:13px;margin-top:2px}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+button{background:var(--card);border:1px solid var(--bd);color:var(--tx);padding:7px 14px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:500}
+button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+input{flex:1;min-width:180px;background:var(--card);border:1px solid var(--bd);color:var(--tx);padding:8px 12px;border-radius:8px;font-size:13px;outline:none}
+input:focus{border-color:var(--acc)}
+main{max-width:1000px;margin:0 auto;padding:0 20px}
+.lvl{margin-top:34px}
+.lvlhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--bd)}
+.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:5px;color:#fff;letter-spacing:.5px}
+.b1{background:var(--l1)}.b2{background:var(--l2)}.b3{background:var(--l3)}
+.lvlhead h2{font-size:18px}
+.lvlhead .g{color:var(--dim);font-size:13px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-top:14px}
+.ctop{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.num{color:var(--dim);font-variant-numeric:tabular-nums;font-weight:700;font-size:13px}
+.ctop h3{font-size:16px}
+.goal{color:var(--acc);font-size:13px;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13.5px}
+th{text-align:left;color:var(--dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;padding:6px 8px;border-bottom:1px solid var(--bd)}
+td{padding:7px 8px;border-bottom:1px solid var(--bd);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.q,th.q{text-align:center;white-space:nowrap;color:var(--dim)}
+td.p,th.p{text-align:right;white-space:nowrap;color:var(--dim);font-variant-numeric:tabular-nums}
+code{background:var(--card2);padding:2px 6px;border-radius:4px;font:13px ui-monospace,SFMono-Regular,Menlo,monospace}
+.sch{display:block;width:100%;max-width:440px;margin:14px auto 0}
+.sim{margin-top:12px}
+.sim button{background:var(--card2);color:var(--acc);border:1px solid var(--bd);border-radius:999px;padding:7px 14px;font:600 12.5px inherit;cursor:pointer}
+.sim button:hover{border-color:var(--acc)}
+.sim iframe{display:block;width:100%;height:360px;border:1px solid var(--bd);border-radius:10px;background:#000;margin-top:10px}
+pre{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-top:12px;overflow-x:auto;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+.fm{margin-top:12px;background:var(--card2);border-left:3px solid var(--acc);padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px}
+.warn{margin-top:10px;background:var(--card2);border-left:3px solid var(--l3);padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px}
+.proj{margin-top:14px;background:var(--card);border:1px dashed var(--bd);border-radius:12px;padding:14px 18px;font-size:13.5px}
+.proj b{color:var(--acc)}
+footer{max-width:1000px;margin:44px auto 0;padding:0 20px;color:var(--dim);font-size:13px}
+footer a{color:var(--acc)}
+tr.na td{background:color-mix(in srgb,var(--l3) 14%,transparent)}
+tr.na td:first-child{box-shadow:inset 3px 0 var(--l3)}
+td.s{white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+td.s a{color:var(--acc);text-decoration:none;border-bottom:1px dotted currentColor}
+td.s a:hover{color:var(--fg)}
+td.s .no{color:var(--l3);opacity:.8}
+td.s .nn{color:var(--dim);opacity:.5}
+.lg{max-width:1000px;margin:14px auto -10px;padding:0 20px;color:var(--dim);font-size:12.5px}
+.lg i{display:inline-block;width:11px;height:11px;border-radius:3px;background:color-mix(in srgb,var(--l3) 40%,transparent);border-left:3px solid var(--l3);vertical-align:-1px;margin-right:4px}
+nav.tabs{display:flex;gap:8px;margin-bottom:12px}
+nav.tabs button{font:inherit;font-size:13.5px;padding:7px 16px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--dim);cursor:pointer}
+nav.tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+#cart{max-width:1000px;margin:0 auto;padding:0 20px}
+#cart h2{font-size:17px;margin:26px 0 2px}
+#cart .cs{color:var(--dim);font-size:13px;margin-bottom:6px}
+#cart table{font-size:13px}
+#cart td.d{color:var(--dim);font-size:12px;line-height:1.5}
+.tot{display:flex;justify-content:space-between;align-items:baseline;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 18px;margin-top:18px;font-size:14px}
+.tot b{font-size:22px;color:var(--acc);font-variant-numeric:tabular-nums}
+.sum{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
+.sum div{flex:1;min-width:130px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 14px}
+.sum span{display:block;color:var(--dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.4px}
+.sum b{font-size:17px;font-variant-numeric:tabular-nums}
+td.im{width:56px;padding:5px 4px 5px 8px}
+td.im img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--bd);display:block;transition:transform .15s;transform-origin:left center}
+td.im img:hover{transform:scale(3.4);position:relative;z-index:9;box-shadow:0 8px 28px rgba(0,0,0,.5)}
+td.im .ph{width:46px;height:46px;border-radius:6px;border:1px dashed var(--bd);display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:16px}
+th.im{width:56px}
+.mlink{color:var(--acc);text-decoration:none;border-bottom:1px dotted currentColor}
+.mlink:hover{color:var(--fg)}
+.card.flash{outline:2px solid var(--acc);outline-offset:3px;animation:fl 1.6s ease-out}
+@keyframes fl{0%,40%{background:color-mix(in srgb,var(--acc) 16%,var(--card))}100%{background:var(--card)}}
+.setwrap{position:relative;margin-left:auto}
+#setbtn{font-size:15px;line-height:1;padding:8px 12px}
+#setmenu{position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:246px;
+ background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px;
+ box-shadow:0 14px 40px rgba(0,0,0,.35);text-align:left;direction:ltr;font-size:13.5px;color:var(--fg)}
+#setmenu h4{margin:10px 0 4px;padding:0 8px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--dim)}
+#setmenu h4:first-child{margin-top:2px}
+#setmenu .ck{display:grid;grid-template-columns:16px 1fr;align-items:center;column-gap:10px;
+ padding:6px 8px;border-radius:8px;white-space:nowrap;cursor:pointer;user-select:none}
+#setmenu .ck:hover{background:var(--card2)}
+#setmenu .ck span{text-align:left;overflow:hidden;text-overflow:ellipsis}
+#setmenu input{accent-color:var(--acc);flex:none;width:16px;min-width:0;height:16px;margin:0;padding:0;border-radius:4px;cursor:pointer}
+#setmenu .rs{display:block;margin:8px 0 2px;width:100%;font:inherit;font-size:12.5px;padding:7px;
+ border-radius:8px;border:1px solid var(--bd);background:var(--card2);color:var(--dim);cursor:pointer;text-align:center}
+#setmenu .rs:hover{color:var(--fg);border-color:var(--acc)}
+/* ===== global search ===== */
+#gsbtn{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:13px}
+#gsbtn kbd{font:11px ui-monospace,Menlo,monospace;background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:1px 5px;color:var(--dim)}
+#gs{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);display:flex;justify-content:center;padding:10vh 16px 16px}
+#gsbox{width:100%;max-width:640px;height:max-content;max-height:76vh;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.5);overflow:hidden}
+#gsq{flex:none;width:100%;min-width:0;border:none;border-bottom:1px solid var(--bd);border-radius:0;background:transparent;padding:16px 18px;font-size:16px}
+#gsres{overflow-y:auto;padding:6px}
+#gsres .gh{padding:8px 12px 4px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--dim)}
+#gsres .gi{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;padding:8px 12px;border-radius:9px;cursor:pointer}
+#gsres .gi.sel,#gsres .gi:hover{background:var(--card2)}
+#gsres .gi img{width:34px;height:34px;object-fit:contain;background:#fff;border-radius:6px;border:1px solid var(--bd)}
+#gsres .gi .ic{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--card2);border-radius:6px;font-size:15px}
+#gsres .gi b{font-weight:600;font-size:13.5px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#gsres .gi small{color:var(--dim);font-size:12px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#gsres .gi em{font-style:normal;color:var(--acc);font-size:12px;white-space:nowrap}
+#gsres mark{background:color-mix(in srgb,var(--acc) 30%,transparent);color:inherit;border-radius:3px}
+#gsres .empty{padding:26px 14px;text-align:center;color:var(--dim);font-size:13.5px}
+#gsfoot{flex:none;border-top:1px solid var(--bd);padding:7px 14px;color:var(--dim);font-size:11.5px;display:flex;gap:14px}
+tr.own{opacity:.42}
+tr.own .k-name b,tr.own .k-line,tr.own .k-price{text-decoration:line-through}
+td.k-own,th.k-own{width:34px;text-align:center;padding-left:10px}
+td.k-own input{flex:none;min-width:0;width:15px;height:15px;margin:0;padding:0;accent-color:var(--l1);cursor:pointer}
+.owntag{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:700;color:var(--l1);border:1px solid var(--l1);border-radius:4px;padding:0 4px;vertical-align:1px}
+.hide{display:none!important}
+th{cursor:pointer;user-select:none}
+th.im{cursor:default}
+th[data-sd]::after{content:' ▲';font-size:9px;opacity:.7}
+th[data-sd=desc]::after{content:' ▼'}
+</style>
+<style id="colcss"></style>
+<style type="text/tailwindcss">
+@theme{
+  --font-sans:"Be Vietnam Pro","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --font-display:"Plus Jakarta Sans","Be Vietnam Pro",ui-sans-serif,system-ui,sans-serif;
+}
+/* Tailwind browser chèn output ở ĐẦU <head> nên phải dùng "!" mới đè được CSS cũ */
+body{@apply font-sans! text-[15px]! antialiased!;}
+header{@apply backdrop-blur-md! bg-[color-mix(in_srgb,var(--bg)_85%,transparent)]!;}
+h1{@apply font-display! text-[26px]! font-extrabold! tracking-tight! flex! items-center! gap-2!;}
+nav.tabs button,.ctl button{@apply inline-flex! items-center! gap-1.5! rounded-full! transition-colors! duration-150! hover:border-[var(--acc)]!;}
+.ctl input{@apply rounded-full! px-4! transition! focus:ring-2! focus:ring-[color-mix(in_srgb,var(--acc)_35%,transparent)]! focus:outline-none!;}
+.card{@apply rounded-2xl! shadow-[0_1px_2px_rgb(0_0_0/.06)]! transition-shadow! hover:shadow-[0_8px_28px_-10px_rgb(0_0_0/.35)]!;}
+.ctop h3{@apply font-display! font-bold! tracking-tight!;}
+.badge{@apply rounded-full! px-2.5! font-display! font-bold!;}
+th{@apply text-[11px]! font-semibold! uppercase! tracking-wider!;}
+td.im img{@apply rounded-lg! ring-1! ring-black/5!;}
+.fm,.warn,.proj{@apply rounded-xl!;}
+pre{@apply rounded-xl!;}
+.lg{@apply rounded-xl!;}
+.ico{@apply inline-block! size-4! shrink-0! align-[-3px]!;}
+.ico-lg{@apply inline-block! size-6! shrink-0! text-[var(--acc)]!;}
+</style>
+
+</head>
+<body>
+<header><div class="wrap">
+  <h1><i data-lucide="circuit-board" class="ico-lg"></i> Mạch điện tử cơ bản</h1>
+  <div class="sub">23 mạch chia 3 level — kèm danh sách linh kiện đầy đủ</div>
+  <nav class="tabs"><button class="on" data-t="m"><i data-lucide="layout-grid" class="ico"></i> Mạch điện</button><button data-t="g"><i data-lucide="shopping-cart" class="ico"></i> Giỏ hàng</button><button id="gsbtn" title="Tìm mọi thứ (⌘K)"><i data-lucide="search" class="ico"></i> Tìm mọi thứ <kbd>⌘K</kbd></button><span class="setwrap"><button id="setbtn" title="Bật/tắt cột"><i data-lucide="settings-2" class="ico"></i></button><div id="setmenu" class="hide"></div></span></nav>
+  <div class="ctl" id="ctl">
+    <button class="on" data-f="all">Tất cả</button>
+    <button data-f="1">Level 1</button>
+    <button data-f="2">Level 2</button>
+    <button data-f="3">Level 3</button>
+    <button data-f="na"><i data-lucide="triangle-alert" class="ico"></i> Thiếu nguồn</button>
+    <input id="q" placeholder="Tìm mạch hoặc linh kiện… (vd: mosfet, 555, relay)">
+  </div>
+</div></header>
+<div class="lg"><i></i> Dòng tô đỏ = <b>không tìm thấy</b> ở cả banlinhkien.com và caka.vn (phải mua chỗ khác: Hshop, Nshop, Icdayroi, Shopee…). Giá lấy trực tiếp từ trang bán, bấm vào giá để mở sản phẩm. Rê chuột lên giá để xem đúng tên sản phẩm.</div>
+<main id="app"></main>
+<div id="cart" class="hide"></div>
+<div id="gs" class="hide"><div id="gsbox">
+  <input id="gsq" placeholder="Tìm mạch, linh kiện, sản phẩm, giá…" autocomplete="off">
+  <div id="gsres"></div>
+  <div id="gsfoot"><span>↑↓ chọn</span><span>↵ mở</span><span>Esc đóng</span></div>
+</div></div>
+<footer>
+  Giá lấy tự động từ <a href="https://banlinhkien.com/" target="_blank">banlinhkien.com</a> và <a href="https://caka.vn/" target="_blank">caka.vn</a> (cập nhật 09/2026) — có thể đổi, kiểm tra lại khi đặt hàng. Ký hiệu ✕ = shop đó không có, — = không phải linh kiện mua lẻ.<br>
+  Mô phỏng trước khi ráp: <a href="https://www.falstad.com/circuit/" target="_blank">Falstad</a> ·
+  <a href="https://wokwi.com" target="_blank">Wokwi</a> (có Arduino/ESP32).<br>
+  <b>An toàn:</b> không đụng vào điện 220V khi chưa có người hướng dẫn trực tiếp.
+</footer>
+<script>
+const LEVELS=[
+ {n:1,cls:'b1',t:'Nhập môn',g:'Không MCU · không hàn · chỉ breadboard — hiểu dòng, áp, trở',
+  proj:'<b>Dự án tốt nghiệp:</b> đèn ngủ tự động — trời tối LDR làm LED sáng, vặn biến trở chỉnh độ nhạy. <b>Lên level khi:</b> tự tính được điện trở cho LED bất kỳ và dùng thạo đồng hồ vạn năng.'},
+ {n:2,cls:'b2',t:'Trung cấp',g:'Transistor · IC · bắt đầu hàn và dùng MCU — điều khiển tải lớn, tạo tín hiệu',
+  proj:'<b>Dự án tốt nghiệp:</b> quạt tự chỉnh tốc độ theo nhiệt độ — cảm biến → ESP32 → PWM → MOSFET → quạt 12V, nguồn buck riêng. <b>Lên level khi:</b> tự thiết kế được đường nguồn và biết vì sao mạch chạy chập chờn.'},
+ {n:3,cls:'b3',t:'Nâng cao',g:'Thiết kế thật · làm PCB — từ ý tưởng ra board chạy ổn định 24/7',
+  proj:'<b>Dự án tốt nghiệp:</b> board IoT chạy pin — ESP32 + cảm biến + sạc TP4056 + buck 3.3V + deep sleep, PCB tự vẽ 2 lớp, chạy 3 tháng mỗi lần sạc.'}
+];
+
+const C=[
+// ─────────── LEVEL 1 ───────────
+{l:1,n:1,name:'LED + điện trở hạn dòng',goal:'Định luật Ohm — mạch đầu tiên của mọi người',
+ parts:[
+  ['LED 5mm đỏ','Vf 1.8V · If 20mA','2','500đ'],
+  ['Điện trở 220Ω','1/4W · 5%','5','200đ'],
+  ['Breadboard 830 lỗ','MB-102','1','25.000đ'],
+  ['Dây jumper đực–đực','20cm · bộ 40 sợi','1','20.000đ'],
+  ['Nguồn 5V','pin 9V + đế, hoặc cáp USB cắt','1','15.000đ']],
+ fm:'<code>R = (V<sub>nguồn</sub> − V<sub>led</sub>) / I<sub>led</sub></code> → (5 − 1.8) / 0.02 = 160Ω → chọn 220Ω cho an toàn.<br>LED đỏ ~1.8V · xanh lá/xanh dương/trắng ~3.0–3.2V.',
+ warn:'Không bao giờ cắm LED thẳng vào nguồn — cháy tức thì.'},
+
+{l:1,n:2,name:'LED nối tiếp vs song song',goal:'Áp chia đều khi nối tiếp, dòng chia đều khi song song',
+ parts:[
+  ['LED 5mm','đỏ + xanh lá','4','1.000đ'],
+  ['Điện trở 220Ω','1/4W','2','100đ'],
+  ['Điện trở 100Ω','1/4W','1','50đ'],
+  ['Breadboard + jumper','(dùng lại)','—','—'],
+  ['Nguồn 5V / 9V','','1','—']],
+ fm:'Nối tiếp: <code>V<sub>tổng</sub> = V1 + V2</code>, cùng dòng. 3 LED đỏ nối tiếp = 5.4V → cần nguồn 9V.<br>Song song: mỗi nhánh <b>phải có điện trở riêng</b> — dùng chung 1 điện trở thì LED sáng không đều.'},
+
+{l:1,n:3,name:'Nút nhấn + điện trở kéo (pull-up)',goal:'Mức logic HIGH/LOW, chân "lơ lửng" gây nhiễu',
+ parts:[
+  ['Nút nhấn tact 6×6mm','4 chân · DIP','2','1.000đ'],
+  ['Điện trở 10kΩ','1/4W','2','100đ'],
+  ['LED 5mm + trở 220Ω','','1','300đ'],
+  ['Breadboard + jumper','(dùng lại)','—','—']],
+ fm:'Pull-up: thả nút = <b>HIGH</b>, nhấn = <b>LOW</b>. Pull-down thì ngược lại.<br>MCU thường có pull-up nội: <code>pinMode(pin, INPUT_PULLUP)</code> — khỏi hàn thêm điện trở.'},
+
+{l:1,n:4,name:'Cầu phân áp + biến trở',goal:'Hạ áp và đọc cảm biến kiểu điện trở',
+ parts:[
+  ['Biến trở (chiết áp) 10kΩ','B10K · núm xoay','1','3.000đ'],
+  ['Điện trở 1kΩ / 10kΩ','1/4W','mỗi loại 2','200đ'],
+  ['Đồng hồ vạn năng','DT9205A hoặc tương đương','1','120.000đ'],
+  ['Breadboard + jumper','(dùng lại)','—','—']],
+ fm:'<code>V<sub>ra</sub> = V<sub>vào</sub> × R2 / (R1 + R2)</code>',
+ warn:'Không dùng cầu phân áp để CẤP NGUỒN cho tải — vừa mắc tải vào là điện áp sụt ngay.'},
+
+{l:1,n:5,name:'Đèn tự sáng khi trời tối (LDR)',goal:'Cảm biến điện trở biến thiên — cầu nối sang Level 2',
+ parts:[
+  ['Quang trở LDR','GL5528 · 5mm','2','2.000đ'],
+  ['Điện trở 10kΩ','1/4W','1','50đ'],
+  ['Transistor NPN','S8050 hoặc 2N2222','1','500đ'],
+  ['Điện trở 1kΩ','cho chân B','1','50đ'],
+  ['LED 5mm + trở 220Ω','','1','300đ'],
+  ['Biến trở 10kΩ','chỉnh ngưỡng sáng/tối','1','3.000đ']],
+ fm:'LDR + điện trở tạo cầu phân áp → áp thay đổi theo ánh sáng → đưa vào chân B transistor để đóng/mở LED. Biến trở dùng để chỉnh ngưỡng.'},
+
+{l:1,n:6,name:'Còi buzzer',goal:'Tải đơn giản có phân cực, phân biệt buzzer chủ động / thụ động',
+ parts:[
+  ['Buzzer chủ động 5V','có mạch dao động sẵn','1','3.000đ'],
+  ['Buzzer thụ động 5V','cần cấp xung mới kêu','1','3.000đ'],
+  ['Nút nhấn tact','','1','500đ'],
+  ['Điện trở 100Ω','giảm âm lượng','1','50đ']],
+ fm:'<b>Chủ động</b>: cấp 5V là kêu ngay, một tần số cố định.<br><b>Thụ động</b>: phải cấp xung vuông (PWM) — đổi tần số được → chơi được nhạc.'},
+
+// ─────────── LEVEL 2 ───────────
+{l:2,n:1,name:'Transistor NPN làm công tắc',goal:'Dòng nhỏ từ MCU điều khiển tải dòng lớn',
+ parts:[
+  ['Transistor NPN','2N2222 / S8050 · 0.5–0.8A','3','1.000đ'],
+  ['Điện trở 1kΩ','chân Base','3','150đ'],
+  ['Tải thử','LED công suất 1W hoặc bóng 12V','1','8.000đ'],
+  ['Nguồn 12V','adapter 12V/1A','1','60.000đ'],
+  ['Đồng hồ vạn năng','(dùng lại)','—','—']],
+ fm:'<code>I<sub>B</sub> = I<sub>C</sub> / h<sub>FE</sub> × 5</code> (nhân 5 để chắc chắn bão hòa).<br>Ví dụ tải 200mA, hFE=100 → I<sub>B</sub> ≈ 10mA → R = (3.3−0.7)/0.01 ≈ 260Ω.',
+ warn:'GND của MCU và GND của nguồn tải PHẢI nối chung, nếu không mạch không chạy.'},
+
+{l:2,n:2,name:'Relay + diode chống xung ngược',goal:'Điều khiển tải công suất — mạch quan trọng nhất Level 2',
+ parts:[
+  ['Relay 5V','SRD-05VDC-SL-C · 10A','2','16.000đ'],
+  ['Diode 1N4007','mắc NGƯỢC song song cuộn relay','5','1.000đ'],
+  ['Transistor S8050','','2','700đ'],
+  ['Điện trở 1kΩ','chân Base','2','100đ'],
+  ['LED + trở 220Ω','báo trạng thái','1','300đ'],
+  ['Nguồn 5V ≥ 1A','relay hút ~70mA','1','40.000đ'],
+  ['(hoặc) Module relay 1 kênh','đã có sẵn opto + diode','1','18.000đ']],
+ warn:'<b>Bắt buộc có diode.</b> Cuộn relay là tải cảm kháng — khi ngắt sinh xung ngược hàng trăm volt, đủ giết transistor và MCU. Đây là lỗi kinh điển của người mới.'},
+
+{l:2,n:3,name:'RC lọc + tụ decoupling',goal:'Chống nhiễu nguồn, hằng số thời gian',
+ parts:[
+  ['Tụ gốm 100nF (mã 104)','50V · dùng cực nhiều','20','3.000đ'],
+  ['Tụ hóa 10µF / 25V','có cực tính','5','2.000đ'],
+  ['Tụ hóa 100µF / 25V','','5','3.000đ'],
+  ['Tụ hóa 470µF / 25V','lọc nguồn đầu vào','2','3.000đ'],
+  ['Điện trở 1kΩ / 10kΩ','','mỗi loại 5','200đ']],
+ fm:'<code>τ = R × C</code> (giây). Sau 1τ nạp 63%, sau 5τ coi như đầy.<br>Tần số cắt lọc thông thấp: <code>f = 1 / (2πRC)</code>',
+ warn:'Quy tắc vàng: <b>mọi IC đều phải có tụ 100nF sát chân VCC–GND</b>. Bỏ qua điều này là nguyên nhân của ~90% ca "mạch chạy chập chờn không rõ lý do".'},
+
+{l:2,n:4,name:'IC 555 — mạch dao động (astable)',goal:'Tạo xung, nháy LED, PWM không cần MCU',
+ parts:[
+  ['IC NE555','DIP-8','2','3.000đ'],
+  ['Đế IC 8 chân','DIP socket','2','1.000đ'],
+  ['Tụ 10µF','định tần chính','2','800đ'],
+  ['Tụ 100nF','chân 5 (control)','2','300đ'],
+  ['Điện trở 1kΩ / 10kΩ / 47kΩ','R1, R2','mỗi loại 2','200đ'],
+  ['Biến trở 100kΩ','chỉnh tần số','1','3.000đ'],
+  ['LED + trở 220Ω','','2','600đ']],
+ fm:'<code>f ≈ 1.44 / ((R1 + 2·R2) · C)</code> Hz &nbsp;·&nbsp; Duty = (R1+R2)/(R1+2R2)<br>Ví dụ R1=1k, R2=10k, C=10µF → f ≈ 6.8Hz (nháy nhìn thấy được).',
+ note:'Cổ điển nhưng dạy cực tốt về nạp/xả tụ và ngưỡng so sánh 1/3 – 2/3 Vcc.'},
+
+{l:2,n:5,name:'Op-amp LM358 — buffer & comparator',goal:'Khuếch đại, cách ly trở kháng, so sánh ngưỡng',
+ parts:[
+  ['IC LM358','2 op-amp · DIP-8 · chạy nguồn đơn','2','4.000đ'],
+  ['Đế IC 8 chân','','2','1.000đ'],
+  ['Điện trở 10kΩ','mạch hồi tiếp','6','300đ'],
+  ['Điện trở 100kΩ','đặt hệ số khuếch đại','3','150đ'],
+  ['Biến trở 10kΩ','đặt ngưỡng so sánh','2','6.000đ'],
+  ['LED + trở 220Ω','báo ngưỡng','2','600đ'],
+  ['Tụ 100nF','decoupling','2','300đ']],
+ fm:'<b>Buffer:</b> nối chân ra vào chân đảo → Gain = 1, cách ly trở kháng.<br><b>Không đảo:</b> <code>Gain = 1 + Rf/Rg</code><br><b>Comparator:</b> V+ &gt; V− thì ra HIGH — làm báo pin yếu, cảm biến ánh sáng.'},
+
+{l:2,n:6,name:'Mạch nguồn — LDO và Buck',goal:'Cấp nguồn đúng cách, tính công suất tỏa nhiệt',
+ parts:[
+  ['Module AMS1117-3.3','LDO · ra 3.3V / 800mA','2','10.000đ'],
+  ['IC LM7805','LDO · ra 5V · TO-220','2','6.000đ'],
+  ['Module buck LM2596','chỉnh được 1.25–35V / 2A','1','20.000đ'],
+  ['Module buck MP1584EN','nhỏ gọn · 3A','1','18.000đ'],
+  ['Tụ 100µF + 10µF + 100nF','lọc vào và ra','mỗi loại 4','4.000đ'],
+  ['Tản nhiệt TO-220','cho 7805','2','4.000đ'],
+  ['Đồng hồ vạn năng','đo TRƯỚC khi cắm MCU','—','—']],
+ fm:'<b>Linear (LDO):</b> <code>P<sub>nhiệt</sub> = (V<sub>vào</sub> − V<sub>ra</sub>) × I</code> → 12V→5V ở 1A = <b>7W</b>, nướng chín IC.<br><b>Buck (xung):</b> hiệu suất 85–92%, dùng khi chênh áp lớn hoặc dòng cao.',
+ warn:'Luôn vặn buck ra đúng điện áp và <b>đo bằng đồng hồ</b> trước khi cắm MCU vào. Cắm nhầm 12V vào ESP32 là mất board.'},
+
+{l:2,n:7,name:'ESP32 đọc ADC + xuất PWM',goal:'Cầu nối analog ↔ số, điều khiển bằng code',
+ parts:[
+  ['ESP32 DevKit V1','30 chân · WiFi + BT','1','90.000đ'],
+  ['Cáp micro USB','loại truyền được data','1','15.000đ'],
+  ['Biến trở 10kΩ','làm đầu vào analog','1','3.000đ'],
+  ['LED + trở 220Ω','xem PWM đổi độ sáng','2','600đ'],
+  ['Cảm biến DHT22 / DS18B20','đọc nhiệt độ','1','35.000đ'],
+  ['Breadboard + jumper','(dùng lại)','—','—']],
+ dia:'// ESP32 – Arduino IDE\nint v = analogRead(34);        // 0..4095\nledcSetup(0, 5000, 8);         // kênh 0, 5kHz, 8-bit\nledcAttachPin(2, 0);\nledcWrite(0, map(v,0,4095,0,255));',
+ warn:'ESP32 chạy <b>3.3V</b>, chân IO KHÔNG chịu được 5V. ADC2 (GPIO 0,2,4,12–15,25–27) không dùng được khi bật WiFi — dùng ADC1 (GPIO 32–39).'},
+
+{l:2,n:8,name:'MOSFET lái dải LED / quạt 12V',goal:'Chuyển mạch dòng lớn hiệu suất cao',
+ parts:[
+  ['MOSFET IRLZ44N','logic-level · 47A · TO-220','3','24.000đ'],
+  ['MOSFET AO3400','SMD · cho mạch nhỏ','5','5.000đ'],
+  ['Điện trở 100Ω','chân Gate (chống dao động)','3','150đ'],
+  ['Điện trở 10kΩ','pull-down Gate xuống GND','3','150đ'],
+  ['Dải LED 12V','1m · 5050','1','25.000đ'],
+  ['Nguồn 12V / 2A','','1','80.000đ'],
+  ['Tản nhiệt TO-220','','3','6.000đ']],
+ fm:'Chọn MOSFET <b>logic-level</b> (V<sub>GS(th)</sub> &lt; 2.5V) vì MCU chỉ ra 3.3V. IRF540 thường KHÔNG mở hết ở 3.3V — sinh nhiệt rồi cháy.',
+ warn:'Điện trở pull-down 10k ở Gate là bắt buộc: lúc MCU khởi động chân IO lơ lửng, không có nó thì tải bật ngẫu nhiên.'},
+
+// ─────────── LEVEL 3 ───────────
+{l:3,n:1,name:'Cầu H — đảo chiều động cơ',goal:'Điều khiển motor 2 chiều, dead-time chống chập nhánh',
+ parts:[
+  ['Module TB6612FNG','2 kênh · 1.2A · hiệu suất tốt','1','25.000đ'],
+  ['(thay thế) DRV8833','2 kênh · 1.5A','1','20.000đ'],
+  ['(học nguyên lý) L298N','rẻ nhưng sụt áp 2V và rất nóng','1','30.000đ'],
+  ['Motor DC giảm tốc 6V','TT motor hoặc N20','2','60.000đ'],
+  ['Tụ 100nF','hàn SÁT 2 chân motor · chống nhiễu chổi than','4','600đ'],
+  ['Nguồn motor riêng','6V/2A, KHÔNG dùng chung nguồn MCU','1','60.000đ'],
+  ['ESP32','(dùng lại)','—','—']],
+ warn:'Tự ráp 4 MOSFET: phải có <b>dead-time</b> và cấm bật 2 con cùng nhánh — chập nguồn tức thì. Người mới nên dùng module IC chuyên dụng.',
+ note:'Motor gây sụt áp và nhiễu rất mạnh → tách nguồn hoặc ít nhất tách đường mass, thêm tụ 470µF gần driver.'},
+
+{l:3,n:2,name:'Buck converter tự thiết kế',goal:'Hiểu nguồn xung từ gốc — layout là tất cả',
+ parts:[
+  ['IC MP1584EN','SOIC-8 · 3A · 28V vào','5','30.000đ'],
+  ['(thay thế) TPS5430','5A · dễ hàn hơn','2','40.000đ'],
+  ['Cuộn cảm SMD 10–47µH','dòng bão hòa ≥ 1.5× I ra','5','20.000đ'],
+  ['Diode Schottky SS34','3A / 40V','10','8.000đ'],
+  ['Tụ gốm 22µF / 25V','X5R · vào và ra','10','15.000đ'],
+  ['Điện trở feedback 1%','đặt điện áp ra','—','5.000đ'],
+  ['Dao động ký / Logic analyzer','đo ripple và xung switching','1','150.000đ+']],
+ fm:'<code>D = V<sub>ra</sub> / V<sub>vào</sub></code> · Ripple dòng cuộn cảm nên ≈ 30% I<sub>ra</sub>',
+ warn:'Vòng dòng chuyển mạch (IC → cuộn → tụ ra → mass) phải ngắn nhất có thể trên PCB. Layout sai = nhiễu EMI văng khắp mạch, chạy được nhưng phá hỏng phần còn lại.'},
+
+{l:3,n:3,name:'Level shifter 5V ↔ 3.3V',goal:'Ghép thiết bị khác mức logic mà không cháy chân',
+ parts:[
+  ['MOSFET BSS138','SOT-23 · kinh điển cho I2C','5','8.000đ'],
+  ['Điện trở 10kΩ','pull-up 2 phía','10','500đ'],
+  ['(thay thế) Module 4 kênh','BSS138 hàn sẵn','2','16.000đ'],
+  ['(1 chiều) IC 74HCT125','buffer đệm','2','10.000đ'],
+  ['(1 chiều rẻ) Cầu phân áp','1kΩ + 2kΩ · chỉ cho tín hiệu chậm','—','200đ']],
+ fm:'MOSFET 2 chiều dùng được cho <b>I2C</b> (bus 2 chiều, open-drain). Cầu phân áp chỉ dùng cho tín hiệu 1 chiều tốc độ thấp — SPI nhanh sẽ méo dạng.'},
+
+{l:3,n:4,name:'Cách ly quang (opto) và SSR',goal:'Tách hoàn toàn mạch điều khiển khỏi mạch công suất',
+ parts:[
+  ['Optocoupler PC817','DIP-4 · phổ biến nhất','5','7.500đ'],
+  ['(nhanh hơn) 6N137','cho tín hiệu số tốc độ cao','2','20.000đ'],
+  ['Điện trở 220Ω','hạn dòng LED bên trong opto','5','250đ'],
+  ['Điện trở 10kΩ','pull-up phía transistor','5','250đ'],
+  ['SSR G3MB-202P','relay bán dẫn · tải AC 2A','1','35.000đ'],
+  ['Nguồn cách ly (nếu cần)','B0505S-1W · DC-DC isolated','1','35.000đ']],
+ warn:'Opto chỉ thực sự cách ly khi hai phía dùng <b>hai nguồn và hai mass riêng biệt</b>. Nối chung GND là mất hết tác dụng cách ly.'},
+
+{l:3,n:5,name:'Đo dòng và công suất',goal:'Biết mạch mình ngốn bao nhiêu — thiết yếu cho thiết bị chạy pin',
+ parts:[
+  ['Module INA219','I2C · đo áp + dòng + công suất','1','30.000đ'],
+  ['(thay thế) INA226','độ phân giải cao hơn','1','45.000đ'],
+  ['(cho AC/dòng lớn) ACS712-5A','cảm biến Hall · cách ly','1','25.000đ'],
+  ['Điện trở shunt 0.1Ω 1%','2W · công suất','2','10.000đ'],
+  ['Điện trở pull-up 4.7kΩ','cho bus I2C','2','100đ'],
+  ['ESP32','(dùng lại)','—','—']],
+ fm:'<code>V<sub>shunt</sub> = I × R<sub>shunt</sub></code> → đo 1A qua 0.1Ω = 100mV, tổn hao 0.1W.<br>Shunt càng lớn càng dễ đo nhưng càng tổn hao — thường chọn 0.01–0.1Ω.'},
+
+{l:3,n:6,name:'Sạc Li-ion + boost 5V',goal:'Quản lý pin: CC/CV, bảo vệ quá xả, nâng áp',
+ parts:[
+  ['Module TP4056 CÓ bảo vệ','có 2 IC · chip DW01 + FS8205','2','12.000đ'],
+  ['Pin 18650','2000–3000mAh · mua hàng thật','2','80.000đ'],
+  ['Đế pin 18650','loại hàn được','2','10.000đ'],
+  ['Module boost MT3608','3.7V → 5V · 2A','2','24.000đ'],
+  ['Tụ 100µF + 10µF','lọc vào/ra boost','—','2.000đ'],
+  ['Công tắc gạt','ngắt nguồn','2','4.000đ']],
+ warn:'<b>Bắt buộc mua bản TP4056 có mạch bảo vệ</b> (nhìn mặt board thấy 2 IC nhỏ). Bản không bảo vệ sẽ xả pin xuống dưới 2.5V làm chai vĩnh viễn, tệ hơn là phồng/cháy. Không sạc pin không giám sát khi đang thử nghiệm.'},
+
+{l:3,n:7,name:'Bus I2C / SPI nhiều thiết bị',goal:'Ghép nhiều cảm biến trên cùng vài sợi dây',
+ parts:[
+  ['Màn OLED SSD1306 0.96"','I2C · địa chỉ 0x3C','1','45.000đ'],
+  ['Cảm biến MPU6050','gia tốc + con quay · I2C 0x68','1','30.000đ'],
+  ['Cảm biến BME280','nhiệt độ + ẩm + áp suất · I2C 0x76','1','60.000đ'],
+  ['Thẻ nhớ module SD','SPI','1','25.000đ'],
+  ['Điện trở pull-up 4.7kΩ','SDA và SCL · chỉ CẦN 1 CẶP cho cả bus','2','100đ'],
+  ['Logic analyzer 8 kênh','xem tín hiệu thật · dùng PulseView','1','150.000đ']],
+ warn:'Nhiều module đã có pull-up sẵn trên board. Gắn 5 module = 5 cặp pull-up song song → trở tổng quá nhỏ, bus chết. Phải tháo bớt điện trở trên module.',
+ note:'Trùng địa chỉ I2C thì dùng chân ADDR để đổi, hoặc thêm bộ ghép kênh TCA9548A.'},
+
+{l:3,n:8,name:'Chống nhiễu, ESD và bảo vệ',goal:'Mạch chạy được 1 giờ vs chạy được 1 năm',
+ parts:[
+  ['TVS diode SMAJ5.0A','chống xung áp đường nguồn','5','10.000đ'],
+  ['IC bảo vệ USB USBLC6-2SC6','ESD cho D+/D−','5','15.000đ'],
+  ['Hạt ferrite / cuộn chặn','lọc nhiễu tần số cao','10','10.000đ'],
+  ['Cầu chì tự phục hồi PPTC','0.5A / 1A','5','8.000đ'],
+  ['Diode chống ngược cực SS34','bảo vệ cắm ngược nguồn','5','5.000đ'],
+  ['Tụ 100nF + 10µF','decoupling khắp board','—','—']],
+ note:'Thêm: đi <b>ground plane</b> liền mạch, tách mass analog/số nối 1 điểm, đường tín hiệu tốc độ cao không cắt ngang khe mass.'},
+
+{l:3,n:9,name:'Vẽ PCB trong KiCad → đặt sản xuất',goal:'Đích đến cuối cùng: board thật của riêng mình',
+ parts:[
+  ['KiCad 8','miễn phí · mã nguồn mở','1','0đ'],
+  ['Đặt PCB JLCPCB / PCBWay','5 board 2 lớp 100×100mm','1','~60.000đ + ship'],
+  ['Mỏ hàn khí nóng 858D','hàn linh kiện SMD','1','400.000đ'],
+  ['Mỏ hàn chỉnh nhiệt T12','hàn chân cắm','1','300.000đ'],
+  ['Kem hàn + nhựa thông','Mechanic XG-50','1','80.000đ'],
+  ['Nhíp cong + kính lúp','','1','60.000đ'],
+  ['Stencil thép','nếu hàn nhiều board','1','~80.000đ']],
+ note:'Quy trình: Schematic → gán footprint → Netlist → sắp xếp linh kiện → routing → DRC → xuất Gerber + BOM + file vị trí → upload lên JLCPCB.',
+ warn:'Chạy <b>DRC</b> và in bản 1:1 ra giấy ướm thử linh kiện thật trước khi đặt. Sai footprint là mất tiền và 2 tuần chờ.'}
+];
+
+const SHOP={"LED 5mm đỏ": {"b": {"t": "LED 5mm Đỏ Đục (10c)", "u": "https://banlinhkien.com/led-5mm-do-duc-10c-p6651526.html", "p": "2.500đ"}, "c": {"t": "LED 5mm Trong Suốt Siêu Sáng Xanh Đỏ Trắng Vàng Xanh Dương F5", "u": "https://caka.vn/led-5mm-trong-suot-sieu-sang-xanh-do-trang-vang-xanh-duong-f5", "p": "5.000đ"}}, "LED 5mm": {"b": {"t": "LED 5mm Đỏ Đục (10c)", "u": "https://banlinhkien.com/led-5mm-do-duc-10c-p6651526.html", "p": "2.500đ"}, "c": {"t": "LED 5mm Trong Suốt Siêu Sáng Xanh Đỏ Trắng Vàng Xanh Dương F5", "u": "https://caka.vn/led-5mm-trong-suot-sieu-sang-xanh-do-trang-vang-xanh-duong-f5", "p": "5.000đ"}}, "LED 5mm + trở 220Ω": {"b": {"t": "LED 5mm Đỏ Đục (10c)", "u": "https://banlinhkien.com/led-5mm-do-duc-10c-p6651526.html", "p": "2.500đ"}, "c": {"t": "LED 5mm Trong Suốt Siêu Sáng Xanh Đỏ Trắng Vàng Xanh Dương F5", "u": "https://caka.vn/led-5mm-trong-suot-sieu-sang-xanh-do-trang-vang-xanh-duong-f5", "p": "5.000đ"}}, "LED + trở 220Ω": {"b": {"t": "LED 5mm Đỏ Đục (10c)", "u": "https://banlinhkien.com/led-5mm-do-duc-10c-p6651526.html", "p": "2.500đ"}, "c": {"t": "LED 5mm Trong Suốt Siêu Sáng Xanh Đỏ Trắng Vàng Xanh Dương F5", "u": "https://caka.vn/led-5mm-trong-suot-sieu-sang-xanh-do-trang-vang-xanh-duong-f5", "p": "5.000đ"}}, "Điện trở 220Ω": {"b": {"t": "Trở Vạch 1/4W 5% 220R (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-220r-50c-p6650237.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 100Ω": {"b": {"t": "Trở Vạch 1/4W 5% 100R (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-100r-50c-p6650262.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 10kΩ": {"b": {"t": "Trở Vạch 1/4W 5% 10K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-10k-50c-p6650263.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 1kΩ": {"b": {"t": "Trở Vạch 1/4W 5% 1K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-1k-50c-p6653369.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 1kΩ / 10kΩ": {"b": {"t": "Trở Vạch 1/4W 5% 1K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-1k-50c-p6653369.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 1kΩ / 10kΩ / 47kΩ": {"b": {"t": "Trở Vạch 1/4W 5% 47K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-47k-50c-p6652018.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở 100kΩ": {"b": {"t": "Trở Vạch 1/4W 5% 100K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-5-100k-50c-p6650261.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở pull-up 4.7kΩ": {"c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Điện trở feedback 1%": {"b": {"t": "Trở Vạch 1/4W 1% 2.2K (50c)", "u": "https://banlinhkien.com/tro-vach-14w-1-2.2k-50c-p20994784.html", "p": "6.000đ"}, "c": {"t": "Điện Trở Vạch 1/4W Sai Số 5% 1R–4.7M – Đầy Đủ Giá Trị Cho Mọi Ứng Dụng", "u": "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung", "p": "4.000đ"}}, "Breadboard 830 lỗ": {"b": {"t": "Board Test ZY-40 400 Lỗ (8.5x5.5cm)", "u": "https://banlinhkien.com/board-test-zy40-400-lo-8.5x5.5cm-p6649619.html", "p": "15.000đ"}, "c": {"t": "Breadboard MB-102 830 Lỗ - Bo Test Cắm Linh Kiện", "u": "https://caka.vn/breadboard-mb-102-830-lo-de-cam-mach-khong-can-han", "p": "30.000đ"}}, "Dây jumper đực–đực": {"c": {"t": "Dây cắm Breadboard Đực Đực 10cm 40 Sợi", "u": "https://caka.vn/day-cam-breadboard-duc-duc-10cm-40-soi", "p": "22.000đ"}}, "Nguồn 5V": {"b": {"t": "Nguồn Adapter 5V1A DC5.5x2.1MM (Phích Tròn)", "u": "https://banlinhkien.com/nguon-adapter-5v1a-dc5.5x2.1mm-phich-tron-p8232366.html", "p": "30.000đ"}, "c": {"t": "Nguồn Adapter 5V 2A Jack cắm 5.5x2.1mm", "u": "https://caka.vn/nguon-adapter-5v-2a-jack-cam-5-5x2-1mm-1", "p": "40.000đ"}}, "Nguồn 5V ≥ 1A": {"b": {"t": "Nguồn Adapter 5V1A DC5.5x2.1MM (Phích Tròn)", "u": "https://banlinhkien.com/nguon-adapter-5v1a-dc5.5x2.1mm-phich-tron-p8232366.html", "p": "30.000đ"}, "c": {"t": "Nguồn Adapter 5V 2A Jack cắm 5.5x2.1mm", "u": "https://caka.vn/nguon-adapter-5v-2a-jack-cam-5-5x2-1mm-1", "p": "40.000đ"}}, "Nguồn 5V / 9V": {"b": {"t": "Nguồn Adapter 5V1A DC5.5x2.1MM (Phích Tròn)", "u": "https://banlinhkien.com/nguon-adapter-5v1a-dc5.5x2.1mm-phich-tron-p8232366.html", "p": "30.000đ"}, "c": {"t": "Nguồn Adapter 5V 2A Jack cắm 5.5x2.1mm", "u": "https://caka.vn/nguon-adapter-5v-2a-jack-cam-5-5x2-1mm-1", "p": "40.000đ"}}, "Nguồn 12V": {"b": {"t": "Nguồn Adapter 12V2A DC5.5x2.1MM", "u": "https://banlinhkien.com/nguon-adapter-12v2a-dc5.5x2.1mm-p6651357.html", "p": "45.000đ"}, "c": {"t": "Nguồn Adapter 12V 2A Jack DC 5.5x2.1mm", "u": "https://caka.vn/nguon-adapter-12v-2a-jack-dc-5-5x2-1mm", "p": "50.000đ"}}, "Nguồn 12V / 2A": {"b": {"t": "Nguồn Adapter 12V2A DC5.5x2.1MM", "u": "https://banlinhkien.com/nguon-adapter-12v2a-dc5.5x2.1mm-p6651357.html", "p": "45.000đ"}, "c": {"t": "Nguồn Adapter 12V 2A Jack DC 5.5x2.1mm", "u": "https://caka.vn/nguon-adapter-12v-2a-jack-dc-5-5x2-1mm", "p": "50.000đ"}}, "Nút nhấn tact 6×6mm": {"b": {"t": "Nút Nhấn 4 Chân 6x6x22MM DIP (10 chiếc)", "u": "https://banlinhkien.com/nut-nhan-4-chan-6x6x22mm-dip-10-chiec-p22456384.html", "p": "8.000đ"}, "c": {"t": "Nút Nhấn 4 Chân 6x6x5mm / 6x6x8mm / 6x6x10mm – Gắn PCB", "u": "https://caka.vn/nut-nhan-4-chan-6x6x5mm-6x6x8mm-6x6x10mm-gan-pcb", "p": "5.000đ"}}, "Nút nhấn tact": {"b": {"t": "Nút Nhấn 4 Chân 6x6x22MM DIP (10 chiếc)", "u": "https://banlinhkien.com/nut-nhan-4-chan-6x6x22mm-dip-10-chiec-p22456384.html", "p": "8.000đ"}, "c": {"t": "Nút Nhấn 4 Chân 6x6x5mm / 6x6x8mm / 6x6x10mm – Gắn PCB", "u": "https://caka.vn/nut-nhan-4-chan-6x6x5mm-6x6x8mm-6x6x10mm-gan-pcb", "p": "5.000đ"}}, "Biến trở (chiết áp) 10kΩ": {"b": {"t": "Biến Trở 10K 3006P-103", "u": "https://banlinhkien.com/bien-tro-10k-3006p103-p6651082.html", "p": "3.000đ"}, "c": {"t": "Biến Trở LA42DWQ-22 10K 22mm Điều Chỉnh Tốc Độ", "u": "https://caka.vn/bien-tro-la42dwq-22-10k-22mm-dieu-chinh-toc-do", "p": "55.000đ"}}, "Biến trở 10kΩ": {"b": {"t": "Biến Trở 10K 3006P-103", "u": "https://banlinhkien.com/bien-tro-10k-3006p103-p6651082.html", "p": "3.000đ"}, "c": {"t": "Biến Trở LA42DWQ-22 10K 22mm Điều Chỉnh Tốc Độ", "u": "https://caka.vn/bien-tro-la42dwq-22-10k-22mm-dieu-chinh-toc-do", "p": "55.000đ"}}, "Biến trở 100kΩ": {"b": {"t": "Chiết Áp 100K 2W WTH118-100K-2W", "u": "https://banlinhkien.com/chiet-ap-100k-2w-wth118100k2w-p6653141.html", "p": "15.000đ"}, "c": {"t": "Biến Trở Chiết Áp TOCOS RV24YN20S 100K B104", "u": "https://caka.vn/bien-tro-chiet-ap-tocos-rv24yn20s-100k-b104", "p": "30.000đ"}}, "Đồng hồ vạn năng": {"b": {"t": "Đồng Hồ Vạn Năng SANWA CD800A", "u": "https://banlinhkien.com/dong-ho-van-nang-sanwa-cd800a-p6650868.html", "p": "960.000đ"}, "c": {"t": "Đồng hồ vạn năng VICTOR 890C+", "u": "https://caka.vn/dong-ho-van-nang-victor-890c", "p": "450.000đ"}}, "Quang trở LDR": {"b": {"t": "Quang Trở CDS 12MM 12528", "u": "https://banlinhkien.com/quang-tro-cds-12mm-12528-p6650675.html", "p": "15.000đ"}, "c": {"t": "Quang trở CDS cảm biến ánh sáng 7mm", "u": "https://caka.vn/quang-tro-cds-cam-bien-anh-sang-7mm", "p": "8.000đ"}}, "Transistor NPN": {"b": {"t": "2N2222 SOT23 TRANS NPN 0.6A 40V (1P) (10c)", "u": "https://banlinhkien.com/2n2222-sot23-trans-npn-0.6a-40v-1p-10c-p15834999.html", "p": "2.000đ"}, "c": {"t": "Transistor NPN 2N2222 40V 800mA TO-92", "u": "https://caka.vn/transistor-npn-2n2222-40v-800ma-to-92", "p": "1.000đ"}}, "Transistor S8050": {"b": {"t": "S8050 TO92 Trans NPN 0.5A 40V (DIP) (10c)", "u": "https://banlinhkien.com/s8050-to92-trans-npn-0.5a-40v-dip-10c-p15943541.html", "p": "4.000đ"}, "c": {"t": "Transistor S8050 1.5A 40V NPN (10 cái)", "u": "https://caka.vn/s8050-transistor-npn-40v-500ma", "p": "5.000đ"}}, "Buzzer chủ động 5V": {"b": {"t": "Còi Chíp 5V 5.5x9MM", "u": "https://banlinhkien.com/coi-chip-5v-5.5x9mm-p17504606.html", "p": "4.000đ"}, "c": {"t": "Còi chíp 3V 5V 12V – Còi báo mini dùng cho mạch điện tử", "u": "https://caka.vn/coi-chip-3v-5v-12v-coi-bao-mini-dung-cho-mach-dien-tu", "p": "5.000đ"}}, "Relay 5V": {"b": {"t": "Relay 5V5A HF49FD-005-1H11", "u": "https://banlinhkien.com/relay-5v5a-hf49fd0051h11-p14848991.html", "p": "25.000đ"}, "c": {"t": "Rơ Le 5V SRD-05VDC-SL-C 10A 5 Chân SPDT", "u": "https://caka.vn/relay-5v-10a-srd-05vdc-sl-c-5-chan", "p": "7.000đ"}}, "Diode 1N4007": {"b": {"t": "Diode 1N4007 1A (DIP) (10c)", "u": "https://banlinhkien.com/diode-1n4007-1a-dip-10c-p16520665.html", "p": "3.000đ"}, "c": {"t": "Diode Chỉnh Lưu 1N4007 1A 1000V (gói 10 cái)", "u": "https://caka.vn/diode-chinh-luu-1n4007-1a-1000v-goi-10-cai", "p": "3.000đ"}}, "(hoặc) Module relay 1 kênh": {"b": {"t": "Module Relay Mini 1 Kênh 5V10A BLK", "u": "https://banlinhkien.com/module-relay-mini-1-kenh-5v10a-blk-p17935540.html", "p": "29.000đ"}, "c": {"t": "Module Relay 1 Kênh Cách Ly Opto 5V 12V Kích High/Low", "u": "https://caka.vn/module-relay-1-kenh-cach-ly-opto-5v-12v-kich-high-low", "p": "18.000đ"}}, "Tụ gốm 100nF (mã 104)": {"b": {"t": "Tụ Gốm 104 100nF 50V (10c)", "u": "https://banlinhkien.com/tu-gom-104-100nf-50v-10c-p6652092.html", "p": "2.000đ"}, "c": {"t": "Tụ Gốm Đỏ 50V Ceramic 2 Chân Xuyên Lỗ", "u": "https://caka.vn/tu-gom-do-50v-ceramic-2-chan-xuyen-lo", "p": "2.000đ"}}, "Tụ 100nF": {"b": {"t": "Tụ Gốm 104 100nF 50V (10c)", "u": "https://banlinhkien.com/tu-gom-104-100nf-50v-10c-p6652092.html", "p": "2.000đ"}, "c": {"t": "Tụ Gốm Đỏ 50V Ceramic 2 Chân Xuyên Lỗ", "u": "https://caka.vn/tu-gom-do-50v-ceramic-2-chan-xuyen-lo", "p": "2.000đ"}}, "Tụ 100nF + 10µF": {"b": {"t": "Tụ Gốm 104 100nF 50V (10c)", "u": "https://banlinhkien.com/tu-gom-104-100nf-50v-10c-p6652092.html", "p": "2.000đ"}, "c": {"t": "Tụ Gốm Đỏ 50V Ceramic 2 Chân Xuyên Lỗ", "u": "https://caka.vn/tu-gom-do-50v-ceramic-2-chan-xuyen-lo", "p": "2.000đ"}}, "Tụ hóa 10µF / 25V": {"b": {"t": "Tụ Hóa 10uF 35V 5x11MM (5c)", "u": "https://banlinhkien.com/tu-hoa-10uf-35v-5x11mm-5c-p31949262.html", "p": "3.000đ"}, "c": {"t": "Tụ Hóa 25V 10uF 100uF 220uF 470uF 1000uF 2200uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "Tụ 10µF": {"b": {"t": "Tụ Hóa 10uF 35V 5x11MM (5c)", "u": "https://banlinhkien.com/tu-hoa-10uf-35v-5x11mm-5c-p31949262.html", "p": "3.000đ"}, "c": {"t": "Tụ Hóa 25V 10uF 100uF 220uF 470uF 1000uF 2200uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "Tụ hóa 100µF / 25V": {"b": {"t": "Tụ Hóa 100uF 25v 6x11MM (10 chiếc)", "u": "https://banlinhkien.com/tu-hoa-100uf-25v-6x11mm-10-chiec-p22290823.html", "p": "3.000đ"}, "c": {"t": "Tụ Hóa 25V 10uF 100uF 220uF 470uF 1000uF 2200uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "Tụ 100µF + 10µF + 100nF": {"b": {"t": "Tụ Hóa 100uF 25v 6x11MM (10 chiếc)", "u": "https://banlinhkien.com/tu-hoa-100uf-25v-6x11mm-10-chiec-p22290823.html", "p": "3.000đ"}, "c": {"t": "Tụ Hóa 25V 10uF 100uF 220uF 470uF 1000uF 2200uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "Tụ 100µF + 10µF": {"b": {"t": "Tụ Hóa 100uF 25v 6x11MM (10 chiếc)", "u": "https://banlinhkien.com/tu-hoa-100uf-25v-6x11mm-10-chiec-p22290823.html", "p": "3.000đ"}, "c": {"t": "Tụ Hóa 25V 10uF 100uF 220uF 470uF 1000uF 2200uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "Tụ hóa 470µF / 25V": {"b": {"t": "Tụ Hóa 470uF 50V 10X17mm (5 chiếc)", "u": "https://banlinhkien.com/tu-hoa-470uf-50v-10x17mm-5-chiec-p23690872.html", "p": "7.500đ"}, "c": {"t": "Tụ Hóa 35V 100uF 220uF 470uF 1000uF 2200uF 4700uF 2 chân xuyên lỗ", "u": "https://caka.vn/tu-hoa-35v-100uf-220uf-470uf-1000uf-2200uf-4700uf-2-chan-xuyen-lo", "p": "5.000đ"}}, "IC NE555": {"b": {"t": "Module NE555", "u": "https://banlinhkien.com/module-ne555-p12116886.html", "p": "18.000đ"}, "c": {"t": "NE555 IC tạo dao động", "u": "https://caka.vn/ne555-ic-tao-dao-dong", "p": "3.000đ"}}, "Đế IC 8 chân": {"b": {"t": "Đế IC 8P (DIP8) (Loại Tròn) (5 chiếc)", "u": "https://banlinhkien.com/de-ic-8p-dip8-loai-tron-5-chiec-p23489475.html", "p": "7.500đ"}, "c": {"t": "Đế IC 8P 14P 16P 18P 20P 24P 28P 32P 40P - Socket IC DIP", "u": "https://caka.vn/de-ic-8p-14p-16p-18p-20p-24p-28p-32p-40p-socket-ic-dip", "p": "1.000đ"}}, "IC LM358": {"b": {"t": "LM358 SOP8 Chính Hãng TI", "u": "https://banlinhkien.com/lm358-sop8-chinh-hang-ti-p18255883.html", "p": "5.000đ"}, "c": {"t": "IC LM358 – Op-amp kép, khuếch đại tín hiệu cảm biến", "u": "https://caka.vn/ic-lm358-op-amp-kep-khuech-dai-tin-hieu-cam-bien", "p": "4.000đ"}}, "Module AMS1117-3.3": {"b": {"t": "AMS1117-3.3V TO252", "u": "https://banlinhkien.com/ams11173.3v-to252-p6651271.html", "p": "3.000đ"}, "c": {"t": "Mạch Cấp Nguồn AMS1117 3.3V 5V", "u": "https://caka.vn/mach-cap-nguon-ams1117-3-3v-5v", "p": "13.000đ"}}, "IC LM7805": {"b": {"t": "L7805CV 1.5A TO220", "u": "https://banlinhkien.com/l7805cv-1.5a-to220-p6651249.html", "p": "2.500đ"}, "c": {"t": "IC ổn áp 7805 TO-220 5V dòng tối đa 1.5A", "u": "https://caka.vn/ic-on-ap-7805-to-220-5v-dong-toi-da-1-5a", "p": "4.000đ"}}, "Module buck LM2596": {"c": {"t": "Mạch hạ áp 3A LM2596 mạch giảm áp", "u": "https://caka.vn/mach-ha-ap-3a-lm2596-mach-giam-ap", "p": "15.000đ"}}, "Module buck MP1584EN": {"b": {"t": "MP1584 SOP8 DC-DC STEP-DOWN ADJ 3A 28V", "u": "https://banlinhkien.com/mp1584-sop8-dcdc-stepdown-adj-3a-28v-p6648676.html", "p": "20.000đ"}}, "IC MP1584EN": {"b": {"t": "MP1584 SOP8 DC-DC STEP-DOWN ADJ 3A 28V", "u": "https://banlinhkien.com/mp1584-sop8-dcdc-stepdown-adj-3a-28v-p6648676.html", "p": "20.000đ"}}, "(thay thế) TPS5430": {"b": {"t": "TPS5430 SOP8 BUCK 3A 5.5-36V", "u": "https://banlinhkien.com/tps5430-sop8-buck-3a-5.536v-p6648690.html", "p": "22.000đ"}}, "Tản nhiệt TO-220": {"b": {"t": "Đệm Tản Nhiệt TO-220P (10c)", "u": "https://banlinhkien.com/dem-tan-nhiet-to220p-10c-p6648203.html", "p": "3.000đ"}, "c": {"t": "Tản nhiệt nhôm cho IC 7805 78XX TO220", "u": "https://caka.vn/tan-nhiet-nhom-cho-ic-7805-78xx-to220", "p": "2.000đ"}}, "Cáp micro USB": {"b": {"t": "Dây USB A-Micro USB DM03Z", "u": "https://banlinhkien.com/day-usb-amicro-usb-dm03z-p6649845.html", "p": "10.000đ"}, "c": {"t": "Cáp Nạp Code ESP8266 ESP32 Micro USB", "u": "https://caka.vn/cap-nap-code-esp8266-esp32-micro-usb", "p": "20.000đ"}}, "Cảm biến DHT22 / DS18B20": {"b": {"t": "Cảm Biến Nhiệt Độ Độ Ẩm DHT22", "u": "https://banlinhkien.com/cam-bien-nhiet-do-do-am-dht22-p6650646.html", "p": "120.000đ"}, "c": {"t": "Module Cảm Biến Độ Ẩm Nhiệt Độ DHT22", "u": "https://caka.vn/module-cam-bien-do-am-nhiet-do-dht22", "p": "103.000đ"}}, "MOSFET AO3400": {"b": {"t": "AO3400 SOT23-3 MOSFET N-1CH 5A 30V (A09T) (5c)", "u": "https://banlinhkien.com/ao3400-sot233-mosfet-n1ch-5a-30v-a09t-5c-p16000513.html", "p": "12.000đ"}, "c": {"t": "AT09 AO3400 SOT23-3 MOSFET N-1CH 5A 30V", "u": "https://caka.vn/at09-ao3400-sot23-3-mosfet-n-1ch-5a-30v", "p": "1.000đ"}}, "Dải LED 12V": {"b": {"t": "Led Dây 5050 RGB PN (Cuộn 5M)", "u": "https://banlinhkien.com/led-day-5050-rgb-pn-cuon-5m-p6653551.html", "p": "120.000đ"}, "c": {"t": "Dây Led RGB 5050 12V Cuộn 5M", "u": "https://caka.vn/day-led-rgb-5050-12v-cuon-5m", "p": "155.000đ"}}, "Module TB6612FNG": {"b": {"t": "Module Điều Khiển Động Cơ TB6612FNG 4.5-13.5VDC 1.2A", "u": "https://banlinhkien.com/module-dieu-khien-dong-co-tb6612fng-4.513.5vdc-1.2a-p6647438.html", "p": "165.000đ"}, "c": {"t": "Mạch điều khiển động cơ TB6612", "u": "https://caka.vn/mach-dieu-khien-dong-co-tb6612", "p": "65.000đ"}}, "(học nguyên lý) L298N": {"b": {"t": "Module Điều Khiển Động Cơ L298 V2", "u": "https://banlinhkien.com/module-dieu-khien-dong-co-l298-v2-p6647375.html", "p": "80.000đ"}, "c": {"t": "Module driver động cơ L298N điều khiển động cơ DC và stepper cho robot xe thông minh", "u": "https://caka.vn/module-driver-dong-co-l298n-dieu-khien-dong-co-dc-va-stepper-cho-robot-xe-thong-minh", "p": "45.000đ"}}, "Motor DC giảm tốc 6V": {"b": {"t": "Động Cơ Giảm Tốc 3-6VDC Màu Vàng 2 Trục", "u": "https://banlinhkien.com/dong-co-giam-toc-36vdc-mau-vang-2-truc-p6652544.html", "p": "20.000đ"}, "c": {"t": "Động cơ giảm tốc GA12 N20", "u": "https://caka.vn/dong-co-dc-giam-toc-ga12-n20", "p": "89.000đ"}}, "Cuộn cảm SMD 10–47µH": {"b": {"t": "Cuộn Cảm 10uH 12x12x7MM CDRH127", "u": "https://banlinhkien.com/cuon-cam-10uh-12x12x7mm-cdrh127-p12911584.html", "p": "4.500đ"}, "c": {"t": "Cuộn Cảm Vạch 1/2W", "u": "https://caka.vn/cuon-cam-vach", "p": "1.000đ"}}, "Hạt ferrite / cuộn chặn": {"b": {"t": "Cuộn Cảm 10uH 12x12x7MM CDRH127", "u": "https://banlinhkien.com/cuon-cam-10uh-12x12x7mm-cdrh127-p12911584.html", "p": "4.500đ"}, "c": {"t": "Cuộn Cảm Vạch 1/2W", "u": "https://caka.vn/cuon-cam-vach", "p": "1.000đ"}}, "Diode Schottky SS34": {"b": {"t": "Diode SS34F SOT123 3A 40V SMA (SS34F) (10c)", "u": "https://banlinhkien.com/diode-ss34f-sot123-3a-40v-sma-ss34f-10c-p12118666.html", "p": "15.000đ"}, "c": {"t": "Diode Schottky Dán SS14 SS24 SS34 SS54 Chỉnh Lưu Siêu Nhanh", "u": "https://caka.vn/diode-schottky-dan-ss14-ss24-ss34-ss54-chinh-luu-sieu-nhanh", "p": "1.000đ"}}, "Diode chống ngược cực SS34": {"b": {"t": "Diode SS34F SOT123 3A 40V SMA (SS34F) (10c)", "u": "https://banlinhkien.com/diode-ss34f-sot123-3a-40v-sma-ss34f-10c-p12118666.html", "p": "15.000đ"}, "c": {"t": "Diode Schottky Dán SS14 SS24 SS34 SS54 Chỉnh Lưu Siêu Nhanh", "u": "https://caka.vn/diode-schottky-dan-ss14-ss24-ss34-ss54-chinh-luu-sieu-nhanh", "p": "1.000đ"}}, "Dao động ký / Logic analyzer": {"b": {"t": "Máy Hiện Sóng Oscilloscope Hantek DSO5102P 100MHz", "u": "https://banlinhkien.com/may-hien-song-oscilloscope-hantek-dso5102p-100mhz-p12118436.html", "p": "9.300.000đ"}, "c": {"t": "Máy Hiện Sóng DSO150 oscilloscope DSO150", "u": "https://caka.vn/may-hien-song-dso150-oscilloscope-dso150", "p": "799.000đ"}}, "Logic analyzer 8 kênh": {"b": {"t": "Máy Hiện Sóng Oscilloscope Hantek DSO5102P 100MHz", "u": "https://banlinhkien.com/may-hien-song-oscilloscope-hantek-dso5102p-100mhz-p12118436.html", "p": "9.300.000đ"}, "c": {"t": "Máy Hiện Sóng DSO150 oscilloscope DSO150", "u": "https://caka.vn/may-hien-song-dso150-oscilloscope-dso150", "p": "799.000đ"}}, "(1 chiều) IC 74HCT125": {"b": {"t": "74HC125D SOP14 3.9MM (Loại Nhỏ)", "u": "https://banlinhkien.com/74hc125d-sop14-3.9mm-loai-nho-p12867657.html", "p": "8.000đ"}, "c": {"t": "IC 74HC125 DIP14 – Quad Buffer 3-State Output Logic CMOS", "u": "https://caka.vn/ic-74hc125-dip14-quad-buffer-3-state-output-logic-cmos", "p": "9.000đ"}}, "Optocoupler PC817": {"b": {"t": "PC817 DIP4 Chính Hãng SHARP", "u": "https://banlinhkien.com/pc817-dip4-chinh-hang-sharp-p16840981.html", "p": "3.500đ"}, "c": {"t": "PC817 Opto cách ly quang", "u": "https://caka.vn/pc817-opto-cach-ly-quang", "p": "3.000đ"}}, "(nhanh hơn) 6N137": {"b": {"t": "6N137 SOP8 Opto 10Mbit/s", "u": "https://banlinhkien.com/6n137-sop8-opto-10mbits-p6650639.html", "p": "9.000đ"}}, "SSR G3MB-202P": {"c": {"t": "Module 1 Relay Rắn SSR 5VDC", "u": "https://caka.vn/module-1-relay-ran-ssr-5vdc", "p": "35.000đ"}}, "Nguồn cách ly (nếu cần)": {"b": {"t": "B0505S-1W SIP4 Nguồn Cách Ly 5V-5V", "u": "https://banlinhkien.com/b0505s1w-sip4-nguon-cach-ly-5v5v-p6648722.html", "p": "40.000đ"}, "c": {"t": "Module nguồn cách ly 5V B0505S 1W", "u": "https://caka.vn/module-nguon-cach-ly-5v-b0505s-1w", "p": "40.000đ"}}, "Module INA219": {"b": {"t": "Module Đo Dòng INA219", "u": "https://banlinhkien.com/module-do-dong-ina219-p12117432.html", "p": "50.000đ"}, "c": {"t": "Mạch cảm biến dòng điện điện áp INA219", "u": "https://caka.vn/mach-cam-bien-dong-dien-dien-ap-ina219", "p": "65.000đ"}}, "(cho AC/dòng lớn) ACS712-5A": {"b": {"t": "Module Đo Dòng ACS712 20A (ACS712-20A)", "u": "https://banlinhkien.com/module-do-dong-acs712-20a-acs71220a-p12867654.html", "p": "40.000đ"}, "c": {"t": "ACS712 IC Cảm biến dòng", "u": "https://caka.vn/acs712-ic-cam-bien-dong", "p": "60.000đ"}}, "Điện trở shunt 0.1Ω 1%": {"c": {"t": "Điện trở Sense Shunt 20A", "u": "https://caka.vn/dien-tro-sense-shunt-20a", "p": "7.000đ"}}, "Module TP4056 CÓ bảo vệ": {"b": {"t": "Mạch Sạc Pin Có Bảo Vệ TP4056 1A TYPE-C", "u": "https://banlinhkien.com/mach-sac-pin-co-bao-ve-tp4056-1a-typec-p15776067.html", "p": "10.000đ"}, "c": {"t": "Mạch sạc pin TP4056 Có IC bảo vệ", "u": "https://caka.vn/mach-sac-pin-tp4056-co-ic-bao-ve", "p": "10.000đ"}}, "Pin 18650": {"b": {"t": "Đầu Pin 18650 9.5x6MM", "u": "https://banlinhkien.com/dau-pin-18650-9.5x6mm-p12117851.html", "p": "1.000đ"}, "c": {"t": "Pin 18650 EVE 26V 2550mAh xả 5C", "u": "https://caka.vn/pin-18650-eve-26v-2550mah-xa-5c", "p": "32.000đ"}}, "Đế pin 18650": {"b": {"t": "Hộp Đế Pin 18650 Hàn Mạch DP 18650-HM-02", "u": "https://banlinhkien.com/hop-de-pin-18650-han-mach-dp-18650hm02-p12118919.html", "p": "15.000đ"}, "c": {"t": "Khung ghép đế pin 18650 (1x3)", "u": "https://caka.vn/khung-ghep-de-pin-18650-1-3", "p": "3.000đ"}}, "Module boost MT3608": {"c": {"t": "Mạch Tăng Áp DC MT3608 2A – Boost Converter Nâng Điện Áp 2V~24V", "u": "https://caka.vn/mach-tang-ap-dc-mt3608-2a-boost-converter-nang-dien-ap-2v-24v", "p": "10.000đ"}}, "Công tắc gạt": {"b": {"t": "Công Tắc Gạt MP3 MK12C02 (5 chiếc)", "u": "https://banlinhkien.com/cong-tac-gat-mp3-mk12c02-5-chiec-p23063322.html", "p": "7.500đ"}, "c": {"t": "Công Tắc Gạt SS12F15 – Loại 3 Chân", "u": "https://caka.vn/cong-tac-gat-ss12f15-loai-3-chan", "p": "2.000đ"}}, "Màn OLED SSD1306 0.96\"": {"b": {"t": "Màn Hình OLED 0.96 128x64 I2C Xanh OLED-096-I2C-B", "u": "https://banlinhkien.com/man-hinh-oled-0.96-128x64-i2c-xanh-oled096i2cb-p12496214.html", "p": "95.000đ"}, "c": {"t": "Màn Hình LCD OLED 0.96 inch I2C", "u": "https://caka.vn/man-hinh-lcd-oled-0-96-inch-i2c", "p": "70.000đ"}}, "Cảm biến MPU6050": {"b": {"t": "Module Cảm Biến Góc Gia Tốc MPU6050 GY-521", "u": "https://banlinhkien.com/module-cam-bien-goc-gia-toc-mpu6050-gy521-p6652223.html", "p": "80.000đ"}, "c": {"t": "Cảm Biến GY-521 MPU6050 Đo Gia Tốc & Góc 6 Trục IMU", "u": "https://caka.vn/cam-bien-gy-521-mpu6050-do-gia-toc-goc-6-truc-imu", "p": "74.000đ"}}, "Thẻ nhớ module SD": {"b": {"t": "Module Ghi Đọc Thẻ Nhớ Micro SD", "u": "https://banlinhkien.com/module-ghi-doc-the-nho-micro-sd-p6653449.html", "p": "13.000đ"}}, "Cầu chì tự phục hồi PPTC": {"b": {"t": "Cầu Chì Tự Phục Hồi 3A 30V DIP RUEF300", "u": "https://banlinhkien.com/cau-chi-tu-phuc-hoi-3a-30v-dip-ruef300-p18274893.html", "p": "3.500đ"}}, "Mỏ hàn khí nóng 858D": {"b": {"t": "Máy Khò QUICK 858D", "u": "https://banlinhkien.com/may-kho-quick-858d-p12912835.html", "p": "1.200.000đ"}, "c": {"t": "Máy khò nhiệt 858D+ 220V 700W Hiển Thị Số Công Suất Lớn", "u": "https://caka.vn/may-kho-nhiet-858d-220v-700w-hien-thi-so-cong-suat-lon", "p": "850.000đ"}}, "Kem hàn + nhựa thông": {"b": {"t": "Nhựa Thông Hộp Nhỏ 15G", "u": "https://banlinhkien.com/nhua-thong-hop-nho-15g-p6653109.html", "p": "6.000đ"}, "c": {"t": "Nhựa thông lỏng 100ml", "u": "https://caka.vn/nhua-thong-long-20ml", "p": "18.000đ"}}, "Nhíp cong + kính lúp": {"b": {"t": "Kính Lúp Đa Năng Có Đèn KL508D", "u": "https://banlinhkien.com/kinh-lup-da-nang-co-den-kl508d-p6648093.html", "p": "190.000đ"}, "c": {"t": "Nhíp gắp linh kiện ESD-15 loại cong", "u": "https://caka.vn/nhip-gap-linh-kien-esd-15-loai-cong", "p": "20.000đ"}}, "ESP32": {"s": 1}, "Breadboard + jumper": {"s": 1}, "(1 chiều rẻ) Cầu phân áp": {"s": 1}, "Đặt PCB JLCPCB / PCBWay": {"s": 1}, "Tải thử": {"s": 1}, "Nguồn motor riêng": {"s": 1}, "KiCad 8": {"s": 1}};
+const app=document.getElementById('app');
+function esc(s){return s}
+function cell(x){return x?`<a href="${x.u}" target="_blank" rel="noopener" title="${x.t.replace(/"/g,'&quot;')}">${x.p}</a>`:'';}
+const IMG={"https://banlinhkien.com/2n2222-sot23-trans-npn-0.6a-40v-1p-10c-p15834999.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190808_FhPcvU0jMzdXVendDufjVBom.png?v=1676318636", "https://banlinhkien.com/6n137-sop8-opto-10mbits-p6650639.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_spuhyqmk73UPH0NEMHnOIOTF.jpg?v=1677033346", "https://banlinhkien.com/74hc125d-sop14-3.9mm-loai-nho-p12867657.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20231204_AiyASSU3xe.png?v=1701657632", "https://banlinhkien.com/ams11173.3v-to252-p6651271.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_4UPtdsk5Z35e1PhCsy6VnW3H.jpg?v=1677033213", "https://banlinhkien.com/ao3400-sot233-mosfet-n1ch-5a-30v-a09t-5c-p16000513.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190816_k6SrWbudweVBNSfQzXNZLQZo.jpg?v=1676312889", "https://banlinhkien.com/b0505s1w-sip4-nguon-cach-ly-5v5v-p6648722.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_dBlUal9yA7KOuv5mf4eVM7nO.jpg?v=1677033737", "https://banlinhkien.com/bien-tro-10k-3006p103-p6651082.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_1ZW9zHrWP9LEePH2tfDbzvX3.jpg?v=1677033251", "https://banlinhkien.com/board-test-mb102-830-lo-16.5x5.5cm-p6649614.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230315_E79EGuhLmk.jpeg?v=1678853707", "https://banlinhkien.com/board-test-zy40-400-lo-8.5x5.5cm-p6649619.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230315_fjcjg9YmyM.jpeg?v=1678851521", "https://banlinhkien.com/bot-bien-60x60x11mm-p6653108.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_FhiPQ4DkFAcgFpQEHtxRh1GL.jpg?v=1677032838", "https://banlinhkien.com/cam-bien-nhiet-do-do-am-dht22-p6650646.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_PcHDPMhNB94Cd0b356VXOtIh.jpg?v=1677033344", "https://banlinhkien.com/cau-chi-5a-3x10mm-10c-p18256953.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20191122_aNwAGpPvfGG25WuOOwYCKzM8.png?v=1676143262", "https://banlinhkien.com/cau-chi-tu-phuc-hoi-3a-30v-dip-ruef300-p18274893.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20191123_OA4ZBY6aWbTDzq4TodBs4muB.jpg?v=1676142802", "https://banlinhkien.com/chiet-ap-100k-2w-wth118100k2w-p6653141.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_GqTvjVO8i1S9t2QwRPC7rdjz.jpg?v=1677032832", "https://banlinhkien.com/chiet-ap-don-b10k-p6648290.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_V9Ubsi1UbIhW1ShVVrNnL8u4.png?v=1677033824", "https://banlinhkien.com/coi-chip-5v-5.5x9mm-p17504606.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20250508_veTgvfn4Uo.jpeg?v=1746692144", "https://banlinhkien.com/cong-tac-gat-mp3-mk12c02-5-chiec-p23063322.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200701_91sRjqIMNi9S5kEhUNM6H3In.jpg?v=1675716823", "https://banlinhkien.com/cuon-cam-10uh-12x12x7mm-cdrh127-p12911584.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190409_QW5wPkELXW7hlTIhKh5X9RnS.jpg?v=1676478940", "https://banlinhkien.com/cuon-cam-vach-10mh-1w-0510-5-chiec-p23481150.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200719_vk583qcZOPmyuRnM2CPuCVab.png?v=1675696227", "https://banlinhkien.com/dau-pin-18650-9.5x6mm-p12117851.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_8t4P2FVwAGgyKiyai3aTdlMN.jpg?v=1676521142", "https://banlinhkien.com/day-usb-amicro-usb-dm03z-p6649845.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_8dh0JIYgr6BW1vPj6GC5cqb2.jpg?v=1677033504", "https://banlinhkien.com/de-ic-8p-dip8-loai-tron-5-chiec-p23489475.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200720_zI7xxeKFew96UD4AYBHzRTC3.jpg?v=1675695730", "https://banlinhkien.com/dem-tan-nhiet-to220p-10c-p6648203.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_Zbz805pberYw53khvBmWIh8X.jpg?v=1677033841", "https://banlinhkien.com/diode-1n4007-1a-dip-10c-p16520665.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190910_ue1fiEBymS2dAC1dXtkMQNkk.jpg?v=1676271312", "https://banlinhkien.com/diode-cau-1a-1000v-dbs10-sop4-p35250223.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20211028_PMUoIA1FoDZSkvPtdiZbn8qd.png?v=1673786107", "https://banlinhkien.com/diode-ss34f-sot123-3a-40v-sma-ss34f-10c-p12118666.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_rwJIABQalt38enwvmVqfKoUE.jpg?v=1676521013", "https://banlinhkien.com/dong-co-giam-toc-36vdc-mau-vang-2-truc-p6652544.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20231218_VDSa2XDbbl.png?v=1702848904", "https://banlinhkien.com/dong-ho-van-nang-sanwa-cd800a-p6650868.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230408_uin9jxj55f.png?v=1680918124", "https://banlinhkien.com/hop-de-pin-18650-han-mach-dp-18650hm02-p12118919.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_UDbzisM3SAKLGfBW1x7cMjd8.jpg?v=1676520960", "https://banlinhkien.com/jack-noi-nguon-dc5.5x2.1mm-loai-cai-p12117030.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_z2JhnaGoCMNKC4YRr4SRblOH.jpg?v=1676521285", "https://banlinhkien.com/ke-han-sat-nho-khs01-p6652325.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_7oHPdR1QONARL0XzstFSPKGw.jpg?v=1677032991", "https://banlinhkien.com/kep-thang-linh-kien-ts12-p8231919.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180719_DCNncvFiU0QRGxNSFYhGgkqM.jpg?v=1676925700", "https://banlinhkien.com/kim-cat-chan-linh-kien-model170-p8232293.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180719_eWOUnhcBHeqF5oFJA7WWDowY.png?v=1676925642", "https://banlinhkien.com/kinh-lup-da-nang-co-den-kl508d-p6648093.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_5uGTYmKu2lhigmusHZwLOhQs.jpg?v=1677033863", "https://banlinhkien.com/l7805cv-1.5a-to220-p6651249.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_xTijnLkMWZUbLjxAZz4QAYWk.jpg?v=1677033218", "https://banlinhkien.com/led-5mm-do-duc-10c-p6651526.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_DVdLAGkOzOQPLrxEe534GDVU.jpg?v=1677033162", "https://banlinhkien.com/led-day-5050-rgb-pn-cuon-5m-p6653551.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_DsWArGzbTSURPqMNyFs65ulN.jpg?v=1677032749", "https://banlinhkien.com/lm358-sop8-chinh-hang-ti-p18255883.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20191122_xdg0JmRvQ7pOg024SlhLITG4.jpg?v=1676143309", "https://banlinhkien.com/mach-sac-pin-co-bao-ve-tp4056-1a-typec-p15776067.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190805_QLakq4MTBHLHfWPNwGSZOxXP.png?v=1676321070", "https://banlinhkien.com/man-hinh-oled-0.96-128x64-i2c-xanh-oled096i2cb-p12496214.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190321_U5O1PVTLn4ok5InUisubr5nx.jpg?v=1676494133", "https://banlinhkien.com/may-hien-song-oscilloscope-hantek-dso5102p-100mhz-p12118436.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_G3fWUaFTfCCforvwbBK0xvSZ.jpg?v=1676521056", "https://banlinhkien.com/may-kho-quick-858d-p12912835.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190409_22j5VtzEuqyjYLnCt5BkrMeL.jpg?v=1676478924", "https://banlinhkien.com/module-cam-bien-goc-gia-toc-mpu6050-gy521-p6652223.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_9ChUH7ckLQ4rTzneV9atIPEK.jpg?v=1677033013", "https://banlinhkien.com/module-dieu-khien-dong-co-l298-v2-p6647375.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_VZteWxbbMWyQ8FYIAVlvhjxS.jpg?v=1677033952", "https://banlinhkien.com/module-dieu-khien-dong-co-tb6612fng-4.513.5vdc-1.2a-p6647438.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_DC2NE9Yy0RwtwYvOvH6gr2xW.png?v=1677033949", "https://banlinhkien.com/module-do-dong-acs712-20a-acs71220a-p12867654.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230221_oI6ANZdUePeqcesJ.png?v=1676952280", "https://banlinhkien.com/module-do-dong-ina219-p12117432.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_ZzVKEqkjbdmGU4xWku4mMXPU.jpg?v=1676521204", "https://banlinhkien.com/module-ghi-doc-the-nho-micro-sd-p6653449.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20250426_J2ql0M63c6.jpeg?v=1745661735", "https://banlinhkien.com/module-ne555-p12116886.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190304_4M9wtMq3YzYBVmP7a6bFzUKs.png?v=1676521318", "https://banlinhkien.com/module-relay-mini-1-kenh-5v10a-blk-p17935540.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230627_4jlZMODlE9.jpeg?v=1687847840", "https://banlinhkien.com/mp1584-sop8-dcdc-stepdown-adj-3a-28v-p6648676.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_5CxIF59S5mAIai5tPazHYr4p.jpg?v=1677033746", "https://banlinhkien.com/nguon-adapter-12v1a-dc5.5x2.1mm-p6651356.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_gMqGegdfkOMbXkx5PkPh4CRx.jpg?v=1677033195", "https://banlinhkien.com/nguon-adapter-12v2a-dc5.5x2.1mm-p6651357.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_AeudmStLgmL5I0dsdPxkBKR1.png?v=1677033195", "https://banlinhkien.com/nguon-adapter-5v1a-dc5.5x2.1mm-phich-tron-p8232366.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180719_aalS5M2p1b0I2u9xAF1sCR1V.png?v=1676925630", "https://banlinhkien.com/nhua-thong-hop-nho-15g-p6653109.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_Y9GBLZrSFIK3m12KbPv1fEjW.jpg?v=1677032838", "https://banlinhkien.com/nut-nhan-4-chan-6x6x22mm-dip-10-chiec-p22456384.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200610_W9BmLu3oGI8M9fBI22KZJ90S.jpg?v=1675759163", "https://banlinhkien.com/nut-nhan-4-chan-6x6x7.5mm-dip-10-chiec-p22290883.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200605_jUzlSRqtMCoQUAS6XfHvB1cC.jpg?v=1675764221", "https://banlinhkien.com/pc817-dip4-chinh-hang-sharp-p16840981.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190923_fc8xgadf3zH4deOKVXmXB2dB.jpg?v=1676241902", "https://banlinhkien.com/pin-pc535749.html": "https://pos.nvncdn.com/f2fe44-24897/pc/20210824_xKqf2NjpUcu5WdZcy4wzKWlt.jpg?v=1673285217", "https://banlinhkien.com/quang-tro-cds-12mm-12528-p6650675.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_C4rcfrbDjdPLNCNIeTE50gQJ.jpg?v=1677033338", "https://banlinhkien.com/quat-tan-nhiet-12vdc-1.68w-120x120x25mm-p6648105.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20230916_5rl1CQfey5.jpeg?v=1694832455", "https://banlinhkien.com/relay-5v5a-hf49fd0051h11-p14848991.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190622_LYbslqo0HsRNlnUfrWZal0Gq.jpg?v=1676365222", "https://banlinhkien.com/s8050-to92-trans-npn-0.5a-40v-dip-10c-p15943541.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20190814_A2unl7IFeSLueS3dqh9pqG3m.png?v=1676314664", "https://banlinhkien.com/tps5430-sop8-buck-3a-5.536v-p6648690.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_Aqt7Afz6loxQGYES2y4nDWYA.jpg?v=1677033743", "https://banlinhkien.com/tro-5-12w-1k-10c-p6652943.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_F87ml1lFgHcOAjoQBMntdpwJ.jpg?v=1677032870", "https://banlinhkien.com/tro-vach-14w-1-2.2k-50c-p20994784.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200413_0g5bPCYYZWOdx3cTw1aNRIaC.jpg?v=1675961517", "https://banlinhkien.com/tro-vach-14w-5-100k-50c-p6650261.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_KeLGI2icRvoANbbLLmm9gbbi.jpg?v=1677033425", "https://banlinhkien.com/tro-vach-14w-5-100r-50c-p6650262.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_rIc4jGXAA6cOXTkV2ptBPgEP.jpg?v=1677033424", "https://banlinhkien.com/tro-vach-14w-5-10k-50c-p6650263.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_IdgaGHhUFJg8Rqho3iJCTFAV.png?v=1677033424", "https://banlinhkien.com/tro-vach-14w-5-1k-50c-p6653369.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_wElgN7EUXeFdrzB6CXvSNWQD.png?v=1677032784", "https://banlinhkien.com/tro-vach-14w-5-220r-50c-p6650237.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_6IUyuz05wJdNPycuvAsrPy5t.png?v=1677033429", "https://banlinhkien.com/tro-vach-14w-5-330r-50c-p6652009.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_TDKe877pgTm9bw7powSbR2jX.jpg?v=1677033056", "https://banlinhkien.com/tro-vach-14w-5-47k-50c-p6652018.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_gqTiPd65WzLalEMNvsbg6Jlo.jpg?v=1677033054", "https://banlinhkien.com/tu-gom-104-100nf-50v-10c-p6652092.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_8nxsGU8Pq0qbt81cq4P7Wyrc.jpg?v=1677033039", "https://banlinhkien.com/tu-hoa-100uf-25v-6x11mm-10-chiec-p22290823.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200605_yyOsBhSTLS3S95EdZO4ACnXD.jpg?v=1675764234", "https://banlinhkien.com/tu-hoa-10uf-35v-5x11mm-5c-p31949262.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20210520_UI13X7Juj6Iel52hJbrSGdey.jpg?v=1674094034", "https://banlinhkien.com/tu-hoa-470uf-50v-10x17mm-5-chiec-p23690872.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200729_dqfEAubxUERqkLJ76DNT6EXy.jpg?v=1675656631", "https://caka.vn/acs712-ic-cam-bien-dong": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/acs712-min.png?v=1628334720047", "https://caka.vn/at09-ao3400-sot23-3-mosfet-n-1ch-5a-30v": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/oa3400-min.png?v=1669830196050", "https://caka.vn/bien-tro-chiet-ap-tocos-rv24yn20s-100k-b104": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/1b461701-ec7d-4ae7-bf24-f1d1c1cdb8ab.jpg?v=1787305515683", "https://caka.vn/bien-tro-la42dwq-22-10k-22mm-dieu-chinh-toc-do": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/a6db7b05-df4a-4953-9634-4dee41f8394d.jpg?v=1787768873790", "https://caka.vn/breadboard-mb-102-830-lo-de-cam-mach-khong-can-han": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/breadboard-mb-102-830-lo.jpg?v=1787125061790", "https://caka.vn/cam-bien-gy-521-mpu6050-do-gia-toc-goc-6-truc-imu": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2649715506779-169d90963f4cba490192933514204f1d.jpg?v=1677079240153", "https://caka.vn/cap-nap-code-esp8266-esp32-micro-usb": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/cap-nap-code-esp8266-esp32-min.png?v=1747760975497", "https://caka.vn/coi-chip-3v-5v-12v-coi-bao-mini-dung-cho-mach-dien-tu": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/dgf.png?v=1627892393907", "https://caka.vn/cong-tac-gat-ss12f15-loai-3-chan": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/ss-12f16.png?v=1747906689467", "https://caka.vn/cuon-cam-vach": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2769099539389-0fe108824602482263d6e20d441d9401.jpg?v=1631853369527", "https://caka.vn/day-cam-breadboard-duc-duc-10cm-40-soi": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/32425390-1162-4773-8434-9dae614ea050.jpg?v=1787123842730", "https://caka.vn/day-led-rgb-5050-12v-cuon-5m": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/led-5050-rgb.jpg?v=1627314212653", "https://caka.vn/de-ic-8p-14p-16p-18p-20p-24p-28p-32p-40p-socket-ic-dip": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/de-ic-1.jpg?v=1772081471420", "https://caka.vn/dien-tro-sense-shunt-20a": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/2456.png?v=1676430103847", "https://caka.vn/dien-tro-vach-1-4w-sai-so-5-1r-4-7m-day-du-gia-tri-cho-moi-ung-dung": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/dien-tro-vach.jpg?v=1747045415453", "https://caka.vn/diode-chinh-luu-1n4007-1a-1000v-goi-10-cai": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/40077.png?v=1628327871163", "https://caka.vn/diode-schottky-dan-ss14-ss24-ss34-ss54-chinh-luu-sieu-nhanh": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2769099335888-0350d5a283c0abaad09861905fdb3372.jpg?v=1747067772077", "https://caka.vn/dong-co-dc-giam-toc-ga12-n20": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2660621537684-6ab859e5aad67f30a035547f40bd3bbd.jpg?v=1628067657487", "https://caka.vn/dong-ho-van-nang-victor-890c": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2685372395555-5f482774a4945eeb2e02b9019b76f61d.jpg?v=1649822023097", "https://caka.vn/ic-74hc125-dip14-quad-buffer-3-state-output-logic-cmos": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/74hc125-smd-min.png?v=1676598934367", "https://caka.vn/ic-lm358-op-amp-kep-khuech-dai-tin-hieu-cam-bien": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/lm358-min.png?v=1751948163243", "https://caka.vn/ic-on-ap-7805-to-220-5v-dong-toi-da-1-5a": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/l7805-min.png?v=1752043814677", "https://caka.vn/khung-ghep-de-pin-18650-1-3": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/2-485bbb50-1f1c-472e-aacc-d173e0b4d733.png?v=1669913188570", "https://caka.vn/led-5mm-trong-suot-sieu-sang-xanh-do-trang-vang-xanh-duong-f5": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/led-5mm-trong-suot-sieu-sang-f5.jpg?v=1753525346147", "https://caka.vn/mach-cam-bien-dong-dien-dien-ap-ina219": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2670992997005-d679a3c68004ab2cd5f15d2ebd92a40c.jpg?v=1628844084380", "https://caka.vn/mach-cap-nguon-ams1117-3-3v-5v": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2633551403007-c1e866e7d13220d35719221d67adb1f6.jpg?v=1627023829360", "https://caka.vn/mach-dieu-khien-dong-co-tb6612": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2660621415278-7c65ce89cc4a0d8adc10669faa57d353.jpg?v=1628065434770", "https://caka.vn/mach-ha-ap-3a-lm2596-mach-giam-ap": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/mach-ha-ap-3a.jpg?v=1670514642457", "https://caka.vn/mach-sac-pin-tp4056-co-ic-bao-ve": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2647371959344-8831f2921429b91c000dd8cbeb649170.jpg?v=1627547242780", "https://caka.vn/mach-tang-ap-dc-mt3608-2a-boost-converter-nang-dien-ap-2v-24v": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/mach-tang-ap-mt3608-2a-min.jpg?v=1748399771277", "https://caka.vn/man-hinh-lcd-oled-0-96-inch-i2c": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2609764928366-c365a9f9a43ffe63dfc08655eab0238e.jpg?v=1747638206607", "https://caka.vn/may-hien-song-dso150-oscilloscope-dso150": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/may-hien-song-dso150-oscilloscope-dso150.png?v=1729094936840", "https://caka.vn/may-kho-nhiet-858d-220v-700w-hien-thi-so-cong-suat-lon": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/may-kho-nhiet-858d-plus.jpg?v=1786819762780", "https://caka.vn/module-1-relay-ran-ssr-5vdc": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2714777857056-311a91ec2af999bf006664d5827f2aa4-3c2dc038-025a-4a01-92e2-caea37d78519.jpg?v=1630059693287", "https://caka.vn/module-cam-bien-do-am-nhiet-do-dht22": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2622498101516-09dff6c790ff1f6d3e9bfb0e23beb821.jpg?v=1750230742163", "https://caka.vn/module-driver-dong-co-l298n-dieu-khien-dong-co-dc-va-stepper-cho-robot-xe-thong-minh": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/mach-dieu-khien-dong-co-l298n.jpg?v=1772208474813", "https://caka.vn/module-nguon-cach-ly-5v-b0505s-1w": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2719199028827-a0308b98ac9edb39173af233773553f5.jpg?v=1630232588513", "https://caka.vn/module-relay-1-kenh-cach-ly-opto-5v-12v-kich-high-low": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2676786986800-1573da3730bedfe1f12eafcf37c4782d.jpg?v=1748509442817", "https://caka.vn/ne555-ic-tao-dao-dong": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/ne555-min.png?v=1672396725637", "https://caka.vn/nguon-adapter-12v-2a-jack-dc-5-5x2-1mm": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/d8780136-dde7-408b-a4e2-fde5c98a90eb.jpg?v=1784364538790", "https://caka.vn/nguon-adapter-5v-2a-jack-cam-5-5x2-1mm-1": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/6d228eb5-37ea-4249-939b-2281e3136624-e5b196af-1a1c-4e59-97fe-166574e12b2c.jpg?v=1784365048230", "https://caka.vn/nhip-gap-linh-kien-esd-15-loai-cong": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2714777876803-dd7a112d2b6433cbb9d839b95c2a0eda.jpg?v=1746599891587", "https://caka.vn/nhua-thong-long-20ml": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/nhua-thong-long-1.png?v=1718087685563", "https://caka.vn/nut-nhan-4-chan-6x6x5mm-6x6x8mm-6x6x10mm-gan-pcb": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/nut-nhan-4-chan.png?v=1747756243407", "https://caka.vn/pc817-opto-cach-ly-quang": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/pc817-min.png?v=1670039664107", "https://caka.vn/pin-18650-eve-26v-2550mah-xa-5c": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/pin-18650-eve-2550mah.jpg?v=1758794520267", "https://caka.vn/quang-tro-cds-cam-bien-anh-sang-7mm": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2719197789340-f7b2b7d8877520492f13437097f6183c.jpg?v=1675871906700", "https://caka.vn/relay-5v-10a-srd-05vdc-sl-c-5-chan": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/ro-le-5v-srd-05vdc-sl-c-10a-5-chan-spdt.jpg?v=1787370290423", "https://caka.vn/s8050-transistor-npn-40v-500ma": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/8050.png?v=1631939513517", "https://caka.vn/tan-nhiet-nhom-cho-ic-7805-78xx-to220": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2706717144977-c238b3a6f7f29767d9ff1bce7e50ffe5.jpg?v=1746672487420", "https://caka.vn/transistor-npn-2n2222-40v-800ma-to-92": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/2n2222.png?v=1747120604263", "https://caka.vn/tu-gom-do-50v-ceramic-2-chan-xuyen-lo": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2688075543543-f400ab3a932530ad2b4c7fcd5a2af9e5.jpg?v=1746690751177", "https://caka.vn/tu-hoa-25v-10uf-100uf-220uf-470uf-1000uf-2200uf-2-chan-xuyen-lo": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2688075552185-0127d4997ec6a178eb1b8590886cc6f9.jpg?v=1629097163907", "https://caka.vn/tu-hoa-35v-100uf-220uf-470uf-1000uf-2200uf-4700uf-2-chan-xuyen-lo": "https://bizweb.dktcdn.net/thumb/grande/100/251/524/products/z2688075552185-0127d4997ec6a178eb1b8590886cc6f9-276cf075-b3dc-4247-8e01-12a121baade2.jpg?v=1746680094300", "https://banlinhkien.com/day-cam-board-test-pc535618.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_vvl0Hitbg7E0LqcuLYFZA3sI.jpg?v=1677032710", "https://banlinhkien.com/phu-kien-quat-pc535708.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_lBbUzUehgv8nmstvT9fwHQaB.jpg?v=1677032983", "https://banlinhkien.com/cong-tac-pc535451.html": "https://pos.nvncdn.com/f2fe44-24897/ps/20200701_DJdB72xunAfdLDenjqD7FvfM.jpg?v=1675716823", "https://banlinhkien.com/search?q=nh%E1%BB%B1a+th%C3%B4ng": "https://pos.nvncdn.com/f2fe44-24897/ps/20180320_Y9GBLZrSFIK3m12KbPv1fEjW.jpg?v=1677032838"};
+function row(p){
+ const s=SHOP[p[0]]||{}, na=!s.b&&!s.c&&!s.s;
+ const c1=s.s?'<span class="nn">—</span>':(cell(s.b)||'<span class="no">✕</span>');
+ const c2=s.s?'<span class="nn">—</span>':(cell(s.c)||'<span class="no">✕</span>');
+ const g=(s.b&&IMG[s.b.u]&&s.b)||(s.c&&IMG[s.c.u]&&s.c);
+ return `<tr class="${na?'na':''}"><td class="im p-im">${g?thumb(g.u,g.t):'<div class="ph">?</div>'}</td><td class="p-name"><b>${p[0]}</b></td><td class="p-spec">${p[1]}</td><td class="q p-qty">${p[2]}</td><td class="s p-blk">${c1}</td><td class="s p-caka">${c2}</td></tr>`;
+}
+const SIM={"1-1": "https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+176+336+176+128+0+0+40+5+0+0+0.5%0Ar+176+128+336+128+0+220%0A162+336+128+336+336+2+default-led+1+0+0+0.01%0Aw+176+336+336+336+0%0Ag+176+336+176+384+0%0Ax+60+240+130+240+4+20+5V%0Ax+370+250+440+250+4+20+LED&hideSidebar=true&hideMenu=true&running=true", "1-4": "https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+176+352+176+128+0+0+40+9+0+0+0.5%0Ag+176+352+176+400+0%0Aw+176+128+304+128+0%0Ar+304+128+304+240+0+10000%0Ar+304+240+304+352+0+10000%0Aw+176+352+304+352+0%0Aw+304+240+416+240+0%0Ax+60+250+130+250+4+20+9V%0Ax+360+170+430+170+4+20+R1%0Ax+360+310+430+310+4+20+R2%0Ax+430+250+500+250+4+20+Vra&hideSidebar=true&hideMenu=true&running=true", "2-1": "https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+128+288+128+240+0+2+2+2.5+2.5+0+0.5%0Ag+128+288+128+320+0%0Ar+128+240+240+240+0+1000%0At+240+240+288+240+0+1+0+0+100%0Ag+288+256+288+304+0%0A162+288+160+288+224+2+default-led+1+0+0+0.01%0Ar+288+96+288+160+0+470%0Aw+288+96+416+96+0%0Av+416+240+416+96+0+0+40+12+0+0+0.5%0Ag+416+240+416+288+0%0Ax+30+235+110+235+4+20+MCU%0Ax+320+195+400+195+4+20+LED%0Ax+440+180+520+180+4+20+12V&hideSidebar=true&hideMenu=true&running=true", "2-2": "https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+128+400+128+272+0+2+40+5+0+0+0.5%0Ag+128+400+128+432+0%0Ar+128+272+240+272+0+1000%0At+240+272+288+272+0+1+0+0+100%0Ag+288+288+288+336+0%0Al+288+144+288+256+0+0.1+0%0Ad+368+256+368+144+1+default%0Aw+288+256+368+256+0%0Aw+288+144+368+144+0%0Av+288+144+288+96+0+0+40+5+0+0+0.5%0Ag+288+96+288+64+0%0Ax+40+250+120+250+4+20+MCU%0Ax+190+210+260+210+4+20+relay%0Ax+300+90+360+90+4+20+5V%0Ax+390+210+470+210+4+20+1N4007&hideSidebar=true&hideMenu=true&running=true", "2-3": "https://www.falstad.com/circuit/circuitjs.html?cct=%24+1+0.000005+10.2+50+5+50%0Av+176+336+176+128+0+2+100+2.5+2.5+0+0.5%0Ag+176+336+176+384+0%0Ar+176+128+336+128+0+10000%0Ac+336+128+336+336+0+0.00000047+0%0Aw+176+336+336+336+0%0Aw+336+128+448+128+0%0Ax+50+240+130+240+4+20+vuong%0Ax+220+105+290+105+4+20+R%0Ax+460+135+540+135+4+20+Vra&hideSidebar=true&hideMenu=true&running=true"};
+function card(c){
+ const anyNa=c.parts.some(p=>{const s=SHOP[p[0]]||{};return !s.b&&!s.c&&!s.s});
+ return `<div class="card" id="m-${c.l}-${c.n}" data-na="${anyNa?1:0}" data-l="${c.l}" data-s="${(c.name+' '+c.goal+' '+c.parts.map(p=>p[0]+' '+p[1]).join(' ')).toLowerCase()}">
+  <div class="ctop"><span class="num">${c.l}.${c.n}</span><h3>${c.name}</h3></div>
+  <div class="goal">${c.goal}</div>
+  <table><thead><tr><th class="im p-im"></th><th class="p-name">Linh kiện</th><th class="p-spec">Thông số</th><th class="q p-qty">SL</th><th class="s p-blk">banlinhkien</th><th class="s p-caka">caka.vn</th></tr></thead><tbody>
+  ${c.parts.map(p=>row(p)).join('')}
+  </tbody></table>
+  <img class="sch" src="svg/${c.l}-${c.n}.svg" alt="Sơ đồ ${c.l}.${c.n}" loading="lazy" onerror="this.remove()">
+  ${SIM[c.l+'-'+c.n]?`<div class="sim"><button data-sim="${SIM[c.l+'-'+c.n]}">▶ Chạy mô phỏng</button></div>`:''}
+  ${c.dia?`<pre>${c.dia}</pre>`:''}
+  ${c.fm?`<div class="fm">${c.fm}</div>`:''}
+  ${c.note?`<div class="fm">${c.note}</div>`:''}
+  ${c.warn?`<div class="warn">⚠ ${c.warn}</div>`:''}
+ </div>`;
+}
+app.innerHTML=LEVELS.map(L=>`<section class="lvl" data-l="${L.n}">
+  <div class="lvlhead"><span class="badge ${L.cls}">LEVEL ${L.n}</span><h2>${L.t}</h2><span class="g">${L.g}</span></div>
+  ${C.filter(c=>c.l===L.n).map(card).join('')}
+  <div class="proj">${L.proj}</div>
+</section>`).join('');
+
+app.addEventListener('click',e=>{
+ const b=e.target.closest('.sim button'); if(!b) return;
+ const w=b.parentElement, f=w.querySelector('iframe');
+ if(f){f.remove(); b.textContent='▶ Chạy mô phỏng'; return;}
+ w.insertAdjacentHTML('beforeend',`<iframe loading="lazy" title="Mô phỏng Falstad" src="${b.dataset.sim}"></iframe>`);
+ b.textContent='✕ Ẩn mô phỏng';
+});
+
+let flt='all', q='';
+function apply(){
+ document.querySelectorAll('section.lvl').forEach(s=>{
+  const okL = flt==='all' || flt==='na' || s.dataset.l===flt;
+  let shown=0;
+  s.querySelectorAll('.card').forEach(c=>{
+    const ok = okL && (flt!=='na' || c.dataset.na==='1') && (!q || c.dataset.s.includes(q));
+    c.classList.toggle('hide',!ok); if(ok)shown++;
+  });
+  s.querySelector('.proj').classList.toggle('hide', !!q);
+  s.classList.toggle('hide', shown===0);
+ });
+}
+document.querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('button[data-f]').forEach(x=>x.classList.remove('on'));
+ b.classList.add('on'); flt=b.dataset.f; apply();
+});
+const EXTRA=[["Kẹp thẳng linh kiện TS-12", 1, "cái", 15000, "https://banlinhkien.com/kep-thang-linh-kien-ts12-p8231919.html"], ["Kìm cắt chân linh kiện Model-170", 1, "cái", 30000, "https://banlinhkien.com/kim-cat-chan-linh-kien-model170-p8232293.html"], ["Pin 9V Panasonic", 1, "cái", 17000, "https://banlinhkien.com/pin-pc535749.html"], ["Bọt biển 60×60×11mm", 1, "cái", 6000, "https://banlinhkien.com/bot-bien-60x60x11mm-p6653108.html"], ["Điện trở 1K 1/2W 5% – 10 cái", 1, "gói", 3000, "https://banlinhkien.com/tro-5-12w-1k-10c-p6652943.html"], ["Nút nhấn 4 chân 6×6×7.5mm DIP – 10 cái", 1, "gói", 4000, "https://banlinhkien.com/nut-nhan-4-chan-6x6x7.5mm-dip-10-chiec-p22290883.html"], ["Diode cầu DBS10 1A 1000V SOP4", 1, "cái", 2000, "https://banlinhkien.com/diode-cau-1a-1000v-dbs10-sop4-p35250223.html"], ["Cầu chì 5A 3×10mm – 10 cái", 1, "gói", 5000, "https://banlinhkien.com/cau-chi-5a-3x10mm-10c-p18256953.html"], ["Cuộn cảm 10mH 1W 0510 – 5 cái", 1, "gói", 7500, "https://banlinhkien.com/cuon-cam-vach-10mh-1w-0510-5-chiec-p23481150.html"], ["Board Test MB-102 830 lỗ", 1, "cái", 25000, "https://banlinhkien.com/board-test-mb102-830-lo-16.5x5.5cm-p6649614.html"], ["Dây 40P 20cm C-C – 10 sợi", 1, "gói", 6000, "https://banlinhkien.com/day-cam-board-test-pc535618.html"], ["Dây 40P 20cm Đ-C – 10 sợi", 1, "gói", 6000, "https://banlinhkien.com/day-cam-board-test-pc535618.html"], ["Dây 40P 20cm Đ-Đ – 10 sợi", 1, "gói", 6000, "https://banlinhkien.com/day-cam-board-test-pc535618.html"], ["Quạt tản nhiệt 12VDC 1.68W 120×120×25mm", 1, "cái", 45000, "https://banlinhkien.com/quat-tan-nhiet-12vdc-1.68w-120x120x25mm-p6648105.html"], ["Tấm bảo vệ quạt 12cm", 1, "cái", 8000, "https://banlinhkien.com/phu-kien-quat-pc535708.html"], ["Adapter 12V 1A DC5.5×2.1mm", 1, "cái", 40000, "https://banlinhkien.com/nguon-adapter-12v1a-dc5.5x2.1mm-p6651356.html"], ["Jack nối nguồn DC5.5×2.1mm cái", 1, "cái", 3000, "https://banlinhkien.com/jack-noi-nguon-dc5.5x2.1mm-loai-cai-p12117030.html"], ["Công tắc gạt SS12D07VG5 – 5 cái", 1, "gói", 3000, "https://banlinhkien.com/cong-tac-pc535451.html"], ["Điện trở 220R 1/4W 5% – 50 cái", 1, "gói", 4000, "https://banlinhkien.com/tro-vach-14w-5-220r-50c-p6650237.html"], ["Điện trở 330R 1/4W 5% – 50 cái", 1, "gói", 4000, "https://banlinhkien.com/tro-vach-14w-5-330r-50c-p6652009.html"], ["Điện trở 10K 1/4W 5% – 50 cái", 1, "gói", 4000, "https://banlinhkien.com/tro-vach-14w-5-10k-50c-p6650263.html"], ["Chiết áp đơn B10K", 1, "cái", 4000, "https://banlinhkien.com/chiet-ap-don-b10k-p6648290.html"], ["Nhựa thông hộp nhỏ 15G", 1, "hộp", 6000, "https://banlinhkien.com/search?q=nh%E1%BB%B1a+th%C3%B4ng"], ["Kệ hàn sắt nhỏ KH-S01", 1, "cái", 35000, "https://banlinhkien.com/ke-han-sat-nho-khs01-p6652325.html"]];
+
+const vnd=n=>n.toLocaleString('vi-VN')+'đ';
+const isPack=t=>/\(\s*\d+\s*(c|chi|chiếc)|\d+\s*chiếc|\d+\s*c\)/i.test(t||'');
+function links(set){
+ return [...set].map(s=>{const a=s.split('|');
+  return `<a class="mlink" href="#m-${a[0]}-${a[1]}">${a[0]}.${a[1]} ${a[2]}</a>`}).join(' · ');
+}
+function thumb(u,t){
+ const s=IMG[u];
+ return s?`<a href="${u}" target="_blank" rel="noopener"><img loading="lazy" src="${s}" alt="${String(t).replace(/"/g,'&quot;')}"></a>`:'<div class="ph">?</div>';
+}
+const OKEY='machdien.owned';
+const DEF_OWN=['Đồng hồ vạn năng','Mỏ hàn chỉnh nhiệt T12'];  // đồ user đã có sẵn
+let own={},ownSeeded=localStorage.getItem(OKEY)!==null;
+try{own=JSON.parse(localStorage.getItem(OKEY))||{}}catch(e){}
+const saveOwn=()=>localStorage.setItem(OKEY,JSON.stringify(own));
+const ock=(k,on)=>`<td class="k-own"><input type="checkbox" class="ownck" data-k="${k}"${on?' checked':''} title="Đánh dấu đã có sẵn"></td>`;
+function buildCart(){
+ const m=new Map();
+ C.forEach(c=>c.parts.forEach(p=>{
+  const s=SHOP[p[0]]||{}; if(s.s) return;
+  const n=parseInt(String(p[2]).replace(/\D/g,''))||1;
+  const e=m.get(p[0])||{name:p[0],spec:p[1],need:0,use:new Set(),s};
+  e.need=Math.max(e.need,n); e.use.add(c.l+'|'+c.n+'|'+c.name); m.set(p[0],e);
+ }));
+ const byUrl=new Map(), na=[];
+ [...m.values()].forEach(e=>{
+  const src=e.s.b||e.s.c;
+  if(!src){na.push(e); return}
+  const g=byUrl.get(src.u)||{src,blk:!!e.s.b,names:[],spec:e.spec,need:0,use:new Set()};
+  g.names.push(e.name); g.need=Math.max(g.need,e.need); e.use.forEach(u=>g.use.add(u));
+  byUrl.set(src.u,g);
+ });
+ const items=[...byUrl.values()].map(g=>{
+  const price=parseInt(g.src.p.replace(/\D/g,''))||0;
+  const qty=isPack(g.src.t)?1:g.need;
+  return Object.assign({},g,{price,qty,line:qty*price,key:g.src.u});
+ }).sort((a,b)=>b.line-a.line);
+ // lần đầu: tự tick những món user báo đã có
+ if(!ownSeeded){
+  items.concat(na.map(e=>({key:e.name,names:[e.name]}))).forEach(i=>{
+   if(i.names.some(n=>DEF_OWN.includes(n))) own[i.key]=true;
+  });
+  ownSeeded=true; saveOwn();
+ }
+ items.forEach(i=>i.owned=!!own[i.key]);
+ na.forEach(e=>e.owned=!!own[e.name]);
+ const TOOL=300000;
+ const kit=items.filter(i=>i.price<TOOL), tool=items.filter(i=>i.price>=TOOL);
+ const sum=a=>a.reduce((s,i)=>s+(i.owned?0:i.line),0);
+ const nOwn=items.filter(i=>i.owned).length+na.filter(e=>e.owned).length;
+ const tKit=sum(kit), tTool=sum(tool), tEx=EXTRA.reduce((s,e)=>s+(own[e[4]+'|'+e[0]]?0:e[1]*e[3]),0);
+ const R=(i,k)=>`<tr class="${i.owned?'own':''}">
+  ${ock(i.key,i.owned)}
+  <td class="q k-no">${k+1}</td>
+  <td class="im k-im">${thumb(i.src.u,i.src.t)}</td>
+  <td class="k-name"><b>${i.names.join(' / ')}</b><div class="d">${i.src.t}</div></td>
+  <td class="d k-use">${links(i.use)}</td>
+  <td class="q k-qty">${i.qty}</td>
+  <td class="p k-price">${vnd(i.price)}</td>
+  <td class="p k-line"><b>${vnd(i.line)}</b></td>
+  <td class="s k-src"><a href="${i.src.u}" target="_blank" rel="noopener">${i.blk?'banlinhkien':'caka.vn'}</a></td></tr>`;
+ const exRows=EXTRA.map((e,k)=>`<tr class="${own[e[4]+'|'+e[0]]?'own':''}">
+  ${ock(e[4]+'|'+e[0],own[e[4]+'|'+e[0]])}
+  <td class="q k-no">${k+1}</td>
+  <td class="im k-im">${thumb(e[4],e[0])}</td>
+  <td class="k-name"><b>${e[0]}</b></td>
+  <td class="d k-use">Mua thêm — không thuộc mạch nào (dụng cụ / vật tư chung)</td>
+  <td class="q k-qty">${e[1]} ${e[2]}</td>
+  <td class="p k-price">${vnd(e[3])}</td>
+  <td class="p k-line"><b>${vnd(e[1]*e[3])}</b></td>
+  <td class="s k-src"><a href="${e[4]}" target="_blank" rel="noopener">banlinhkien</a></td></tr>`).join('');
+ const naRows=na.map((e,k)=>`<tr class="na ${e.owned?'own':''}">
+  ${ock(e.name,e.owned)}
+  <td class="q k-no">${k+1}</td>
+  <td class="im k-im"><div class="ph">?</div></td>
+  <td class="k-name"><b>${e.name}</b>${e.owned?'<span class="owntag">ĐÃ CÓ</span>':''}<div class="d">${e.spec}</div></td>
+  <td class="d k-use">${links(e.use)}</td>
+  <td class="q k-qty">${e.need}</td><td class="p k-price">—</td><td class="p k-line">—</td>
+  <td class="s k-src"><span class="no">mua chỗ khác</span></td></tr>`).join('');
+ const head='<table><thead><tr><th class="k-own" title="Tick món bạn đã có sẵn">Có</th><th class="q k-no">#</th><th class="im k-im">Ảnh</th><th class="k-name">Linh kiện</th><th class="k-use">Dùng cho mạch</th><th class="q k-qty">SL</th><th class="p k-price">Đơn giá</th><th class="p k-line">Thành tiền</th><th class="s k-src">Nguồn</th></tr></thead><tbody>';
+ document.getElementById('cart').innerHTML=`
+ <div class="sum">
+   <div><span>Linh kiện cho mạch</span><b>${kit.length} món</b></div>
+   <div><span>Mua thêm (CSV)</span><b>${EXTRA.length} món</b></div>
+   <div><span>Chưa có nguồn</span><b>${na.length} món</b></div>
+   <div><span>Đã có sẵn</span><b>${nOwn} món</b></div>
+   <div><span>Cần trả ngay</span><b>${vnd(tKit+tEx)}</b></div>
+ </div>
+ <h2>1. Linh kiện &amp; module theo mạch</h2>
+ <div class="cs">SL = số lượng cần nhiều nhất trong 1 mạch. Món bán theo gói/vỉ chỉ tính 1 gói (đủ xài cho mọi mạch). Dòng gộp nhiều tên = cùng 1 sản phẩm.</div>
+ ${head}${kit.map(R).join('')}</tbody></table>
+ <div class="tot"><span>Tạm tính linh kiện</span><b>${vnd(tKit)}</b></div>
+ <h2>2. Mua thêm — dụng cụ &amp; vật tư</h2>
+ <div class="cs">Lấy từ file <code>gio_hang_banlinhkien.csv</code>, không thuộc mạch nào.</div>
+ ${head}${exRows}</tbody></table>
+ <div class="tot"><span>Tạm tính mua thêm</span><b>${vnd(tEx)}</b></div>
+ <div class="tot"><span><b style="font-size:14px;color:var(--fg)">TỔNG CẦN MUA</b> (mục 1 + 2)</span><b>${vnd(tKit+tEx)}</b></div>
+ ${tool.length?`<h2>3. Thiết bị đo &amp; máy — mua sau, khi cần</h2>
+ <div class="cs">Món trên 300k, chưa cần từ Level 1. Không tính vào tổng ở trên.</div>
+ ${head}${tool.map(R).join('')}</tbody></table>
+ <div class="tot"><span>Nếu mua đủ thiết bị</span><b>${vnd(tTool)}</b></div>`:''}
+ ${na.length?`<h2>4. Không có ở banlinhkien / caka</h2>
+ <div class="cs">Phải mua Hshop, Nshop, Icdayroi, Shopee… — chưa tính vào tổng.</div>
+ ${head}${naRows}</tbody></table>`:''}`;
+}
+buildCart();
+function setTab(t){
+ document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));
+ const g=t==='g';
+ document.getElementById('cart').classList.toggle('hide',!g);
+ document.getElementById('app').classList.toggle('hide',g);
+ document.getElementById('ctl').classList.toggle('hide',g);
+ document.querySelector('.lg').classList.toggle('hide',g);
+}
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+
+// bấm "dùng cho mạch" -> nhảy sang tab mạch, bỏ lọc, cuộn tới đúng mạch
+document.addEventListener('click',e=>{
+ const a=e.target.closest('.mlink'); if(!a) return;
+ e.preventDefault(); jumpTo(a.getAttribute('href'));
+});
+
+
+// ===== global search: tìm mạch + linh kiện + sản phẩm =====
+const nrm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[đĐ]/g,'d').toLowerCase();
+function jumpTo(sel){
+ const el=document.querySelector(sel); if(!el) return;
+ setTab('m');
+ flt='all'; q=''; document.getElementById('q').value='';
+ document.querySelectorAll('button[data-f]').forEach(x=>x.classList.toggle('on',x.dataset.f==='all'));
+ apply();
+ el.scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelectorAll('.card.flash').forEach(c=>c.classList.remove('flash'));
+ el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),1800);
+ history.replaceState(null,'','#'+el.id);
+}
+const IDX=(()=>{
+ const out=[], seen=new Set();
+ C.forEach(c=>out.push({g:'Mạch',ic:'🔧',t:`${c.l}.${c.n} ${c.name}`,s:c.goal,
+   hay:nrm(c.name+' '+c.goal+' '+c.parts.map(p=>p[0]+' '+p[1]).join(' ')+' level '+c.l),
+   go:()=>jumpTo('#m-'+c.l+'-'+c.n)}));
+ const part=new Map();
+ C.forEach(c=>c.parts.forEach(p=>{
+  const e=part.get(p[0])||{spec:p[1],use:[]}; e.use.push(c); part.set(p[0],e);
+ }));
+ part.forEach((e,name)=>{
+  const sh=SHOP[name]||{}, src=sh.b||sh.c;
+  const price=sh.s?'—':(src?src.p:'chưa có nguồn');
+  out.push({g:'Linh kiện',ic:'⚡',img:src&&IMG[src.u],t:name,
+    s:e.spec+' · dùng ở '+e.use.map(c=>c.l+'.'+c.n).join(', '),r:price,
+    hay:nrm(name+' '+e.spec+' '+(src?src.t:'')),
+    go:()=>jumpTo('#m-'+e.use[0].l+'-'+e.use[0].n)});
+ });
+ Object.entries(SHOP).forEach(([name,v])=>['b','c'].forEach(k=>{
+  const x=v[k]; if(!x||seen.has(x.u)) return; seen.add(x.u);
+  out.push({g:'Sản phẩm ở shop',ic:'🛒',img:IMG[x.u],t:x.t,s:(k==='b'?'banlinhkien.com':'caka.vn')+' · cho '+name,
+    r:x.p,hay:nrm(x.t+' '+name),go:()=>window.open(x.u,'_blank','noopener')});
+ }));
+ EXTRA.forEach(e=>out.push({g:'Mua thêm (CSV)',ic:'📦',img:IMG[e[4]],t:e[0],
+   s:'banlinhkien.com · '+e[1]+' '+e[2],r:vnd(e[3]),hay:nrm(e[0]),
+   go:()=>window.open(e[4],'_blank','noopener')}));
+ return out;
+})();
+const gs=document.getElementById('gs'), gsq=document.getElementById('gsq'), gsres=document.getElementById('gsres');
+let hits=[], sel=0;
+const hl=(txt,ts)=>{let o=String(txt);ts.forEach(t=>{const i=nrm(o).indexOf(t);if(i>=0&&t)o=o.slice(0,i)+'<mark>'+o.slice(i,i+t.length)+'</mark>'+o.slice(i+t.length)});return o};
+function gsRun(){
+ const ts=nrm(gsq.value).split(/\s+/).filter(Boolean);
+ hits = ts.length ? IDX.filter(x=>ts.every(t=>x.hay.includes(t))).slice(0,40) : [];
+ sel=0;
+ if(!ts.length){gsres.innerHTML='<div class="empty">Gõ để tìm: tên mạch, linh kiện, mã IC, tên sản phẩm…</div>';return}
+ if(!hits.length){gsres.innerHTML='<div class="empty">Không thấy gì khớp 🤷</div>';return}
+ let g='';
+ gsres.innerHTML=hits.map((x,i)=>{
+  const head=x.g!==g?(g=x.g,`<div class="gh">${x.g}</div>`):'';
+  return head+`<div class="gi${i===sel?' sel':''}" data-i="${i}">
+   ${x.img?`<img loading="lazy" src="${x.img}" alt="">`:`<div class="ic">${x.ic}</div>`}
+   <div><b>${hl(x.t,ts)}</b><small>${hl(x.s,ts)}</small></div>
+   <em>${x.r||''}</em></div>`;
+ }).join('');
+}
+function gsMove(d){
+ if(!hits.length) return;
+ sel=(sel+d+hits.length)%hits.length;
+ gsres.querySelectorAll('.gi').forEach(e=>e.classList.toggle('sel',+e.dataset.i===sel));
+ const el=gsres.querySelector('.gi.sel'); if(el) el.scrollIntoView({block:'nearest'});
+}
+function gsOpen(){gs.classList.remove('hide');gsq.select();gsq.focus();gsRun()}
+function gsClose(){gs.classList.add('hide')}
+document.getElementById('gsbtn').onclick=gsOpen;
+gsq.oninput=gsRun;
+gsres.onclick=e=>{const it=e.target.closest('.gi');if(!it)return;gsClose();hits[+it.dataset.i].go()};
+gs.onclick=e=>{if(e.target===gs)gsClose()};
+gsq.onkeydown=e=>{
+ if(e.key==='ArrowDown'){e.preventDefault();gsMove(1)}
+ else if(e.key==='ArrowUp'){e.preventDefault();gsMove(-1)}
+ else if(e.key==='Enter'&&hits[sel]){gsClose();hits[sel].go()}
+ else if(e.key==='Escape')gsClose();
+};
+document.addEventListener('keydown',e=>{
+ const typing=/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+ if((e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey)){e.preventDefault();gsOpen()}
+ else if(e.key==='/'&&!typing){e.preventDefault();gsOpen()}
+ else if(e.key==='Escape'&&!gs.classList.contains('hide'))gsClose();
+});
+if(!/Mac/.test(navigator.platform)) document.querySelector('#gsbtn kbd').textContent='Ctrl K';
+
+// ===== settings: bật/tắt cột, nhớ trong localStorage =====
+const COLS=[
+ ['Bảng giỏ hàng',[['k-own','Đã có'],['k-no','#'],['k-im','Ảnh'],['k-name','Linh kiện'],['k-use','Dùng cho mạch'],
+                   ['k-qty','SL'],['k-price','Đơn giá'],['k-line','Thành tiền'],['k-src','Nguồn']]],
+ ['Bảng linh kiện trong mạch',[['p-im','Ảnh'],['p-name','Linh kiện'],['p-spec','Thông số'],
+                   ['p-qty','SL'],['p-blk','Giá banlinhkien'],['p-caka','Giá caka.vn']]],
+];
+const CKEY='machdien.cols';
+let cols={}; try{cols=JSON.parse(localStorage.getItem(CKEY))||{}}catch(e){}
+function applyCols(){
+ const off=COLS.flatMap(g=>g[1]).map(c=>c[0]).filter(k=>cols[k]===false);
+ document.getElementById('colcss').textContent=off.length?off.map(k=>'.'+k).join(',')+'{display:none}':'';
+}
+const setmenu=document.getElementById('setmenu');
+setmenu.innerHTML=COLS.map(g=>`<h4>${g[0]}</h4>`+g[1].map(c=>
+ `<label class="ck"><input type="checkbox" data-c="${c[0]}"${cols[c[0]]===false?'':' checked'}><span>${c[1]}</span></label>`).join('')
+).join('')+'<button class="rs">Hiện lại tất cả</button>';
+setmenu.onchange=e=>{
+ const k=e.target.dataset.c; if(!k) return;
+ cols[k]=e.target.checked; localStorage.setItem(CKEY,JSON.stringify(cols)); applyCols();
+};
+// tick "đã có" -> lưu và tính lại tổng
+document.addEventListener('change',e=>{
+ const c=e.target.closest('.ownck'); if(!c) return;
+ own[c.dataset.k]=c.checked;
+ if(!c.checked) delete own[c.dataset.k];
+ saveOwn(); buildCart();
+});
+setmenu.querySelector('.rs').onclick=()=>{
+ cols={}; localStorage.removeItem(CKEY); applyCols();
+ setmenu.querySelectorAll('input').forEach(i=>i.checked=true);
+};
+document.getElementById('setbtn').onclick=e=>{e.stopPropagation();setmenu.classList.toggle('hide')};
+document.addEventListener('click',e=>{
+ if(!setmenu.classList.contains('hide') && !setmenu.contains(e.target)) setmenu.classList.add('hide');
+});
+applyCols();
+
+document.getElementById('q').oninput=e=>{q=e.target.value.trim().toLowerCase();apply()};
+
+/* click header để sort — dùng chung cho mọi bảng */
+document.addEventListener('click', e => {
+ const th = e.target.closest('th'); if(!th) return;
+ const tb = th.closest('table'), body = tb && tb.tBodies[0];
+ if(!body || th.classList.contains('im') || !th.textContent.trim()) return;
+ const idx = [...th.parentNode.children].indexOf(th);
+ const dir = th.dataset.sd === 'asc' ? -1 : 1;
+ tb.querySelectorAll('th').forEach(h => h.removeAttribute('data-sd'));
+ th.dataset.sd = dir === 1 ? 'asc' : 'desc';
+ const txt = tr => (tr.children[idx] ? tr.children[idx].innerText.trim() : '');
+ const num = t => /^[\s\d.,đ₫]+$/.test(t) && /\d/.test(t) ? +t.replace(/\D/g,'') : null;
+ const empty = t => t === '' || t === '—' || t === '✕' || t === '?';
+ [...body.rows].sort((a,b) => {
+  const A = txt(a), B = txt(b);
+  if(empty(A) !== empty(B)) return empty(A) ? 1 : -1;
+  const nA = num(A), nB = num(B);
+  return (nA !== null && nB !== null ? nA - nB : A.localeCompare(B, 'vi')) * dir;
+ }).forEach(tr => body.appendChild(tr));
+ // cột "#" đánh lại số cho khớp thứ tự mới
+ if(tb.querySelector('th').textContent.trim() === '#')
+  [...body.rows].forEach((tr, k) => tr.children[0].textContent = k + 1);
+});
+
+/* render icon Lucide (chạy 1 lần, header là markup tĩnh) */
+window.lucide&&lucide.createIcons();
+</script>
+</body>
+</html>
