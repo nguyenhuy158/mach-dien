@@ -562,7 +562,7 @@ function buildCart(){
   ${ock(i.key,i.owned)}
   <td class="q k-no">${k+1}</td>
   <td class="im k-im">${thumb(i.src.u,i.src.t)}</td>
-  <td class="k-name"><b>${i.names.join(' / ')}</b><div class="d">${i.src.t}</div></td>
+  <td class="k-name"><b>${i.names.join(' / ')}</b>${i.owned?'<span class="owntag">ĐÃ CÓ</span>':''}<div class="d">${i.src.t}</div></td>
   <td class="d k-use">${links(i.use)}</td>
   <td class="q k-qty">${i.qty}</td>
   <td class="p k-price">${vnd(i.price)}</td>
