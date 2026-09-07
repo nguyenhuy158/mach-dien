@@ -1,12 +1,13 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { CIRCUITS, SHOP, SIM, IMG, EXTRA, nrm } from '../data/circuits'
+import { COMPONENTS, FORMULAS, GLOSSARY } from '../data/learn'
 
 interface Hit {
   g: string
   ic: string
   img?: string
   t: string
-  s: string
+  s?: string
   r?: string
   go: () => void
 }
@@ -74,9 +75,28 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       ic: '📦',
       img: IMG[e[4]],
       t: e[0],
-      s: `banlinhkien.com · ${e[1]} ${e[2]}`,
-      r: e[3].toLocaleString('vi-VN') + 'đ',
       go: () => window.open(e[4], '_blank', 'noopener'),
+    }))
+    COMPONENTS.forEach(c => out.push({
+      g: 'Linh kiện (Học)',
+      ic: '🔌',
+      t: c.name,
+      s: c.description,
+      go: () => onJump('cmp-' + c.id),
+    }))
+    FORMULAS.forEach(f => out.push({
+      g: 'Công thức (Học)',
+      ic: '📐',
+      t: f.name,
+      s: f.expression,
+      go: () => onJump('fml-' + f.id),
+    }))
+    GLOSSARY.forEach(g => out.push({
+      g: 'Thuật ngữ (Học)',
+      ic: '📖',
+      t: g.term,
+      s: g.definition,
+      go: () => onJump('glossary'),
     }))
     return out
   }, [onJump])
@@ -137,8 +157,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
                     <div className="size-8 rounded bg-[var(--color-border)] flex items-center justify-center text-base">{x.ic}</div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-sm truncate" dangerouslySetInnerHTML={{ __html: hl(x.t, q) }} />
-                    <div className="text-xs text-[var(--color-muted)] truncate" dangerouslySetInnerHTML={{ __html: hl(x.s, q) }} />
+                    <div className="text-xs text-[var(--color-muted)] truncate" dangerouslySetInnerHTML={{ __html: hl(x.s || '', q) }} />
                   </div>
                   {x.r && <em className="text-xs font-mono text-[var(--color-muted)] whitespace-nowrap">{x.r}</em>}
                 </div>

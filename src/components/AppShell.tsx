@@ -1,15 +1,17 @@
 import { useState, useMemo, useEffect } from 'react'
-import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle } from 'lucide-react'
+import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap } from 'lucide-react'
 import { LEVELS, CIRCUITS, isNaPart } from '../data/circuits'
 import { CircuitCard } from './CircuitCard'
 import { GlobalSearch } from './GlobalSearch'
 import { SettingsMenu } from './SettingsMenu'
 import { Cart } from './Cart'
+import { LearnShell } from './learn/LearnShell'
+import { FloatingCalculator } from './learn/tools/FloatingCalculator'
 
 type Filter = 'all' | '1' | '2' | '3' | 'na'
 
 export function AppShell() {
-  const [tab, setTab] = useState<'m' | 'g'>('m')
+  const [tab, setTab] = useState<'m' | 'g' | 'h'>('m')
   const [filter, setFilter] = useState<Filter>('all')
   const [query, setQuery] = useState('')
   const [searchOpen, setSearchOpen] = useState(false)
@@ -35,7 +37,9 @@ export function AppShell() {
   }, [])
 
   const jumpTo = (id: string) => {
-    setTab('m')
+    // Route to right tab based on id prefix
+    if (id.startsWith('cmp-') || id.startsWith('fml-')) setTab('h')
+    else setTab('m')
     setFilter('all')
     setQuery('')
     setSearchOpen(false)
@@ -71,14 +75,16 @@ export function AppShell() {
       </div>
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-6 pb-12">
-        {tab === 'm' ? (
+        {tab === 'm' && (
           <CircuitList filter={filter} query={query} flashId={flashId} />
-        ) : (
-          <Cart />
         )}
+        {tab === 'g' && <Cart />}
+        {tab === 'h' && <LearnShell />}
       </main>
 
       <Footer />
+
+      <FloatingCalculator />
 
       {searchOpen && <GlobalSearch onClose={() => setSearchOpen(false)} onJump={jumpTo} />}
       {settingsOpen && <SettingsMenu onClose={() => setSettingsOpen(false)} />}
@@ -89,8 +95,8 @@ export function AppShell() {
 function Header({
   tab, onTab, onSearch, onSettings,
 }: {
-  tab: 'm' | 'g'
-  onTab: (t: 'm' | 'g') => void
+  tab: 'm' | 'g' | 'h'
+  onTab: (t: 'm' | 'g' | 'h') => void
   onSearch: () => void
   onSettings: () => void
 }) {
@@ -114,6 +120,13 @@ function Header({
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${tab === 'm' ? 'tab-active' : ''}`}
             >
               <LayoutGrid className="size-3.5" /> Mạch điện
+            </button>
+            <button
+              data-t="h"
+              onClick={() => onTab('h')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${tab === 'h' ? 'tab-active' : ''}`}
+            >
+              <GraduationCap className="size-3.5" /> Học
             </button>
             <button
               data-t="g"
