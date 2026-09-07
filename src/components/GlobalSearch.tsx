@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { Mic } from 'lucide-react'
 import { VoiceSearchButton } from './VoiceSearchButton'
+import { QrScannerButton } from './QrScannerButton'
 import { haptic } from '../utils/ux'
 import { CIRCUITS, SHOP, SIM, IMG, EXTRA, nrm } from '../data/circuits'
 import { COMPONENTS, FORMULAS, GLOSSARY } from '../data/learn'
@@ -138,7 +139,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
             autoComplete="off"
             className="flex-1 px-5 py-4 text-lg bg-transparent focus:outline-none"
           />
-          <div className="pr-2"><VoiceSearchButton onResult={t => setQ(t)} /></div>
+          <div className="flex items-center gap-1 pr-2"><VoiceSearchButton onResult={t => setQ(t)} /><QrScannerButton onScan={t => setQ(t)} /></div>
         </div>
         <div id="gsres" className="max-h-[60vh] overflow-y-auto">
           {!q && <div className="empty p-6 text-center text-[var(--color-muted)]">{tStr(T.searchEmptyHint, tvn.searchEmptyHint, mode)}</div>}

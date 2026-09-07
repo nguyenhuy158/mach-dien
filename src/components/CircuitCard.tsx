@@ -4,7 +4,7 @@ import type { Circuit } from '../data/circuits'
 import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
 import { ResourcesPanel } from './ResourcesPanel'
-import { Share2, Check, Printer } from 'lucide-react'
+import { Share2, Check, Printer, X } from 'lucide-react'
 import { useI18n, tStr } from '../i18n'
 
 interface Props {
@@ -72,13 +72,7 @@ export function CircuitCard({ c, flash }: Props) {
         </tbody>
       </table>
 
-      <img
-        className="sch mt-4 w-full max-w-2xl mx-auto block"
-        src={`/svg/${c.l}-${c.n}.svg`}
-        alt={`Sơ đồ ${c.l}.${c.n}`}
-        loading="lazy"
-        onError={e => (e.currentTarget.style.display = 'none')}
-      />
+      <SchematicImage l={c.l} n={c.n} />
 
       {simUrl && <SimButton sim={simUrl} />}
 
@@ -148,5 +142,40 @@ function PrintButton({ id }: { id: string }) {
     >
       <Printer className="size-3.5" />
     </button>
+  )
+}
+
+function SchematicImage({ l, n }: { l: number; n: number }) {
+  const [zoom, setZoom] = useState(false)
+  const src = `/svg/${l}-${n}.svg`
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setZoom(true)}
+        className="block w-full mt-4 cursor-zoom-in"
+        title="Click to zoom"
+        aria-label="Zoom schematic"
+      >
+        <img
+          className="sch w-full max-w-2xl mx-auto block"
+          src={src}
+          alt={`Sơ đồ ${l}.${n}`}
+          loading="lazy"
+          onError={e => (e.currentTarget.style.display = 'none')}
+        />
+      </button>
+      {zoom && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setZoom(false)}
+        >
+          <button onClick={() => setZoom(false)} className="absolute top-4 right-4 size-10 rounded-full bg-white/10 text-white flex items-center justify-center" aria-label="Close">
+            <X className="size-5" />
+          </button>
+          <img src={src} alt={`Sơ đồ ${l}.${n} (zoomed)`} className="max-w-full max-h-full object-contain" />
+        </div>
+      )}
+    </>
   )
 }
