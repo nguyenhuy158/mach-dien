@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { CIRCUITS, SHOP, EXTRA, formatVND, isPack, parseQty, parsePrice } from '../data/circuits'
 import type { Part } from '../data/circuits'
 import { Thumb } from './Parts'
@@ -49,11 +49,46 @@ export function Cart() {
     localStorage.setItem(OKEY, JSON.stringify(own))
   }, [own])
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key === 'z') { e.preventDefault(); undo() }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'Z' || e.key === 'z')) { e.preventDefault(); redo() }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Undo/redo history (last 20 states). Refs to avoid re-renders.
+  const past = useRef<Record<string, boolean>[]>([])
+  const future = useRef<Record<string, boolean>[]>([])
+  const commit = (next: Record<string, boolean>) => {
+    past.current = [...past.current, own].slice(-20)
+    future.current = []
+    setOwn(next)
+  }
+  const undo = () => {
+    const prev = past.current.pop()
+    if (!prev) return
+    future.current = [...future.current, own].slice(-20)
+    setOwn(prev)
+  }
+  const redo = () => {
+    const next = future.current.pop()
+    if (!next) return
+    past.current = [...past.current, own].slice(-20)
+    setOwn(next)
+  }
+
   const toggle = (k: string, on: boolean) => {
     setOwn(o => {
       const n = { ...o }
       if (on) n[k] = true
       else delete n[k]
+      past.current = [...past.current, o].slice(-20)
+      future.current = []
       return n
     })
   }
@@ -128,6 +163,26 @@ export function Cart() {
         <SumCard label="Chưa có nguồn" value={`${na.length} món`} />
         <SumCard label="Đã có sẵn" value={`${nOwn} món`} />
         <SumCard label="Cần trả ngay" value={formatVND(tKit + tEx)} highlight />
+      </div>
+
+      <div className="flex items-center gap-2 mb-4">
+        <button
+          onClick={undo}
+          disabled={past.current.length === 0}
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs border border-[var(--color-border)] hover:border-[var(--color-acc)] disabled:opacity-30 transition"
+          title="Hoàn tác (Ctrl+Z)"
+        >
+          ↶ Undo
+        </button>
+        <button
+          onClick={redo}
+          disabled={future.current.length === 0}
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs border border-[var(--color-border)] hover:border-[var(--color-acc)] disabled:opacity-30 transition"
+          title="Làm lại (Ctrl+Shift+Z)"
+        >
+          ↷ Redo
+        </button>
+        <span className="text-[10px] text-[var(--color-muted)]">undo/redo cho checkbox "Đã có sẵn" (lưu 20 bước)</span>
       </div>
 
       <Section title="1. Linh kiện & module theo mạch">
