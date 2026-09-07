@@ -5,7 +5,7 @@ import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
 import { ResourcesPanel } from './ResourcesPanel'
 import { Share2, Check, Printer, X } from 'lucide-react'
-import { useI18n, tStr } from '../i18n'
+import { useI18n, Bilingual, tStr } from '../i18n'
 
 interface Props {
   c: Circuit
@@ -14,9 +14,9 @@ interface Props {
 
 export function CircuitCard({ c, flash }: Props) {
   const simUrl = SIM[`${c.l}-${c.n}`]
-  const anyNa = c.parts.some(p => isNaPart(p[0]))
+  const anyNa = c.parts.some(p => isNaPart(p.name))
   const searchBlob = (
-    c.name + ' ' + c.goal + ' ' + c.parts.map(p => p[0] + ' ' + p[1]).join(' ')
+    c.name + ' ' + c.goal + ' ' + c.parts.map(p => p.name + ' ' + p.spec).join(' ')
   ).toLowerCase()
 
   return (
@@ -50,16 +50,18 @@ export function CircuitCard({ c, flash }: Props) {
         </thead>
         <tbody>
           {c.parts.map((p, i) => {
-            const s = SHOP[p[0]] || {}
+            const s = SHOP[p.name] || {}
             const isNa = !s.b && !s.c && !s.s
             return (
               <tr key={i} className={`border-t border-[var(--color-border)] ${isNa ? 'na-row' : ''}`}>
                 <td className="im py-2">
                   <Thumb url={s.b?.u || s.c?.u} alt={s.b?.t || s.c?.t} />
                 </td>
-                <td className="p-name py-2 font-medium">{p[0]}</td>
-                <td className="p-spec py-2 text-[var(--color-muted)] text-xs">{p[1]}</td>
-                <td className="p-qty py-2 text-center">{p[2]}</td>
+                <td className="p-name py-2 font-medium">
+                  <Bilingual en={p.enName || p.name} vn={p.name} />
+                </td>
+                <td className="p-spec py-2 text-[var(--color-muted)] text-xs">{p.spec}</td>
+                <td className="p-qty py-2 text-center">{p.qty}</td>
                 <td className="p-blk py-2">
                   {s.s ? <span className="nn">—</span> : <PriceCell entry={s.b} />}
                 </td>
@@ -87,7 +89,7 @@ export function CircuitCard({ c, flash }: Props) {
         </div>
       )}
 
-      <ResourcesPanel partNames={c.parts.map(p => p[0])} />
+      <ResourcesPanel partNames={c.parts.map(p => p.name)} />
     </article>
   )
 }

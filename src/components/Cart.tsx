@@ -96,14 +96,14 @@ export function Cart() {
   const { groups, na, exRows } = useMemo(() => {
     // Aggregate parts across circuits by product URL
     const partMap = new Map<string, { name: string; spec: string; need: number; use: Set<string>; s: ReturnType<typeof getShop> }>()
-    CIRCUITS.forEach(c => c.parts.forEach((p: Part) => {
-      const s = getShop(p[0])
+    CIRCUITS.forEach(c => c.parts.forEach((p) => {
+      const s = getShop(p.name)
       if (s.s) return
-      const n = parseQty(p[2])
-      const e = partMap.get(p[0]) || { name: p[0], spec: p[1], need: 0, use: new Set<string>(), s }
+      const n = parseQty(p.qty)
+      const e = partMap.get(p.name) || { name: p.name, spec: p.spec, need: 0, use: new Set<string>(), s }
       e.need = Math.max(e.need, n)
       e.use.add(`${c.l}|${c.n}|${c.name}`)
-      partMap.set(p[0], e)
+      partMap.set(p.name, e)
     }))
 
     const byUrl = new Map<string, Grouped>()
@@ -129,10 +129,9 @@ export function Cart() {
       const qty = isPack(g.src.t) ? 1 : g.need
       return { ...g, price, qty, line: qty * price, owned: !!own[g.key] }
     }).sort((a, b) => b.line - a.line)
-
     // First-visit: seed default owned (Đồng hồ vạn năng + Mỏ hàn T12)
     if (!seeded) {
-      const seededOwn: Record<string, boolean> = {}
+      const seededOwn: Record<string, true> = {}
       groups.forEach(i => {
         if (i.names.some(n => DEF_OWN.includes(n))) seededOwn[i.key] = true
       })

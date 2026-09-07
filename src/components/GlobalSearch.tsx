@@ -45,11 +45,11 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       s: c.goal,
       go: () => onJump(`m-${c.l}-${c.n}`),
     }))
-    const partMap = new Map<string, { spec: string; uses: typeof CIRCUITS }>()
+    const partMap = new Map<string, { name: string; spec: string; uses: typeof CIRCUITS }>()
     CIRCUITS.forEach(c => c.parts.forEach(p => {
-      const e = partMap.get(p[0]) || { spec: p[1], uses: [] }
+      const e = partMap.get(p.name) || { name: p.name, spec: p.spec, uses: [] }
       e.uses.push(c)
-      partMap.set(p[0], e)
+      partMap.set(p.name, e)
     }))
     partMap.forEach((e, name) => {
       const sh = SHOP[name] || {}

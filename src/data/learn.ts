@@ -5,15 +5,19 @@ export type Spec = [string, string]
 export interface Component {
   id: string
   name: string
+  enName?: string
   symbol: string
   category: string
+  enCategory?: string
   schematic: string
   image: string
   description: string
-  specs: Spec[]
+  enDescription?: string
+  specs: [string, string, string?, string?][]
   colorCode?: boolean
   applications: string[]
   notes: string
+  enNotes?: string
 }
 
 export type Variable = [string, string]
@@ -21,18 +25,23 @@ export type Variable = [string, string]
 export interface Formula {
   id: string
   name: string
+  enName?: string
   category: string
   expression: string
   variables: Variable[]
   calculator?: string
   description: string
+  enDescription?: string
   notes: string
+  enNotes?: string
 }
 
 export interface GlossaryTerm {
   term: string
+  enTerm?: string
   category: string
   definition: string
+  enDefinition?: string
 }
 
 const raw = data as {

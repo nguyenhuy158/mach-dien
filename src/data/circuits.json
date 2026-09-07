@@ -29,36 +29,41 @@
       "name": "LED + điện trở hạn dòng",
       "goal": "Định luật Ohm — mạch đầu tiên của mọi người",
       "parts": [
-        [
-          "LED 5mm đỏ",
-          "Vf 1.8V · If 20mA",
-          "2",
-          "500đ"
-        ],
-        [
-          "Điện trở 220Ω",
-          "1/4W · 5%",
-          "5",
-          "200đ"
-        ],
-        [
-          "Breadboard 830 lỗ",
-          "MB-102",
-          "1",
-          "25.000đ"
-        ],
-        [
-          "Dây jumper đực–đực",
-          "20cm · bộ 40 sợi",
-          "1",
-          "20.000đ"
-        ],
-        [
-          "Nguồn 5V",
-          "pin 9V + đế, hoặc cáp USB cắt",
-          "1",
-          "15.000đ"
-        ]
+        {
+          "name": "LED 5mm đỏ",
+          "spec": "Vf 1.8V · If 20mA",
+          "qty": "2",
+          "price": "500đ",
+          "enName": "Red LED 5mm"
+        },
+        {
+          "name": "Điện trở 220Ω",
+          "spec": "1/4W · 5%",
+          "qty": "5",
+          "price": "200đ",
+          "enName": "Resistor 220Ω"
+        },
+        {
+          "name": "Breadboard 830 lỗ",
+          "spec": "MB-102",
+          "qty": "1",
+          "price": "25.000đ",
+          "enName": "Breadboard 830 holes"
+        },
+        {
+          "name": "Dây jumper đực–đực",
+          "spec": "20cm · bộ 40 sợi",
+          "qty": "1",
+          "price": "20.000đ",
+          "enName": "Jumper wires male–male"
+        },
+        {
+          "name": "Nguồn 5V",
+          "spec": "pin 9V + đế, hoặc cáp USB cắt",
+          "qty": "1",
+          "price": "15.000đ",
+          "enName": "5V power supply"
+        }
       ],
       "fm": "<code>R = (V<sub>nguồn</sub> − V<sub>led</sub>) / I<sub>led</sub></code> → (5 − 1.8) / 0.02 = 160Ω → chọn 220Ω cho an toàn.<br>LED đỏ ~1.8V · xanh lá/xanh dương/trắng ~3.0–3.2V.",
       "warn": "Không bao giờ cắm LED thẳng vào nguồn — cháy tức thì."
@@ -69,36 +74,41 @@
       "name": "LED nối tiếp vs song song",
       "goal": "Áp chia đều khi nối tiếp, dòng chia đều khi song song",
       "parts": [
-        [
-          "LED 5mm",
-          "đỏ + xanh lá",
-          "4",
-          "1.000đ"
-        ],
-        [
-          "Điện trở 220Ω",
-          "1/4W",
-          "2",
-          "100đ"
-        ],
-        [
-          "Điện trở 100Ω",
-          "1/4W",
-          "1",
-          "50đ"
-        ],
-        [
-          "Breadboard + jumper",
-          "(dùng lại)",
-          "—",
-          "—"
-        ],
-        [
-          "Nguồn 5V / 9V",
-          "",
-          "1",
-          "—"
-        ]
+        {
+          "name": "LED 5mm",
+          "spec": "đỏ + xanh lá",
+          "qty": "4",
+          "price": "1.000đ",
+          "enName": "LED 5mm"
+        },
+        {
+          "name": "Điện trở 220Ω",
+          "spec": "1/4W",
+          "qty": "2",
+          "price": "100đ",
+          "enName": "Resistor 220Ω"
+        },
+        {
+          "name": "Điện trở 100Ω",
+          "spec": "1/4W",
+          "qty": "1",
+          "price": "50đ",
+          "enName": "Resistor 100Ω"
+        },
+        {
+          "name": "Breadboard + jumper",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "Breadboard + jumper wires"
+        },
+        {
+          "name": "Nguồn 5V / 9V",
+          "spec": "",
+          "qty": "1",
+          "price": "—",
+          "enName": "5V / 9V power supply"
+        }
       ],
       "fm": "Nối tiếp: <code>V<sub>tổng</sub> = V1 + V2</code>, cùng dòng. 3 LED đỏ nối tiếp = 5.4V → cần nguồn 9V.<br>Song song: mỗi nhánh <b>phải có điện trở riêng</b> — dùng chung 1 điện trở thì LED sáng không đều."
     },
@@ -108,30 +118,34 @@
       "name": "Nút nhấn + điện trở kéo (pull-up)",
       "goal": "Mức logic HIGH/LOW, chân \"lơ lửng\" gây nhiễu",
       "parts": [
-        [
-          "Nút nhấn tact 6×6mm",
-          "4 chân · DIP",
-          "2",
-          "1.000đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "1/4W",
-          "2",
-          "100đ"
-        ],
-        [
-          "LED 5mm + trở 220Ω",
-          "",
-          "1",
-          "300đ"
-        ],
-        [
-          "Breadboard + jumper",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Nút nhấn tact 6×6mm",
+          "spec": "4 chân · DIP",
+          "qty": "2",
+          "price": "1.000đ",
+          "enName": "Tactile button 6×6mm"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "1/4W",
+          "qty": "2",
+          "price": "100đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "LED 5mm + trở 220Ω",
+          "spec": "",
+          "qty": "1",
+          "price": "300đ",
+          "enName": "LED 5mm + 220Ω resistor"
+        },
+        {
+          "name": "Breadboard + jumper",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "Breadboard + jumper wires"
+        }
       ],
       "fm": "Pull-up: thả nút = <b>HIGH</b>, nhấn = <b>LOW</b>. Pull-down thì ngược lại.<br>MCU thường có pull-up nội: <code>pinMode(pin, INPUT_PULLUP)</code> — khỏi hàn thêm điện trở."
     },
@@ -141,30 +155,34 @@
       "name": "Cầu phân áp + biến trở",
       "goal": "Hạ áp và đọc cảm biến kiểu điện trở",
       "parts": [
-        [
-          "Biến trở (chiết áp) 10kΩ",
-          "B10K · núm xoay",
-          "1",
-          "3.000đ"
-        ],
-        [
-          "Điện trở 1kΩ / 10kΩ",
-          "1/4W",
-          "mỗi loại 2",
-          "200đ"
-        ],
-        [
-          "Đồng hồ vạn năng",
-          "DT9205A hoặc tương đương",
-          "1",
-          "120.000đ"
-        ],
-        [
-          "Breadboard + jumper",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Biến trở (chiết áp) 10kΩ",
+          "spec": "B10K · núm xoay",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Potentiometer 10kΩ"
+        },
+        {
+          "name": "Điện trở 1kΩ / 10kΩ",
+          "spec": "1/4W",
+          "qty": "mỗi loại 2",
+          "price": "200đ",
+          "enName": "Resistors 1kΩ / 10kΩ"
+        },
+        {
+          "name": "Đồng hồ vạn năng",
+          "spec": "DT9205A hoặc tương đương",
+          "qty": "1",
+          "price": "120.000đ",
+          "enName": "Digital multimeter"
+        },
+        {
+          "name": "Breadboard + jumper",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "Breadboard + jumper wires"
+        }
       ],
       "fm": "<code>V<sub>ra</sub> = V<sub>vào</sub> × R2 / (R1 + R2)</code>",
       "warn": "Không dùng cầu phân áp để CẤP NGUỒN cho tải — vừa mắc tải vào là điện áp sụt ngay."
@@ -175,42 +193,48 @@
       "name": "Đèn tự sáng khi trời tối (LDR)",
       "goal": "Cảm biến điện trở biến thiên — cầu nối sang Level 2",
       "parts": [
-        [
-          "Quang trở LDR",
-          "GL5528 · 5mm",
-          "2",
-          "2.000đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "1/4W",
-          "1",
-          "50đ"
-        ],
-        [
-          "Transistor NPN",
-          "S8050 hoặc 2N2222",
-          "1",
-          "500đ"
-        ],
-        [
-          "Điện trở 1kΩ",
-          "cho chân B",
-          "1",
-          "50đ"
-        ],
-        [
-          "LED 5mm + trở 220Ω",
-          "",
-          "1",
-          "300đ"
-        ],
-        [
-          "Biến trở 10kΩ",
-          "chỉnh ngưỡng sáng/tối",
-          "1",
-          "3.000đ"
-        ]
+        {
+          "name": "Quang trở LDR",
+          "spec": "GL5528 · 5mm",
+          "qty": "2",
+          "price": "2.000đ",
+          "enName": "LDR photoresistor"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "1/4W",
+          "qty": "1",
+          "price": "50đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "Transistor NPN",
+          "spec": "S8050 hoặc 2N2222",
+          "qty": "1",
+          "price": "500đ",
+          "enName": "NPN transistor"
+        },
+        {
+          "name": "Điện trở 1kΩ",
+          "spec": "cho chân B",
+          "qty": "1",
+          "price": "50đ",
+          "enName": "Resistor 1kΩ"
+        },
+        {
+          "name": "LED 5mm + trở 220Ω",
+          "spec": "",
+          "qty": "1",
+          "price": "300đ",
+          "enName": "LED 5mm + 220Ω resistor"
+        },
+        {
+          "name": "Biến trở 10kΩ",
+          "spec": "chỉnh ngưỡng sáng/tối",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Potentiometer 10kΩ"
+        }
       ],
       "fm": "LDR + điện trở tạo cầu phân áp → áp thay đổi theo ánh sáng → đưa vào chân B transistor để đóng/mở LED. Biến trở dùng để chỉnh ngưỡng."
     },
@@ -220,30 +244,34 @@
       "name": "Còi buzzer",
       "goal": "Tải đơn giản có phân cực, phân biệt buzzer chủ động / thụ động",
       "parts": [
-        [
-          "Buzzer chủ động 5V",
-          "có mạch dao động sẵn",
-          "1",
-          "3.000đ"
-        ],
-        [
-          "Buzzer thụ động 5V",
-          "cần cấp xung mới kêu",
-          "1",
-          "3.000đ"
-        ],
-        [
-          "Nút nhấn tact",
-          "",
-          "1",
-          "500đ"
-        ],
-        [
-          "Điện trở 100Ω",
-          "giảm âm lượng",
-          "1",
-          "50đ"
-        ]
+        {
+          "name": "Buzzer chủ động 5V",
+          "spec": "có mạch dao động sẵn",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Active buzzer 5V"
+        },
+        {
+          "name": "Buzzer thụ động 5V",
+          "spec": "cần cấp xung mới kêu",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Passive buzzer 5V"
+        },
+        {
+          "name": "Nút nhấn tact",
+          "spec": "",
+          "qty": "1",
+          "price": "500đ",
+          "enName": "Tactile button"
+        },
+        {
+          "name": "Điện trở 100Ω",
+          "spec": "giảm âm lượng",
+          "qty": "1",
+          "price": "50đ",
+          "enName": "Resistor 100Ω"
+        }
       ],
       "fm": "<b>Chủ động</b>: cấp 5V là kêu ngay, một tần số cố định.<br><b>Thụ động</b>: phải cấp xung vuông (PWM) — đổi tần số được → chơi được nhạc."
     },
@@ -253,36 +281,41 @@
       "name": "Transistor NPN làm công tắc",
       "goal": "Dòng nhỏ từ MCU điều khiển tải dòng lớn",
       "parts": [
-        [
-          "Transistor NPN",
-          "2N2222 / S8050 · 0.5–0.8A",
-          "3",
-          "1.000đ"
-        ],
-        [
-          "Điện trở 1kΩ",
-          "chân Base",
-          "3",
-          "150đ"
-        ],
-        [
-          "Tải thử",
-          "LED công suất 1W hoặc bóng 12V",
-          "1",
-          "8.000đ"
-        ],
-        [
-          "Nguồn 12V",
-          "adapter 12V/1A",
-          "1",
-          "60.000đ"
-        ],
-        [
-          "Đồng hồ vạn năng",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Transistor NPN",
+          "spec": "2N2222 / S8050 · 0.5–0.8A",
+          "qty": "3",
+          "price": "1.000đ",
+          "enName": "NPN transistor"
+        },
+        {
+          "name": "Điện trở 1kΩ",
+          "spec": "chân Base",
+          "qty": "3",
+          "price": "150đ",
+          "enName": "Resistor 1kΩ"
+        },
+        {
+          "name": "Tải thử",
+          "spec": "LED công suất 1W hoặc bóng 12V",
+          "qty": "1",
+          "price": "8.000đ",
+          "enName": "Test load"
+        },
+        {
+          "name": "Nguồn 12V",
+          "spec": "adapter 12V/1A",
+          "qty": "1",
+          "price": "60.000đ",
+          "enName": "12V power supply"
+        },
+        {
+          "name": "Đồng hồ vạn năng",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "Digital multimeter"
+        }
       ],
       "fm": "<code>I<sub>B</sub> = I<sub>C</sub> / h<sub>FE</sub> × 5</code> (nhân 5 để chắc chắn bão hòa).<br>Ví dụ tải 200mA, hFE=100 → I<sub>B</sub> ≈ 10mA → R = (3.3−0.7)/0.01 ≈ 260Ω.",
       "warn": "GND của MCU và GND của nguồn tải PHẢI nối chung, nếu không mạch không chạy."
@@ -293,48 +326,55 @@
       "name": "Relay + diode chống xung ngược",
       "goal": "Điều khiển tải công suất — mạch quan trọng nhất Level 2",
       "parts": [
-        [
-          "Relay 5V",
-          "SRD-05VDC-SL-C · 10A",
-          "2",
-          "16.000đ"
-        ],
-        [
-          "Diode 1N4007",
-          "mắc NGƯỢC song song cuộn relay",
-          "5",
-          "1.000đ"
-        ],
-        [
-          "Transistor S8050",
-          "",
-          "2",
-          "700đ"
-        ],
-        [
-          "Điện trở 1kΩ",
-          "chân Base",
-          "2",
-          "100đ"
-        ],
-        [
-          "LED + trở 220Ω",
-          "báo trạng thái",
-          "1",
-          "300đ"
-        ],
-        [
-          "Nguồn 5V ≥ 1A",
-          "relay hút ~70mA",
-          "1",
-          "40.000đ"
-        ],
-        [
-          "(hoặc) Module relay 1 kênh",
-          "đã có sẵn opto + diode",
-          "1",
-          "18.000đ"
-        ]
+        {
+          "name": "Relay 5V",
+          "spec": "SRD-05VDC-SL-C · 10A",
+          "qty": "2",
+          "price": "16.000đ",
+          "enName": "5V relay"
+        },
+        {
+          "name": "Diode 1N4007",
+          "spec": "mắc NGƯỢC song song cuộn relay",
+          "qty": "5",
+          "price": "1.000đ",
+          "enName": "1N4007 diode"
+        },
+        {
+          "name": "Transistor S8050",
+          "spec": "",
+          "qty": "2",
+          "price": "700đ",
+          "enName": "S8050 transistor"
+        },
+        {
+          "name": "Điện trở 1kΩ",
+          "spec": "chân Base",
+          "qty": "2",
+          "price": "100đ",
+          "enName": "Resistor 1kΩ"
+        },
+        {
+          "name": "LED + trở 220Ω",
+          "spec": "báo trạng thái",
+          "qty": "1",
+          "price": "300đ",
+          "enName": "LED + trở 220Ω"
+        },
+        {
+          "name": "Nguồn 5V ≥ 1A",
+          "spec": "relay hút ~70mA",
+          "qty": "1",
+          "price": "40.000đ",
+          "enName": "Nguồn 5V ≥ 1A"
+        },
+        {
+          "name": "(hoặc) Module relay 1 kênh",
+          "spec": "đã có sẵn opto + diode",
+          "qty": "1",
+          "price": "18.000đ",
+          "enName": "(or) 1-channel relay module"
+        }
       ],
       "warn": "<b>Bắt buộc có diode.</b> Cuộn relay là tải cảm kháng — khi ngắt sinh xung ngược hàng trăm volt, đủ giết transistor và MCU. Đây là lỗi kinh điển của người mới."
     },
@@ -344,36 +384,41 @@
       "name": "RC lọc + tụ decoupling",
       "goal": "Chống nhiễu nguồn, hằng số thời gian",
       "parts": [
-        [
-          "Tụ gốm 100nF (mã 104)",
-          "50V · dùng cực nhiều",
-          "20",
-          "3.000đ"
-        ],
-        [
-          "Tụ hóa 10µF / 25V",
-          "có cực tính",
-          "5",
-          "2.000đ"
-        ],
-        [
-          "Tụ hóa 100µF / 25V",
-          "",
-          "5",
-          "3.000đ"
-        ],
-        [
-          "Tụ hóa 470µF / 25V",
-          "lọc nguồn đầu vào",
-          "2",
-          "3.000đ"
-        ],
-        [
-          "Điện trở 1kΩ / 10kΩ",
-          "",
-          "mỗi loại 5",
-          "200đ"
-        ]
+        {
+          "name": "Tụ gốm 100nF (mã 104)",
+          "spec": "50V · dùng cực nhiều",
+          "qty": "20",
+          "price": "3.000đ",
+          "enName": "Ceramic cap 100nF (code 104)"
+        },
+        {
+          "name": "Tụ hóa 10µF / 25V",
+          "spec": "có cực tính",
+          "qty": "5",
+          "price": "2.000đ",
+          "enName": "Electrolytic cap 10µF / 25V"
+        },
+        {
+          "name": "Tụ hóa 100µF / 25V",
+          "spec": "",
+          "qty": "5",
+          "price": "3.000đ",
+          "enName": "Electrolytic cap 100µF / 25V"
+        },
+        {
+          "name": "Tụ hóa 470µF / 25V",
+          "spec": "lọc nguồn đầu vào",
+          "qty": "2",
+          "price": "3.000đ",
+          "enName": "Electrolytic cap 470µF / 25V"
+        },
+        {
+          "name": "Điện trở 1kΩ / 10kΩ",
+          "spec": "",
+          "qty": "mỗi loại 5",
+          "price": "200đ",
+          "enName": "Resistors 1kΩ / 10kΩ"
+        }
       ],
       "fm": "<code>τ = R × C</code> (giây). Sau 1τ nạp 63%, sau 5τ coi như đầy.<br>Tần số cắt lọc thông thấp: <code>f = 1 / (2πRC)</code>",
       "warn": "Quy tắc vàng: <b>mọi IC đều phải có tụ 100nF sát chân VCC–GND</b>. Bỏ qua điều này là nguyên nhân của ~90% ca \"mạch chạy chập chờn không rõ lý do\"."
@@ -384,48 +429,55 @@
       "name": "IC 555 — mạch dao động (astable)",
       "goal": "Tạo xung, nháy LED, PWM không cần MCU",
       "parts": [
-        [
-          "IC NE555",
-          "DIP-8",
-          "2",
-          "3.000đ"
-        ],
-        [
-          "Đế IC 8 chân",
-          "DIP socket",
-          "2",
-          "1.000đ"
-        ],
-        [
-          "Tụ 10µF",
-          "định tần chính",
-          "2",
-          "800đ"
-        ],
-        [
-          "Tụ 100nF",
-          "chân 5 (control)",
-          "2",
-          "300đ"
-        ],
-        [
-          "Điện trở 1kΩ / 10kΩ / 47kΩ",
-          "R1, R2",
-          "mỗi loại 2",
-          "200đ"
-        ],
-        [
-          "Biến trở 100kΩ",
-          "chỉnh tần số",
-          "1",
-          "3.000đ"
-        ],
-        [
-          "LED + trở 220Ω",
-          "",
-          "2",
-          "600đ"
-        ]
+        {
+          "name": "IC NE555",
+          "spec": "DIP-8",
+          "qty": "2",
+          "price": "3.000đ",
+          "enName": "NE555 IC"
+        },
+        {
+          "name": "Đế IC 8 chân",
+          "spec": "DIP socket",
+          "qty": "2",
+          "price": "1.000đ",
+          "enName": "8-pin IC socket"
+        },
+        {
+          "name": "Tụ 10µF",
+          "spec": "định tần chính",
+          "qty": "2",
+          "price": "800đ",
+          "enName": "Cap 10µF"
+        },
+        {
+          "name": "Tụ 100nF",
+          "spec": "chân 5 (control)",
+          "qty": "2",
+          "price": "300đ",
+          "enName": "Cap 100nF"
+        },
+        {
+          "name": "Điện trở 1kΩ / 10kΩ / 47kΩ",
+          "spec": "R1, R2",
+          "qty": "mỗi loại 2",
+          "price": "200đ",
+          "enName": "Điện trở 1kΩ / 10kΩ / 47kΩ"
+        },
+        {
+          "name": "Biến trở 100kΩ",
+          "spec": "chỉnh tần số",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Potentiometer 100kΩ"
+        },
+        {
+          "name": "LED + trở 220Ω",
+          "spec": "",
+          "qty": "2",
+          "price": "600đ",
+          "enName": "LED + trở 220Ω"
+        }
       ],
       "fm": "<code>f ≈ 1.44 / ((R1 + 2·R2) · C)</code> Hz &nbsp;·&nbsp; Duty = (R1+R2)/(R1+2R2)<br>Ví dụ R1=1k, R2=10k, C=10µF → f ≈ 6.8Hz (nháy nhìn thấy được).",
       "note": "Cổ điển nhưng dạy cực tốt về nạp/xả tụ và ngưỡng so sánh 1/3 – 2/3 Vcc."
@@ -436,48 +488,55 @@
       "name": "Op-amp LM358 — buffer & comparator",
       "goal": "Khuếch đại, cách ly trở kháng, so sánh ngưỡng",
       "parts": [
-        [
-          "IC LM358",
-          "2 op-amp · DIP-8 · chạy nguồn đơn",
-          "2",
-          "4.000đ"
-        ],
-        [
-          "Đế IC 8 chân",
-          "",
-          "2",
-          "1.000đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "mạch hồi tiếp",
-          "6",
-          "300đ"
-        ],
-        [
-          "Điện trở 100kΩ",
-          "đặt hệ số khuếch đại",
-          "3",
-          "150đ"
-        ],
-        [
-          "Biến trở 10kΩ",
-          "đặt ngưỡng so sánh",
-          "2",
-          "6.000đ"
-        ],
-        [
-          "LED + trở 220Ω",
-          "báo ngưỡng",
-          "2",
-          "600đ"
-        ],
-        [
-          "Tụ 100nF",
-          "decoupling",
-          "2",
-          "300đ"
-        ]
+        {
+          "name": "IC LM358",
+          "spec": "2 op-amp · DIP-8 · chạy nguồn đơn",
+          "qty": "2",
+          "price": "4.000đ",
+          "enName": "LM358 IC"
+        },
+        {
+          "name": "Đế IC 8 chân",
+          "spec": "",
+          "qty": "2",
+          "price": "1.000đ",
+          "enName": "8-pin IC socket"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "mạch hồi tiếp",
+          "qty": "6",
+          "price": "300đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "Điện trở 100kΩ",
+          "spec": "đặt hệ số khuếch đại",
+          "qty": "3",
+          "price": "150đ",
+          "enName": "Resistor 100kΩ"
+        },
+        {
+          "name": "Biến trở 10kΩ",
+          "spec": "đặt ngưỡng so sánh",
+          "qty": "2",
+          "price": "6.000đ",
+          "enName": "Potentiometer 10kΩ"
+        },
+        {
+          "name": "LED + trở 220Ω",
+          "spec": "báo ngưỡng",
+          "qty": "2",
+          "price": "600đ",
+          "enName": "LED + trở 220Ω"
+        },
+        {
+          "name": "Tụ 100nF",
+          "spec": "decoupling",
+          "qty": "2",
+          "price": "300đ",
+          "enName": "Cap 100nF"
+        }
       ],
       "fm": "<b>Buffer:</b> nối chân ra vào chân đảo → Gain = 1, cách ly trở kháng.<br><b>Không đảo:</b> <code>Gain = 1 + Rf/Rg</code><br><b>Comparator:</b> V+ &gt; V− thì ra HIGH — làm báo pin yếu, cảm biến ánh sáng."
     },
@@ -487,48 +546,55 @@
       "name": "Mạch nguồn — LDO và Buck",
       "goal": "Cấp nguồn đúng cách, tính công suất tỏa nhiệt",
       "parts": [
-        [
-          "Module AMS1117-3.3",
-          "LDO · ra 3.3V / 800mA",
-          "2",
-          "10.000đ"
-        ],
-        [
-          "IC LM7805",
-          "LDO · ra 5V · TO-220",
-          "2",
-          "6.000đ"
-        ],
-        [
-          "Module buck LM2596",
-          "chỉnh được 1.25–35V / 2A",
-          "1",
-          "20.000đ"
-        ],
-        [
-          "Module buck MP1584EN",
-          "nhỏ gọn · 3A",
-          "1",
-          "18.000đ"
-        ],
-        [
-          "Tụ 100µF + 10µF + 100nF",
-          "lọc vào và ra",
-          "mỗi loại 4",
-          "4.000đ"
-        ],
-        [
-          "Tản nhiệt TO-220",
-          "cho 7805",
-          "2",
-          "4.000đ"
-        ],
-        [
-          "Đồng hồ vạn năng",
-          "đo TRƯỚC khi cắm MCU",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Module AMS1117-3.3",
+          "spec": "LDO · ra 3.3V / 800mA",
+          "qty": "2",
+          "price": "10.000đ",
+          "enName": "AMS1117-3.3 module"
+        },
+        {
+          "name": "IC LM7805",
+          "spec": "LDO · ra 5V · TO-220",
+          "qty": "2",
+          "price": "6.000đ",
+          "enName": "LM7805 IC"
+        },
+        {
+          "name": "Module buck LM2596",
+          "spec": "chỉnh được 1.25–35V / 2A",
+          "qty": "1",
+          "price": "20.000đ",
+          "enName": "LM2596 buck module"
+        },
+        {
+          "name": "Module buck MP1584EN",
+          "spec": "nhỏ gọn · 3A",
+          "qty": "1",
+          "price": "18.000đ",
+          "enName": "MP1584EN buck module"
+        },
+        {
+          "name": "Tụ 100µF + 10µF + 100nF",
+          "spec": "lọc vào và ra",
+          "qty": "mỗi loại 4",
+          "price": "4.000đ",
+          "enName": "Tụ 100µF + 10µF + 100nF"
+        },
+        {
+          "name": "Tản nhiệt TO-220",
+          "spec": "cho 7805",
+          "qty": "2",
+          "price": "4.000đ",
+          "enName": "TO-220 heatsink"
+        },
+        {
+          "name": "Đồng hồ vạn năng",
+          "spec": "đo TRƯỚC khi cắm MCU",
+          "qty": "—",
+          "price": "—",
+          "enName": "Digital multimeter"
+        }
       ],
       "fm": "<b>Linear (LDO):</b> <code>P<sub>nhiệt</sub> = (V<sub>vào</sub> − V<sub>ra</sub>) × I</code> → 12V→5V ở 1A = <b>7W</b>, nướng chín IC.<br><b>Buck (xung):</b> hiệu suất 85–92%, dùng khi chênh áp lớn hoặc dòng cao.",
       "warn": "Luôn vặn buck ra đúng điện áp và <b>đo bằng đồng hồ</b> trước khi cắm MCU vào. Cắm nhầm 12V vào ESP32 là mất board."
@@ -539,42 +605,48 @@
       "name": "ESP32 đọc ADC + xuất PWM",
       "goal": "Cầu nối analog ↔ số, điều khiển bằng code",
       "parts": [
-        [
-          "ESP32 DevKit V1",
-          "30 chân · WiFi + BT",
-          "1",
-          "90.000đ"
-        ],
-        [
-          "Cáp micro USB",
-          "loại truyền được data",
-          "1",
-          "15.000đ"
-        ],
-        [
-          "Biến trở 10kΩ",
-          "làm đầu vào analog",
-          "1",
-          "3.000đ"
-        ],
-        [
-          "LED + trở 220Ω",
-          "xem PWM đổi độ sáng",
-          "2",
-          "600đ"
-        ],
-        [
-          "Cảm biến DHT22 / DS18B20",
-          "đọc nhiệt độ",
-          "1",
-          "35.000đ"
-        ],
-        [
-          "Breadboard + jumper",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "ESP32 DevKit V1",
+          "spec": "30 chân · WiFi + BT",
+          "qty": "1",
+          "price": "90.000đ",
+          "enName": "ESP32 DevKit V1"
+        },
+        {
+          "name": "Cáp micro USB",
+          "spec": "loại truyền được data",
+          "qty": "1",
+          "price": "15.000đ",
+          "enName": "Micro USB cable"
+        },
+        {
+          "name": "Biến trở 10kΩ",
+          "spec": "làm đầu vào analog",
+          "qty": "1",
+          "price": "3.000đ",
+          "enName": "Potentiometer 10kΩ"
+        },
+        {
+          "name": "LED + trở 220Ω",
+          "spec": "xem PWM đổi độ sáng",
+          "qty": "2",
+          "price": "600đ",
+          "enName": "LED + trở 220Ω"
+        },
+        {
+          "name": "Cảm biến DHT22 / DS18B20",
+          "spec": "đọc nhiệt độ",
+          "qty": "1",
+          "price": "35.000đ",
+          "enName": "DHT22 / DS18B20 sensor"
+        },
+        {
+          "name": "Breadboard + jumper",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "Breadboard + jumper wires"
+        }
       ],
       "dia": "// ESP32 – Arduino IDE\nint v = analogRead(34);        // 0..4095\nledcSetup(0, 5000, 8);         // kênh 0, 5kHz, 8-bit\nledcAttachPin(2, 0);\nledcWrite(0, map(v,0,4095,0,255));",
       "warn": "ESP32 chạy <b>3.3V</b>, chân IO KHÔNG chịu được 5V. ADC2 (GPIO 0,2,4,12–15,25–27) không dùng được khi bật WiFi — dùng ADC1 (GPIO 32–39)."
@@ -585,48 +657,55 @@
       "name": "MOSFET lái dải LED / quạt 12V",
       "goal": "Chuyển mạch dòng lớn hiệu suất cao",
       "parts": [
-        [
-          "MOSFET IRLZ44N",
-          "logic-level · 47A · TO-220",
-          "3",
-          "24.000đ"
-        ],
-        [
-          "MOSFET AO3400",
-          "SMD · cho mạch nhỏ",
-          "5",
-          "5.000đ"
-        ],
-        [
-          "Điện trở 100Ω",
-          "chân Gate (chống dao động)",
-          "3",
-          "150đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "pull-down Gate xuống GND",
-          "3",
-          "150đ"
-        ],
-        [
-          "Dải LED 12V",
-          "1m · 5050",
-          "1",
-          "25.000đ"
-        ],
-        [
-          "Nguồn 12V / 2A",
-          "",
-          "1",
-          "80.000đ"
-        ],
-        [
-          "Tản nhiệt TO-220",
-          "",
-          "3",
-          "6.000đ"
-        ]
+        {
+          "name": "MOSFET IRLZ44N",
+          "spec": "logic-level · 47A · TO-220",
+          "qty": "3",
+          "price": "24.000đ",
+          "enName": "IRLZ44N MOSFET"
+        },
+        {
+          "name": "MOSFET AO3400",
+          "spec": "SMD · cho mạch nhỏ",
+          "qty": "5",
+          "price": "5.000đ",
+          "enName": "AO3400 MOSFET"
+        },
+        {
+          "name": "Điện trở 100Ω",
+          "spec": "chân Gate (chống dao động)",
+          "qty": "3",
+          "price": "150đ",
+          "enName": "Resistor 100Ω"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "pull-down Gate xuống GND",
+          "qty": "3",
+          "price": "150đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "Dải LED 12V",
+          "spec": "1m · 5050",
+          "qty": "1",
+          "price": "25.000đ",
+          "enName": "12V LED strip"
+        },
+        {
+          "name": "Nguồn 12V / 2A",
+          "spec": "",
+          "qty": "1",
+          "price": "80.000đ",
+          "enName": "Nguồn 12V / 2A"
+        },
+        {
+          "name": "Tản nhiệt TO-220",
+          "spec": "",
+          "qty": "3",
+          "price": "6.000đ",
+          "enName": "TO-220 heatsink"
+        }
       ],
       "fm": "Chọn MOSFET <b>logic-level</b> (V<sub>GS(th)</sub> &lt; 2.5V) vì MCU chỉ ra 3.3V. IRF540 thường KHÔNG mở hết ở 3.3V — sinh nhiệt rồi cháy.",
       "warn": "Điện trở pull-down 10k ở Gate là bắt buộc: lúc MCU khởi động chân IO lơ lửng, không có nó thì tải bật ngẫu nhiên."
@@ -637,48 +716,55 @@
       "name": "Cầu H — đảo chiều động cơ",
       "goal": "Điều khiển motor 2 chiều, dead-time chống chập nhánh",
       "parts": [
-        [
-          "Module TB6612FNG",
-          "2 kênh · 1.2A · hiệu suất tốt",
-          "1",
-          "25.000đ"
-        ],
-        [
-          "(thay thế) DRV8833",
-          "2 kênh · 1.5A",
-          "1",
-          "20.000đ"
-        ],
-        [
-          "(học nguyên lý) L298N",
-          "rẻ nhưng sụt áp 2V và rất nóng",
-          "1",
-          "30.000đ"
-        ],
-        [
-          "Motor DC giảm tốc 6V",
-          "TT motor hoặc N20",
-          "2",
-          "60.000đ"
-        ],
-        [
-          "Tụ 100nF",
-          "hàn SÁT 2 chân motor · chống nhiễu chổi than",
-          "4",
-          "600đ"
-        ],
-        [
-          "Nguồn motor riêng",
-          "6V/2A, KHÔNG dùng chung nguồn MCU",
-          "1",
-          "60.000đ"
-        ],
-        [
-          "ESP32",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Module TB6612FNG",
+          "spec": "2 kênh · 1.2A · hiệu suất tốt",
+          "qty": "1",
+          "price": "25.000đ",
+          "enName": "TB6612FNG module"
+        },
+        {
+          "name": "(thay thế) DRV8833",
+          "spec": "2 kênh · 1.5A",
+          "qty": "1",
+          "price": "20.000đ",
+          "enName": "(thay thế) DRV8833"
+        },
+        {
+          "name": "(học nguyên lý) L298N",
+          "spec": "rẻ nhưng sụt áp 2V và rất nóng",
+          "qty": "1",
+          "price": "30.000đ",
+          "enName": "(học nguyên lý) L298N"
+        },
+        {
+          "name": "Motor DC giảm tốc 6V",
+          "spec": "TT motor hoặc N20",
+          "qty": "2",
+          "price": "60.000đ",
+          "enName": "6V DC gear motor"
+        },
+        {
+          "name": "Tụ 100nF",
+          "spec": "hàn SÁT 2 chân motor · chống nhiễu chổi than",
+          "qty": "4",
+          "price": "600đ",
+          "enName": "Cap 100nF"
+        },
+        {
+          "name": "Nguồn motor riêng",
+          "spec": "6V/2A, KHÔNG dùng chung nguồn MCU",
+          "qty": "1",
+          "price": "60.000đ",
+          "enName": "Nguồn motor riêng"
+        },
+        {
+          "name": "ESP32",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "ESP32"
+        }
       ],
       "warn": "Tự ráp 4 MOSFET: phải có <b>dead-time</b> và cấm bật 2 con cùng nhánh — chập nguồn tức thì. Người mới nên dùng module IC chuyên dụng.",
       "note": "Motor gây sụt áp và nhiễu rất mạnh → tách nguồn hoặc ít nhất tách đường mass, thêm tụ 470µF gần driver."
@@ -689,48 +775,55 @@
       "name": "Buck converter tự thiết kế",
       "goal": "Hiểu nguồn xung từ gốc — layout là tất cả",
       "parts": [
-        [
-          "IC MP1584EN",
-          "SOIC-8 · 3A · 28V vào",
-          "5",
-          "30.000đ"
-        ],
-        [
-          "(thay thế) TPS5430",
-          "5A · dễ hàn hơn",
-          "2",
-          "40.000đ"
-        ],
-        [
-          "Cuộn cảm SMD 10–47µH",
-          "dòng bão hòa ≥ 1.5× I ra",
-          "5",
-          "20.000đ"
-        ],
-        [
-          "Diode Schottky SS34",
-          "3A / 40V",
-          "10",
-          "8.000đ"
-        ],
-        [
-          "Tụ gốm 22µF / 25V",
-          "X5R · vào và ra",
-          "10",
-          "15.000đ"
-        ],
-        [
-          "Điện trở feedback 1%",
-          "đặt điện áp ra",
-          "—",
-          "5.000đ"
-        ],
-        [
-          "Dao động ký / Logic analyzer",
-          "đo ripple và xung switching",
-          "1",
-          "150.000đ+"
-        ]
+        {
+          "name": "IC MP1584EN",
+          "spec": "SOIC-8 · 3A · 28V vào",
+          "qty": "5",
+          "price": "30.000đ",
+          "enName": "IC MP1584EN"
+        },
+        {
+          "name": "(thay thế) TPS5430",
+          "spec": "5A · dễ hàn hơn",
+          "qty": "2",
+          "price": "40.000đ",
+          "enName": "(thay thế) TPS5430"
+        },
+        {
+          "name": "Cuộn cảm SMD 10–47µH",
+          "spec": "dòng bão hòa ≥ 1.5× I ra",
+          "qty": "5",
+          "price": "20.000đ",
+          "enName": "SMD inductor 10–47µH"
+        },
+        {
+          "name": "Diode Schottky SS34",
+          "spec": "3A / 40V",
+          "qty": "10",
+          "price": "8.000đ",
+          "enName": "SS34 Schottky diode"
+        },
+        {
+          "name": "Tụ gốm 22µF / 25V",
+          "spec": "X5R · vào và ra",
+          "qty": "10",
+          "price": "15.000đ",
+          "enName": "Ceramic cap 22µF / 25V"
+        },
+        {
+          "name": "Điện trở feedback 1%",
+          "spec": "đặt điện áp ra",
+          "qty": "—",
+          "price": "5.000đ",
+          "enName": "Feedback resistor 1%"
+        },
+        {
+          "name": "Dao động ký / Logic analyzer",
+          "spec": "đo ripple và xung switching",
+          "qty": "1",
+          "price": "150.000đ+",
+          "enName": "Oscilloscope / Logic analyzer"
+        }
       ],
       "fm": "<code>D = V<sub>ra</sub> / V<sub>vào</sub></code> · Ripple dòng cuộn cảm nên ≈ 30% I<sub>ra</sub>",
       "warn": "Vòng dòng chuyển mạch (IC → cuộn → tụ ra → mass) phải ngắn nhất có thể trên PCB. Layout sai = nhiễu EMI văng khắp mạch, chạy được nhưng phá hỏng phần còn lại."
@@ -741,36 +834,41 @@
       "name": "Level shifter 5V ↔ 3.3V",
       "goal": "Ghép thiết bị khác mức logic mà không cháy chân",
       "parts": [
-        [
-          "MOSFET BSS138",
-          "SOT-23 · kinh điển cho I2C",
-          "5",
-          "8.000đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "pull-up 2 phía",
-          "10",
-          "500đ"
-        ],
-        [
-          "(thay thế) Module 4 kênh",
-          "BSS138 hàn sẵn",
-          "2",
-          "16.000đ"
-        ],
-        [
-          "(1 chiều) IC 74HCT125",
-          "buffer đệm",
-          "2",
-          "10.000đ"
-        ],
-        [
-          "(1 chiều rẻ) Cầu phân áp",
-          "1kΩ + 2kΩ · chỉ cho tín hiệu chậm",
-          "—",
-          "200đ"
-        ]
+        {
+          "name": "MOSFET BSS138",
+          "spec": "SOT-23 · kinh điển cho I2C",
+          "qty": "5",
+          "price": "8.000đ",
+          "enName": "BSS138 MOSFET"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "pull-up 2 phía",
+          "qty": "10",
+          "price": "500đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "(thay thế) Module 4 kênh",
+          "spec": "BSS138 hàn sẵn",
+          "qty": "2",
+          "price": "16.000đ",
+          "enName": "(thay thế) Module 4 kênh"
+        },
+        {
+          "name": "(1 chiều) IC 74HCT125",
+          "spec": "buffer đệm",
+          "qty": "2",
+          "price": "10.000đ",
+          "enName": "(1 chiều) IC 74HCT125"
+        },
+        {
+          "name": "(1 chiều rẻ) Cầu phân áp",
+          "spec": "1kΩ + 2kΩ · chỉ cho tín hiệu chậm",
+          "qty": "—",
+          "price": "200đ",
+          "enName": "(1 chiều rẻ) Cầu phân áp"
+        }
       ],
       "fm": "MOSFET 2 chiều dùng được cho <b>I2C</b> (bus 2 chiều, open-drain). Cầu phân áp chỉ dùng cho tín hiệu 1 chiều tốc độ thấp — SPI nhanh sẽ méo dạng."
     },
@@ -780,42 +878,48 @@
       "name": "Cách ly quang (opto) và SSR",
       "goal": "Tách hoàn toàn mạch điều khiển khỏi mạch công suất",
       "parts": [
-        [
-          "Optocoupler PC817",
-          "DIP-4 · phổ biến nhất",
-          "5",
-          "7.500đ"
-        ],
-        [
-          "(nhanh hơn) 6N137",
-          "cho tín hiệu số tốc độ cao",
-          "2",
-          "20.000đ"
-        ],
-        [
-          "Điện trở 220Ω",
-          "hạn dòng LED bên trong opto",
-          "5",
-          "250đ"
-        ],
-        [
-          "Điện trở 10kΩ",
-          "pull-up phía transistor",
-          "5",
-          "250đ"
-        ],
-        [
-          "SSR G3MB-202P",
-          "relay bán dẫn · tải AC 2A",
-          "1",
-          "35.000đ"
-        ],
-        [
-          "Nguồn cách ly (nếu cần)",
-          "B0505S-1W · DC-DC isolated",
-          "1",
-          "35.000đ"
-        ]
+        {
+          "name": "Optocoupler PC817",
+          "spec": "DIP-4 · phổ biến nhất",
+          "qty": "5",
+          "price": "7.500đ",
+          "enName": "Optocoupler PC817"
+        },
+        {
+          "name": "(nhanh hơn) 6N137",
+          "spec": "cho tín hiệu số tốc độ cao",
+          "qty": "2",
+          "price": "20.000đ",
+          "enName": "(nhanh hơn) 6N137"
+        },
+        {
+          "name": "Điện trở 220Ω",
+          "spec": "hạn dòng LED bên trong opto",
+          "qty": "5",
+          "price": "250đ",
+          "enName": "Resistor 220Ω"
+        },
+        {
+          "name": "Điện trở 10kΩ",
+          "spec": "pull-up phía transistor",
+          "qty": "5",
+          "price": "250đ",
+          "enName": "Resistor 10kΩ"
+        },
+        {
+          "name": "SSR G3MB-202P",
+          "spec": "relay bán dẫn · tải AC 2A",
+          "qty": "1",
+          "price": "35.000đ",
+          "enName": "SSR G3MB-202P"
+        },
+        {
+          "name": "Nguồn cách ly (nếu cần)",
+          "spec": "B0505S-1W · DC-DC isolated",
+          "qty": "1",
+          "price": "35.000đ",
+          "enName": "Isolated supply (if needed)"
+        }
       ],
       "warn": "Opto chỉ thực sự cách ly khi hai phía dùng <b>hai nguồn và hai mass riêng biệt</b>. Nối chung GND là mất hết tác dụng cách ly."
     },
@@ -825,42 +929,48 @@
       "name": "Đo dòng và công suất",
       "goal": "Biết mạch mình ngốn bao nhiêu — thiết yếu cho thiết bị chạy pin",
       "parts": [
-        [
-          "Module INA219",
-          "I2C · đo áp + dòng + công suất",
-          "1",
-          "30.000đ"
-        ],
-        [
-          "(thay thế) INA226",
-          "độ phân giải cao hơn",
-          "1",
-          "45.000đ"
-        ],
-        [
-          "(cho AC/dòng lớn) ACS712-5A",
-          "cảm biến Hall · cách ly",
-          "1",
-          "25.000đ"
-        ],
-        [
-          "Điện trở shunt 0.1Ω 1%",
-          "2W · công suất",
-          "2",
-          "10.000đ"
-        ],
-        [
-          "Điện trở pull-up 4.7kΩ",
-          "cho bus I2C",
-          "2",
-          "100đ"
-        ],
-        [
-          "ESP32",
-          "(dùng lại)",
-          "—",
-          "—"
-        ]
+        {
+          "name": "Module INA219",
+          "spec": "I2C · đo áp + dòng + công suất",
+          "qty": "1",
+          "price": "30.000đ",
+          "enName": "INA219 module"
+        },
+        {
+          "name": "(thay thế) INA226",
+          "spec": "độ phân giải cao hơn",
+          "qty": "1",
+          "price": "45.000đ",
+          "enName": "(thay thế) INA226"
+        },
+        {
+          "name": "(cho AC/dòng lớn) ACS712-5A",
+          "spec": "cảm biến Hall · cách ly",
+          "qty": "1",
+          "price": "25.000đ",
+          "enName": "(cho AC/dòng lớn) ACS712-5A"
+        },
+        {
+          "name": "Điện trở shunt 0.1Ω 1%",
+          "spec": "2W · công suất",
+          "qty": "2",
+          "price": "10.000đ",
+          "enName": "Shunt resistor 0.1Ω 1%"
+        },
+        {
+          "name": "Điện trở pull-up 4.7kΩ",
+          "spec": "cho bus I2C",
+          "qty": "2",
+          "price": "100đ",
+          "enName": "4.7kΩ pull-up resistor"
+        },
+        {
+          "name": "ESP32",
+          "spec": "(dùng lại)",
+          "qty": "—",
+          "price": "—",
+          "enName": "ESP32"
+        }
       ],
       "fm": "<code>V<sub>shunt</sub> = I × R<sub>shunt</sub></code> → đo 1A qua 0.1Ω = 100mV, tổn hao 0.1W.<br>Shunt càng lớn càng dễ đo nhưng càng tổn hao — thường chọn 0.01–0.1Ω."
     },
@@ -870,42 +980,48 @@
       "name": "Sạc Li-ion + boost 5V",
       "goal": "Quản lý pin: CC/CV, bảo vệ quá xả, nâng áp",
       "parts": [
-        [
-          "Module TP4056 CÓ bảo vệ",
-          "có 2 IC · chip DW01 + FS8205",
-          "2",
-          "12.000đ"
-        ],
-        [
-          "Pin 18650",
-          "2000–3000mAh · mua hàng thật",
-          "2",
-          "80.000đ"
-        ],
-        [
-          "Đế pin 18650",
-          "loại hàn được",
-          "2",
-          "10.000đ"
-        ],
-        [
-          "Module boost MT3608",
-          "3.7V → 5V · 2A",
-          "2",
-          "24.000đ"
-        ],
-        [
-          "Tụ 100µF + 10µF",
-          "lọc vào/ra boost",
-          "—",
-          "2.000đ"
-        ],
-        [
-          "Công tắc gạt",
-          "ngắt nguồn",
-          "2",
-          "4.000đ"
-        ]
+        {
+          "name": "Module TP4056 CÓ bảo vệ",
+          "spec": "có 2 IC · chip DW01 + FS8205",
+          "qty": "2",
+          "price": "12.000đ",
+          "enName": "TP4056 module WITH protection"
+        },
+        {
+          "name": "Pin 18650",
+          "spec": "2000–3000mAh · mua hàng thật",
+          "qty": "2",
+          "price": "80.000đ",
+          "enName": "18650 battery"
+        },
+        {
+          "name": "Đế pin 18650",
+          "spec": "loại hàn được",
+          "qty": "2",
+          "price": "10.000đ",
+          "enName": "18650 battery holder"
+        },
+        {
+          "name": "Module boost MT3608",
+          "spec": "3.7V → 5V · 2A",
+          "qty": "2",
+          "price": "24.000đ",
+          "enName": "MT3608 boost module"
+        },
+        {
+          "name": "Tụ 100µF + 10µF",
+          "spec": "lọc vào/ra boost",
+          "qty": "—",
+          "price": "2.000đ",
+          "enName": "Cap 100µF + 10µF"
+        },
+        {
+          "name": "Công tắc gạt",
+          "spec": "ngắt nguồn",
+          "qty": "2",
+          "price": "4.000đ",
+          "enName": "Slide switch"
+        }
       ],
       "warn": "<b>Bắt buộc mua bản TP4056 có mạch bảo vệ</b> (nhìn mặt board thấy 2 IC nhỏ). Bản không bảo vệ sẽ xả pin xuống dưới 2.5V làm chai vĩnh viễn, tệ hơn là phồng/cháy. Không sạc pin không giám sát khi đang thử nghiệm."
     },
@@ -915,42 +1031,48 @@
       "name": "Bus I2C / SPI nhiều thiết bị",
       "goal": "Ghép nhiều cảm biến trên cùng vài sợi dây",
       "parts": [
-        [
-          "Màn OLED SSD1306 0.96\"",
-          "I2C · địa chỉ 0x3C",
-          "1",
-          "45.000đ"
-        ],
-        [
-          "Cảm biến MPU6050",
-          "gia tốc + con quay · I2C 0x68",
-          "1",
-          "30.000đ"
-        ],
-        [
-          "Cảm biến BME280",
-          "nhiệt độ + ẩm + áp suất · I2C 0x76",
-          "1",
-          "60.000đ"
-        ],
-        [
-          "Thẻ nhớ module SD",
-          "SPI",
-          "1",
-          "25.000đ"
-        ],
-        [
-          "Điện trở pull-up 4.7kΩ",
-          "SDA và SCL · chỉ CẦN 1 CẶP cho cả bus",
-          "2",
-          "100đ"
-        ],
-        [
-          "Logic analyzer 8 kênh",
-          "xem tín hiệu thật · dùng PulseView",
-          "1",
-          "150.000đ"
-        ]
+        {
+          "name": "Màn OLED SSD1306 0.96\"",
+          "spec": "I2C · địa chỉ 0x3C",
+          "qty": "1",
+          "price": "45.000đ",
+          "enName": "OLED SSD1306 0.96\""
+        },
+        {
+          "name": "Cảm biến MPU6050",
+          "spec": "gia tốc + con quay · I2C 0x68",
+          "qty": "1",
+          "price": "30.000đ",
+          "enName": "Cảm biến MPU6050"
+        },
+        {
+          "name": "Cảm biến BME280",
+          "spec": "nhiệt độ + ẩm + áp suất · I2C 0x76",
+          "qty": "1",
+          "price": "60.000đ",
+          "enName": "BME280 sensor"
+        },
+        {
+          "name": "Thẻ nhớ module SD",
+          "spec": "SPI",
+          "qty": "1",
+          "price": "25.000đ",
+          "enName": "SD card module"
+        },
+        {
+          "name": "Điện trở pull-up 4.7kΩ",
+          "spec": "SDA và SCL · chỉ CẦN 1 CẶP cho cả bus",
+          "qty": "2",
+          "price": "100đ",
+          "enName": "4.7kΩ pull-up resistor"
+        },
+        {
+          "name": "Logic analyzer 8 kênh",
+          "spec": "xem tín hiệu thật · dùng PulseView",
+          "qty": "1",
+          "price": "150.000đ",
+          "enName": "8-channel logic analyzer"
+        }
       ],
       "warn": "Nhiều module đã có pull-up sẵn trên board. Gắn 5 module = 5 cặp pull-up song song → trở tổng quá nhỏ, bus chết. Phải tháo bớt điện trở trên module.",
       "note": "Trùng địa chỉ I2C thì dùng chân ADDR để đổi, hoặc thêm bộ ghép kênh TCA9548A."
@@ -961,42 +1083,48 @@
       "name": "Chống nhiễu, ESD và bảo vệ",
       "goal": "Mạch chạy được 1 giờ vs chạy được 1 năm",
       "parts": [
-        [
-          "TVS diode SMAJ5.0A",
-          "chống xung áp đường nguồn",
-          "5",
-          "10.000đ"
-        ],
-        [
-          "IC bảo vệ USB USBLC6-2SC6",
-          "ESD cho D+/D−",
-          "5",
-          "15.000đ"
-        ],
-        [
-          "Hạt ferrite / cuộn chặn",
-          "lọc nhiễu tần số cao",
-          "10",
-          "10.000đ"
-        ],
-        [
-          "Cầu chì tự phục hồi PPTC",
-          "0.5A / 1A",
-          "5",
-          "8.000đ"
-        ],
-        [
-          "Diode chống ngược cực SS34",
-          "bảo vệ cắm ngược nguồn",
-          "5",
-          "5.000đ"
-        ],
-        [
-          "Tụ 100nF + 10µF",
-          "decoupling khắp board",
-          "—",
-          "—"
-        ]
+        {
+          "name": "TVS diode SMAJ5.0A",
+          "spec": "chống xung áp đường nguồn",
+          "qty": "5",
+          "price": "10.000đ",
+          "enName": "TVS diode SMAJ5.0A"
+        },
+        {
+          "name": "IC bảo vệ USB USBLC6-2SC6",
+          "spec": "ESD cho D+/D−",
+          "qty": "5",
+          "price": "15.000đ",
+          "enName": "IC bảo vệ USB USBLC6-2SC6"
+        },
+        {
+          "name": "Hạt ferrite / cuộn chặn",
+          "spec": "lọc nhiễu tần số cao",
+          "qty": "10",
+          "price": "10.000đ",
+          "enName": "Hạt ferrite / cuộn chặn"
+        },
+        {
+          "name": "Cầu chì tự phục hồi PPTC",
+          "spec": "0.5A / 1A",
+          "qty": "5",
+          "price": "8.000đ",
+          "enName": "Cầu chì tự phục hồi PPTC"
+        },
+        {
+          "name": "Diode chống ngược cực SS34",
+          "spec": "bảo vệ cắm ngược nguồn",
+          "qty": "5",
+          "price": "5.000đ",
+          "enName": "Diode chống ngược cực SS34"
+        },
+        {
+          "name": "Tụ 100nF + 10µF",
+          "spec": "decoupling khắp board",
+          "qty": "—",
+          "price": "—",
+          "enName": "Tụ 100nF + 10µF"
+        }
       ],
       "note": "Thêm: đi <b>ground plane</b> liền mạch, tách mass analog/số nối 1 điểm, đường tín hiệu tốc độ cao không cắt ngang khe mass."
     },
@@ -1006,48 +1134,55 @@
       "name": "Vẽ PCB trong KiCad → đặt sản xuất",
       "goal": "Đích đến cuối cùng: board thật của riêng mình",
       "parts": [
-        [
-          "KiCad 8",
-          "miễn phí · mã nguồn mở",
-          "1",
-          "0đ"
-        ],
-        [
-          "Đặt PCB JLCPCB / PCBWay",
-          "5 board 2 lớp 100×100mm",
-          "1",
-          "~60.000đ + ship"
-        ],
-        [
-          "Mỏ hàn khí nóng 858D",
-          "hàn linh kiện SMD",
-          "1",
-          "400.000đ"
-        ],
-        [
-          "Mỏ hàn chỉnh nhiệt T12",
-          "hàn chân cắm",
-          "1",
-          "300.000đ"
-        ],
-        [
-          "Kem hàn + nhựa thông",
-          "Mechanic XG-50",
-          "1",
-          "80.000đ"
-        ],
-        [
-          "Nhíp cong + kính lúp",
-          "",
-          "1",
-          "60.000đ"
-        ],
-        [
-          "Stencil thép",
-          "nếu hàn nhiều board",
-          "1",
-          "~80.000đ"
-        ]
+        {
+          "name": "KiCad 8",
+          "spec": "miễn phí · mã nguồn mở",
+          "qty": "1",
+          "price": "0đ",
+          "enName": "KiCad 8"
+        },
+        {
+          "name": "Đặt PCB JLCPCB / PCBWay",
+          "spec": "5 board 2 lớp 100×100mm",
+          "qty": "1",
+          "price": "~60.000đ + ship",
+          "enName": "Order PCB JLCPCB / PCBWay"
+        },
+        {
+          "name": "Mỏ hàn khí nóng 858D",
+          "spec": "hàn linh kiện SMD",
+          "qty": "1",
+          "price": "400.000đ",
+          "enName": "858D hot-air rework station"
+        },
+        {
+          "name": "Mỏ hàn chỉnh nhiệt T12",
+          "spec": "hàn chân cắm",
+          "qty": "1",
+          "price": "300.000đ",
+          "enName": "T12 adjustable-temp soldering iron"
+        },
+        {
+          "name": "Kem hàn + nhựa thông",
+          "spec": "Mechanic XG-50",
+          "qty": "1",
+          "price": "80.000đ",
+          "enName": "Solder paste + rosin"
+        },
+        {
+          "name": "Nhíp cong + kính lúp",
+          "spec": "",
+          "qty": "1",
+          "price": "60.000đ",
+          "enName": "Tweezers + magnifier"
+        },
+        {
+          "name": "Stencil thép",
+          "spec": "nếu hàn nhiều board",
+          "qty": "1",
+          "price": "~80.000đ",
+          "enName": "Steel stencil"
+        }
       ],
       "note": "Quy trình: Schematic → gán footprint → Netlist → sắp xếp linh kiện → routing → DRC → xuất Gerber + BOM + file vị trí → upload lên JLCPCB.",
       "warn": "Chạy <b>DRC</b> và in bản 1:1 ra giấy ướm thử linh kiện thật trước khi đặt. Sai footprint là mất tiền và 2 tuần chờ."

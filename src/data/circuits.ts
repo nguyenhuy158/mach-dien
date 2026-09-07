@@ -10,12 +10,20 @@ export interface Level {
 
 export type Part = [string, string, string, string]
 
+export interface CircuitPart {
+  name: string
+  spec: string
+  qty: string
+  price: string
+  enName?: string
+}
+
 export interface Circuit {
   l: number
   n: number
   name: string
   goal: string
-  parts: Part[]
+  parts: CircuitPart[]
   fm?: string
   warn?: string
   note?: string

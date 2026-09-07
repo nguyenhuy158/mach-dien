@@ -274,7 +274,7 @@ function CircuitList({
         .filter(c => filter === 'na' ? isNaCircuit(c) : true)
         .filter(c => {
           if (!query) return true
-          const blob = (c.name + ' ' + c.goal + ' ' + c.parts.map(p => p[0] + ' ' + p[1]).join(' ')).toLowerCase()
+          const blob = (c.name + ' ' + c.goal + ' ' + c.parts.map(p => p.name + ' ' + p.spec).join(' ')).toLowerCase()
           return blob.includes(query)
         })
       return { L, cards }
@@ -306,8 +306,8 @@ function CircuitList({
   )
 }
 
-function isNaCircuit(c: { parts: [string, string, string, string][] }): boolean {
-  return c.parts.some(p => isNaPart(p[0]))
+function isNaCircuit(c: { parts: { name: string }[] }): boolean {
+  return c.parts.some(p => isNaPart(p.name))
 }
 
 function Footer() {

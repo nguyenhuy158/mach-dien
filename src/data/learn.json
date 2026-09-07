@@ -9,14 +9,43 @@
       "image": "/svg/learn/resistor.svg",
       "description": "Linh kiện thụ động cơ bản nhất, hạn chế dòng điện, phân áp, làm tải.",
       "specs": [
-        ["Đơn vị", "Ohm (Ω)"],
-        ["Công suất định mức", "1/8W, 1/4W, 1/2W, 1W, 2W, 5W…"],
-        ["Sai số", "1% (màng kim loại), 5% (carbon)"],
-        ["Vật liệu", "Carbon film, metal film, wirewound, SMD thick/thin film"]
+        [
+          "Đơn vị",
+          "Ohm (Ω)",
+          "Unit",
+          "Ohm (Ω)"
+        ],
+        [
+          "Công suất định mức",
+          "1/8W, 1/4W, 1/2W, 1W, 2W, 5W…",
+          "Power rating",
+          "1/8W, 1/4W, 1/2W, 1W, 2W, 5W…"
+        ],
+        [
+          "Sai số",
+          "1% (màng kim loại), 5% (carbon)",
+          "Tolerance",
+          "1% (màng kim loại), 5% (carbon)"
+        ],
+        [
+          "Vật liệu",
+          "Carbon film, metal film, wirewound, SMD thick/thin film",
+          "Material",
+          "Carbon film, metal film, wirewound, SMD thick/thin film"
+        ]
       ],
       "colorCode": true,
-      "applications": ["Hạn dòng LED", "Phân áp", "Pull-up/pull-down", "Lọc RC cùng tụ"],
-      "notes": "SMD dùng mã 3 chữ số (103 = 10×10³ = 10kΩ) hoặc 4 chữ số EIA-96. Mã EIA-96: 2 chữ số + 1 chữ cái (ví dụ 01A = 100×1 = 100Ω)."
+      "applications": [
+        "Hạn dòng LED",
+        "Phân áp",
+        "Pull-up/pull-down",
+        "Lọc RC cùng tụ"
+      ],
+      "notes": "SMD dùng mã 3 chữ số (103 = 10×10³ = 10kΩ) hoặc 4 chữ số EIA-96. Mã EIA-96: 2 chữ số + 1 chữ cái (ví dụ 01A = 100×1 = 100Ω).",
+      "enName": "Resistor",
+      "enCategory": "Passive",
+      "enDescription": "Most basic passive component. Limits current, divides voltage, acts as load.",
+      "enNotes": "SMD dùng mã 3 chữ số (103 = 10×10³ = 10kΩ) hoặc 4 chữ số EIA-96. Mã EIA-96: 2 chữ số + 1 chữ cái (ví dụ 01A = 100×1 = 100Ω)."
     },
     {
       "id": "capacitor",
@@ -27,13 +56,42 @@
       "image": "/svg/learn/capacitor.svg",
       "description": "Lưu trữ năng lượng điện, lọc nhiễu, làm mạch RC/LC, decoupling nguồn.",
       "specs": [
-        ["Đơn vị", "Farad (F) — thường dùng µF, nF, pF"],
-        ["Điện áp định mức", "6.3V, 10V, 16V, 25V, 50V, 100V…"],
-        ["Loại", "Ceramic, Film, Electrolytic, Tantalum, Supercap"],
-        ["Cực tính", "Electrolytic & tantalum có cực (+) / (−); ceramic & film không phân cực"]
+        [
+          "Đơn vị",
+          "Farad (F) — thường dùng µF, nF, pF",
+          "Unit",
+          "Farad (F) — thường dùng µF, nF, pF"
+        ],
+        [
+          "Điện áp định mức",
+          "6.3V, 10V, 16V, 25V, 50V, 100V…",
+          "Điện áp định mức",
+          "6.3V, 10V, 16V, 25V, 50V, 100V…"
+        ],
+        [
+          "Loại",
+          "Ceramic, Film, Electrolytic, Tantalum, Supercap",
+          "Loại",
+          "Ceramic, Film, Electrolytic, Tantalum, Supercap"
+        ],
+        [
+          "Cực tính",
+          "Electrolytic & tantalum có cực (+) / (−); ceramic & film không phân cực",
+          "Cực tính",
+          "Electrolytic & tantalum có cực (+) / (−); ceramic & film không phân cực"
+        ]
       ],
-      "applications": ["Decoupling 100nF cạnh VCC của IC", "Lọc nguồn (100µF/470µF)", "Mạch định thời RC", "Mạch lọc tần số"],
-      "notes": "Ceramic X7R/X5R mất 20-50% dung sai khi áp DC đặt vào (DC bias). Electrolytic có ESR — chọn low-ESR cho buck/boost. Tantalum gãy nổ khi ngược cực hoặc quá áp."
+      "applications": [
+        "Decoupling 100nF cạnh VCC của IC",
+        "Lọc nguồn (100µF/470µF)",
+        "Mạch định thời RC",
+        "Mạch lọc tần số"
+      ],
+      "notes": "Ceramic X7R/X5R mất 20-50% dung sai khi áp DC đặt vào (DC bias). Electrolytic có ESR — chọn low-ESR cho buck/boost. Tantalum gãy nổ khi ngược cực hoặc quá áp.",
+      "enName": "Capacitor",
+      "enCategory": "Passive",
+      "enDescription": "Stores electrical energy, filters noise, RC/LC timing, supply decoupling.",
+      "enNotes": "Ceramic X7R/X5R mất 20-50% dung sai khi áp DC đặt vào (DC bias). Electrolytic có ESR — chọn low-ESR cho buck/boost. Tantalum gãy nổ khi ngược cực hoặc quá áp."
     },
     {
       "id": "inductor",
@@ -44,13 +102,41 @@
       "image": "/svg/learn/inductor.svg",
       "description": "Lưu trữ năng lượng trong từ trường, lọc EMI, mạch LC/buck/boost.",
       "specs": [
-        ["Đơn vị", "Henry (H) — thường dùng µH, mH"],
-        ["Dòng bão hòa I_sat", "Dòng mà L giảm ~30% — cần ≥ 1.3× I_out"],
-        ["DCR", "Điện trở một chiều — càng nhỏ càng tốt"],
-        ["Loại", "Ferrite core, iron core, air core, toroid"]
+        [
+          "Đơn vị",
+          "Henry (H) — thường dùng µH, mH",
+          "Unit",
+          "Henry (H) — thường dùng µH, mH"
+        ],
+        [
+          "Dòng bão hòa I_sat",
+          "Dòng mà L giảm ~30% — cần ≥ 1.3× I_out",
+          "Dòng bão hòa I_sat",
+          "Dòng mà L giảm ~30% — cần ≥ 1.3× I_out"
+        ],
+        [
+          "DCR",
+          "Điện trở một chiều — càng nhỏ càng tốt",
+          "DCR",
+          "Điện trở một chiều — càng nhỏ càng tốt"
+        ],
+        [
+          "Loại",
+          "Ferrite core, iron core, air core, toroid",
+          "Loại",
+          "Ferrite core, iron core, air core, toroid"
+        ]
       ],
-      "applications": ["Buck/boost converter", "Lọc EMI cùng tụ", "Ferrite bead trên đường nguồn"],
-      "notes": "SMD thường dùng mã 3-4 chữ số (4R7 = 4.7µH, 100M = 10µH ±20%). Ferrite bead ký hiệu FB hoặc L nhưng là tải trở kháng tần số cao, không lưu năng lượng."
+      "applications": [
+        "Buck/boost converter",
+        "Lọc EMI cùng tụ",
+        "Ferrite bead trên đường nguồn"
+      ],
+      "notes": "SMD thường dùng mã 3-4 chữ số (4R7 = 4.7µH, 100M = 10µH ±20%). Ferrite bead ký hiệu FB hoặc L nhưng là tải trở kháng tần số cao, không lưu năng lượng.",
+      "enName": "Inductor",
+      "enCategory": "Passive",
+      "enDescription": "Stores energy in magnetic field, EMI filter, LC/buck/boost circuits.",
+      "enNotes": "SMD thường dùng mã 3-4 chữ số (4R7 = 4.7µH, 100M = 10µH ±20%). Ferrite bead ký hiệu FB hoặc L nhưng là tải trở kháng tần số cao, không lưu năng lượng."
     },
     {
       "id": "diode",
@@ -61,13 +147,42 @@
       "image": "/svg/learn/diode.svg",
       "description": "Chỉ cho dòng điện đi một chiều, V_f ~0.7V (Si) hoặc ~0.3V (Schottky).",
       "specs": [
-        ["V_f", "Silicon ~0.7V, Schottky ~0.3V, Germanium ~0.3V"],
-        ["I_F max", "1N4007 = 1A, 1N5408 = 3A, BYW29 = 8A…"],
-        ["V_R max", "Điện áp ngược tối đa"],
-        ["Tốc độ chuyển mạch", "Standard / Fast / Ultrafast / Schottky"]
+        [
+          "V_f",
+          "Silicon ~0.7V, Schottky ~0.3V, Germanium ~0.3V",
+          "V_f",
+          "Silicon ~0.7V, Schottky ~0.3V, Germanium ~0.3V"
+        ],
+        [
+          "I_F max",
+          "1N4007 = 1A, 1N5408 = 3A, BYW29 = 8A…",
+          "I_F max",
+          "1N4007 = 1A, 1N5408 = 3A, BYW29 = 8A…"
+        ],
+        [
+          "V_R max",
+          "Điện áp ngược tối đa",
+          "V_R max",
+          "Điện áp ngược tối đa"
+        ],
+        [
+          "Tốc độ chuyển mạch",
+          "Standard / Fast / Ultrafast / Schottky",
+          "Tốc độ chuyển mạch",
+          "Standard / Fast / Ultrafast / Schottky"
+        ]
       ],
-      "applications": ["Chỉnh lưu", "Flyback cho relay/inductor", "Logic level shifting", "Reverse polarity protection"],
-      "notes": "1N4007 chịu 1A/1000V nhưng chậm — KHÔNG dùng trong SMPS. Dùng UF4007 hoặc Schottky SS34."
+      "applications": [
+        "Chỉnh lưu",
+        "Flyback cho relay/inductor",
+        "Logic level shifting",
+        "Reverse polarity protection"
+      ],
+      "notes": "1N4007 chịu 1A/1000V nhưng chậm — KHÔNG dùng trong SMPS. Dùng UF4007 hoặc Schottky SS34.",
+      "enName": "Diode",
+      "enCategory": "Semiconductor",
+      "enDescription": "Current flows one direction only. V_f ~0.7V (Si) or ~0.3V (Schottky).",
+      "enNotes": "1N4007 chịu 1A/1000V nhưng chậm — KHÔNG dùng trong SMPS. Dùng UF4007 hoặc Schottky SS34."
     },
     {
       "id": "zener",
@@ -78,13 +193,41 @@
       "image": "/svg/learn/zener.svg",
       "description": "Hoạt động ở vùng breakdown ngược — dùng làm ổn áp đơn giản.",
       "specs": [
-        ["V_Z", "Điện áp Zener (3.3V, 5.1V, 12V, 15V…)"],
-        ["P_Z max", "Công suất tỏa nhiệt tối đa (0.5W, 1W, 5W)"],
-        ["I_Z(min)", "Dòng tối thiểu để ổn áp"],
-        ["Tolerance", "1%, 2%, 5%"]
+        [
+          "V_Z",
+          "Điện áp Zener (3.3V, 5.1V, 12V, 15V…)",
+          "V_Z",
+          "Điện áp Zener (3.3V, 5.1V, 12V, 15V…)"
+        ],
+        [
+          "P_Z max",
+          "Công suất tỏa nhiệt tối đa (0.5W, 1W, 5W)",
+          "P_Z max",
+          "Công suất tỏa nhiệt tối đa (0.5W, 1W, 5W)"
+        ],
+        [
+          "I_Z(min)",
+          "Dòng tối thiểu để ổn áp",
+          "I_Z(min)",
+          "Dòng tối thiểu để ổn áp"
+        ],
+        [
+          "Tolerance",
+          "1%, 2%, 5%",
+          "Tolerance",
+          "1%, 2%, 5%"
+        ]
       ],
-      "applications": ["Ổn áp cho điện áp tham chiếu", "Bảo vệ quá áp", "Voltage clamp"],
-      "notes": "Cần có điện trở nối tiếp hạn dòng. R = (V_in - V_Z) / I_Z. Zener dưới ~5V có V_Z có hệ số nhiệt âm, trên ~5V dương."
+      "applications": [
+        "Ổn áp cho điện áp tham chiếu",
+        "Bảo vệ quá áp",
+        "Voltage clamp"
+      ],
+      "notes": "Cần có điện trở nối tiếp hạn dòng. R = (V_in - V_Z) / I_Z. Zener dưới ~5V có V_Z có hệ số nhiệt âm, trên ~5V dương.",
+      "enName": "Zener diode",
+      "enCategory": "Semiconductor",
+      "enDescription": "Operates in reverse breakdown — simple voltage regulator.",
+      "enNotes": "Cần có điện trở nối tiếp hạn dòng. R = (V_in - V_Z) / I_Z. Zener dưới ~5V có V_Z có hệ số nhiệt âm, trên ~5V dương."
     },
     {
       "id": "led",
@@ -95,13 +238,42 @@
       "image": "/svg/learn/led.svg",
       "description": "Diode phát quang — cần điện trở hạn dòng. V_f phụ thuộc màu.",
       "specs": [
-        ["V_f", "Đỏ 1.8-2.0V, vàng 2.0-2.2V, xanh lá 2.8-3.2V, xanh dương/trắng 3.0-3.4V"],
-        ["I_f", "5mm thường 20mA, high-power 350mA-1A"],
-        ["Góc chiếu", "20° (hẹp) đến 120° (rộng)"],
-        ["Độ sáng", "Tính bằng mcd hoặc lm"]
+        [
+          "V_f",
+          "Đỏ 1.8-2.0V, vàng 2.0-2.2V, xanh lá 2.8-3.2V, xanh dương/trắng 3.0-3.4V",
+          "V_f",
+          "Đỏ 1.8-2.0V, vàng 2.0-2.2V, xanh lá 2.8-3.2V, xanh dương/trắng 3.0-3.4V"
+        ],
+        [
+          "I_f",
+          "5mm thường 20mA, high-power 350mA-1A",
+          "I_f",
+          "5mm thường 20mA, high-power 350mA-1A"
+        ],
+        [
+          "Góc chiếu",
+          "20° (hẹp) đến 120° (rộng)",
+          "Góc chiếu",
+          "20° (hẹp) đến 120° (rộng)"
+        ],
+        [
+          "Độ sáng",
+          "Tính bằng mcd hoặc lm",
+          "Độ sáng",
+          "Tính bằng mcd hoặc lm"
+        ]
       ],
-      "applications": ["Indicator", "Hiển thị", "LED strip 5050/WS2812", "Chiếu sáng công suất cao"],
-      "notes": "Cực dài = anode (+), cực ngắn = cathode (−). Bên trong: cực nhỏ = anode, lớn = cathode. LED RGB có 4 chân: R, GND chung (hoặc anode chung), G, B."
+      "applications": [
+        "Indicator",
+        "Hiển thị",
+        "LED strip 5050/WS2812",
+        "Chiếu sáng công suất cao"
+      ],
+      "notes": "Cực dài = anode (+), cực ngắn = cathode (−). Bên trong: cực nhỏ = anode, lớn = cathode. LED RGB có 4 chân: R, GND chung (hoặc anode chung), G, B.",
+      "enName": "LED",
+      "enCategory": "Optoelectronic",
+      "enDescription": "Light-emitting diode — needs current-limiting resistor. V_f depends on color.",
+      "enNotes": "Cực dài = anode (+), cực ngắn = cathode (−). Bên trong: cực nhỏ = anode, lớn = cathode. LED RGB có 4 chân: R, GND chung (hoặc anode chung), G, B."
     },
     {
       "id": "bjt",
@@ -112,13 +284,42 @@
       "image": "/svg/learn/bjt.svg",
       "description": "Bóng bán dẫn 3 cực — dùng làm khuyếch đại hoặc chuyển mạch.",
       "specs": [
-        ["Loại", "NPN (phổ biến) hoặc PNP"],
-        ["h_FE (β)", "Hệ số khuyếch đại dòng, 50-500 tuỳ loại"],
-        ["V_CE(max)", "Điện áp collector-emitter tối đa"],
-        ["I_C(max)", "Dòng collector tối đa (S8050 0.5A, 2N2222 0.8A, TIP120 8A)"]
+        [
+          "Loại",
+          "NPN (phổ biến) hoặc PNP",
+          "Loại",
+          "NPN (phổ biến) hoặc PNP"
+        ],
+        [
+          "h_FE (β)",
+          "Hệ số khuyếch đại dòng, 50-500 tuỳ loại",
+          "h_FE (β)",
+          "Hệ số khuyếch đại dòng, 50-500 tuỳ loại"
+        ],
+        [
+          "V_CE(max)",
+          "Điện áp collector-emitter tối đa",
+          "V_CE(max)",
+          "Điện áp collector-emitter tối đa"
+        ],
+        [
+          "I_C(max)",
+          "Dòng collector tối đa (S8050 0.5A, 2N2222 0.8A, TIP120 8A)",
+          "I_C(max)",
+          "Dòng collector tối đa (S8050 0.5A, 2N2222 0.8A, TIP120 8A)"
+        ]
       ],
-      "applications": ["Chuyển mạch tải nhỏ", "Khuyếch đại tín hiệu", "Công tắc relay", "Mạch dao động đơn giản"],
-      "notes": "V_BE ~0.7V. Để chắc chắn bão hòa: I_B = I_C / h_FE × 5. Dùng Darlington (TIP120) khi cần h_FE rất cao."
+      "applications": [
+        "Chuyển mạch tải nhỏ",
+        "Khuyếch đại tín hiệu",
+        "Công tắc relay",
+        "Mạch dao động đơn giản"
+      ],
+      "notes": "V_BE ~0.7V. Để chắc chắn bão hòa: I_B = I_C / h_FE × 5. Dùng Darlington (TIP120) khi cần h_FE rất cao.",
+      "enName": "BJT transistor",
+      "enCategory": "Semiconductor",
+      "enDescription": "Bipolar junction transistor — amplify or switch. h_FE typically 50-500.",
+      "enNotes": "V_BE ~0.7V. Để chắc chắn bão hòa: I_B = I_C / h_FE × 5. Dùng Darlington (TIP120) khi cần h_FE rất cao."
     },
     {
       "id": "mosfet",
@@ -129,13 +330,42 @@
       "image": "/svg/learn/mosfet.svg",
       "description": "Transistor hiệu ứng trường — chuyển mạch nhanh, R_DS(on) cực nhỏ, dùng cho tải lớn.",
       "specs": [
-        ["Loại", "N-channel (phổ biến) hoặc P-channel"],
-        ["V_GS(th)", "Ngưỡng mở — logic-level: < 2.5V"],
-        ["R_DS(on)", "Điện trở khi mở hoàn toàn, càng nhỏ càng tốt"],
-        ["I_D", "Dòng drain tối đa"]
+        [
+          "Loại",
+          "N-channel (phổ biến) hoặc P-channel",
+          "Loại",
+          "N-channel (phổ biến) hoặc P-channel"
+        ],
+        [
+          "V_GS(th)",
+          "Ngưỡng mở — logic-level: < 2.5V",
+          "V_GS(th)",
+          "Ngưỡng mở — logic-level: < 2.5V"
+        ],
+        [
+          "R_DS(on)",
+          "Điện trở khi mở hoàn toàn, càng nhỏ càng tốt",
+          "R_DS(on)",
+          "Điện trở khi mở hoàn toàn, càng nhỏ càng tốt"
+        ],
+        [
+          "I_D",
+          "Dòng drain tối đa",
+          "I_D",
+          "Dòng drain tối đa"
+        ]
       ],
-      "applications": ["Lái động cơ DC", "PWM tốc độ quạt", "Công tắc tải pin", "Buck/boost converter"],
-      "notes": "CẦN logic-level khi MCU 3.3V. IRF540 KHÔNG logic-level (V_GS(th) ~4V) — cháy khi MCU 3.3V. Dùng IRLZ44N hoặc AO3400. Bắt buộc có pull-down 10kΩ ở Gate."
+      "applications": [
+        "Lái động cơ DC",
+        "PWM tốc độ quạt",
+        "Công tắc tải pin",
+        "Buck/boost converter"
+      ],
+      "notes": "CẦN logic-level khi MCU 3.3V. IRF540 KHÔNG logic-level (V_GS(th) ~4V) — cháy khi MCU 3.3V. Dùng IRLZ44N hoặc AO3400. Bắt buộc có pull-down 10kΩ ở Gate.",
+      "enName": "MOSFET",
+      "enCategory": "Semiconductor",
+      "enDescription": "Fast switching, very low R_DS(on). Logic-level for 3.3V MCU.",
+      "enNotes": "CẦN logic-level khi MCU 3.3V. IRF540 KHÔNG logic-level (V_GS(th) ~4V) — cháy khi MCU 3.3V. Dùng IRLZ44N hoặc AO3400. Bắt buộc có pull-down 10kΩ ở Gate."
     },
     {
       "id": "ne555",
@@ -146,12 +376,36 @@
       "image": "/svg/learn/555.svg",
       "description": "IC timer kinh điển — tạo xung vuông, định thời, PWM đơn giản.",
       "specs": [
-        ["VCC", "4.5V - 16V (NE555), 2V - 18V (CMOS TLC555)"],
-        ["I_out", "200mA (TTL), 100mA (CMOS)"],
-        ["Chân", "1 GND, 2 Trig, 3 Out, 4 Reset, 5 Ctrl, 6 Thr, 7 Dis, 8 VCC"]
+        [
+          "VCC",
+          "4.5V - 16V (NE555), 2V - 18V (CMOS TLC555)",
+          "VCC",
+          "4.5V - 16V (NE555), 2V - 18V (CMOS TLC555)"
+        ],
+        [
+          "I_out",
+          "200mA (TTL), 100mA (CMOS)",
+          "I_out",
+          "200mA (TTL), 100mA (CMOS)"
+        ],
+        [
+          "Chân",
+          "1 GND, 2 Trig, 3 Out, 4 Reset, 5 Ctrl, 6 Thr, 7 Dis, 8 VCC",
+          "Chân",
+          "1 GND, 2 Trig, 3 Out, 4 Reset, 5 Ctrl, 6 Thr, 7 Dis, 8 VCC"
+        ]
       ],
-      "applications": ["Mạch dao động astable (nháy LED)", "Định thời monostable", "PWM", "Tạo tone"],
-      "notes": "Công thức astable: f = 1.44 / ((R1 + 2·R2) · C). Duty cycle = (R1 + R2) / (R1 + 2R2). Để có duty = 50%: R1 << R2 hoặc dùng diode song song R1."
+      "applications": [
+        "Mạch dao động astable (nháy LED)",
+        "Định thời monostable",
+        "PWM",
+        "Tạo tone"
+      ],
+      "notes": "Công thức astable: f = 1.44 / ((R1 + 2·R2) · C). Duty cycle = (R1 + R2) / (R1 + 2R2). Để có duty = 50%: R1 << R2 hoặc dùng diode song song R1.",
+      "enName": "IC 555",
+      "enCategory": "IC",
+      "enDescription": "Classic timer IC — square wave, timing, PWM. NE555 (TTL) or TLC555 (CMOS).",
+      "enNotes": "Công thức astable: f = 1.44 / ((R1 + 2·R2) · C). Duty cycle = (R1 + R2) / (R1 + 2R2). Để có duty = 50%: R1 << R2 hoặc dùng diode song song R1."
     },
     {
       "id": "opamp",
@@ -162,13 +416,42 @@
       "image": "/svg/learn/opamp.svg",
       "description": "Bộ khuyếch đại thuật toán — buffer, khuếch đại đảo/không đảo, so sánh, lọc tích cực.",
       "specs": [
-        ["Loại", "LM358 (op-amp đơn nguồn), TL071 (JFET, nguồn đối xứng), LM741 (cổ điển)"],
-        ["Gain-BW", "Tích số độ rộng băng (LM358 ~1MHz, TL071 ~3MHz)"],
-        ["Slew rate", "Tốc độ thay đổi điện áp ra (V/µs)"],
-        ["Rail-to-rail", "Có thể ra gần sát VCC/GND hay không"]
+        [
+          "Loại",
+          "LM358 (op-amp đơn nguồn), TL071 (JFET, nguồn đối xứng), LM741 (cổ điển)",
+          "Loại",
+          "LM358 (op-amp đơn nguồn), TL071 (JFET, nguồn đối xứng), LM741 (cổ điển)"
+        ],
+        [
+          "Gain-BW",
+          "Tích số độ rộng băng (LM358 ~1MHz, TL071 ~3MHz)",
+          "Gain-BW",
+          "Tích số độ rộng băng (LM358 ~1MHz, TL071 ~3MHz)"
+        ],
+        [
+          "Slew rate",
+          "Tốc độ thay đổi điện áp ra (V/µs)",
+          "Slew rate",
+          "Tốc độ thay đổi điện áp ra (V/µs)"
+        ],
+        [
+          "Rail-to-rail",
+          "Có thể ra gần sát VCC/GND hay không",
+          "Rail-to-rail",
+          "Có thể ra gần sát VCC/GND hay không"
+        ]
       ],
-      "applications": ["Buffer (Gain=1)", "Khuếch đại tín hiệu cảm biến", "Comparator", "Lọc tích cực"],
-      "notes": "Non-inverting: A = 1 + Rf/Rg. Inverting: A = -Rf/Rin. LM358 chạy nguồn đơn (0-VCC), TL071 cần nguồn đối xứng (±)."
+      "applications": [
+        "Buffer (Gain=1)",
+        "Khuếch đại tín hiệu cảm biến",
+        "Comparator",
+        "Lọc tích cực"
+      ],
+      "notes": "Non-inverting: A = 1 + Rf/Rg. Inverting: A = -Rf/Rin. LM358 chạy nguồn đơn (0-VCC), TL071 cần nguồn đối xứng (±).",
+      "enName": "Op-amp",
+      "enCategory": "IC",
+      "enDescription": "Operational amplifier — buffer, inverting/non-inverting amp, comparator.",
+      "enNotes": "Non-inverting: A = 1 + Rf/Rg. Inverting: A = -Rf/Rin. LM358 chạy nguồn đơn (0-VCC), TL071 cần nguồn đối xứng (±)."
     },
     {
       "id": "lm393",
@@ -179,12 +462,36 @@
       "image": "/svg/learn/lm393.svg",
       "description": "So sánh 2 điện áp — ngõ ra open-collector, cần pull-up.",
       "specs": [
-        ["Response time", "~1.3µs"],
-        ["Output", "Open-collector — cần điện trở pull-up 4.7k-10kΩ"],
-        ["Input range", "0V đến VCC - 1.5V"]
+        [
+          "Response time",
+          "~1.3µs",
+          "Response time",
+          "~1.3µs"
+        ],
+        [
+          "Output",
+          "Open-collector — cần điện trở pull-up 4.7k-10kΩ",
+          "Output",
+          "Open-collector — cần điện trở pull-up 4.7k-10kΩ"
+        ],
+        [
+          "Input range",
+          "0V đến VCC - 1.5V",
+          "Input range",
+          "0V đến VCC - 1.5V"
+        ]
       ],
-      "applications": ["Báo pin yếu", "Cảm biến ánh sáng (LDR)", "Trigger cho 555", "Bảo vệ quá áp"],
-      "notes": "Khác op-amp: comparator nhanh hơn nhưng không dùng làm amplifier được. Open-collector cho phép nối nhiều output lại (wired-OR)."
+      "applications": [
+        "Báo pin yếu",
+        "Cảm biến ánh sáng (LDR)",
+        "Trigger cho 555",
+        "Bảo vệ quá áp"
+      ],
+      "notes": "Khác op-amp: comparator nhanh hơn nhưng không dùng làm amplifier được. Open-collector cho phép nối nhiều output lại (wired-OR).",
+      "enName": "LM393 comparator",
+      "enCategory": "IC",
+      "enDescription": "Compares two voltages — open-collector output, needs pull-up.",
+      "enNotes": "Khác op-amp: comparator nhanh hơn nhưng không dùng làm amplifier được. Open-collector cho phép nối nhiều output lại (wired-OR)."
     },
     {
       "id": "ldo",
@@ -195,13 +502,41 @@
       "image": "/svg/learn/ldo.svg",
       "description": "Ổn áp tuyến tính, đơn giản nhưng tỏa nhiệt theo (V_in - V_out) · I.",
       "specs": [
-        ["Loại", "Cố định (78xx, AMS1117) hoặc điều chỉnh (LM317)"],
-        ["Dropout", "Chênh lệch V_in - V_out tối thiểu (LDO: ~0.3V, 78xx: ~2V)"],
-        ["I_out", "AMS1117 0.8A, 7805 1A, LM350 3A"],
-        ["Cần tản nhiệt", "Khi P = (V_in - V_out)·I > 1W"]
+        [
+          "Loại",
+          "Cố định (78xx, AMS1117) hoặc điều chỉnh (LM317)",
+          "Loại",
+          "Cố định (78xx, AMS1117) hoặc điều chỉnh (LM317)"
+        ],
+        [
+          "Dropout",
+          "Chênh lệch V_in - V_out tối thiểu (LDO: ~0.3V, 78xx: ~2V)",
+          "Dropout",
+          "Chênh lệch V_in - V_out tối thiểu (LDO: ~0.3V, 78xx: ~2V)"
+        ],
+        [
+          "I_out",
+          "AMS1117 0.8A, 7805 1A, LM350 3A",
+          "I_out",
+          "AMS1117 0.8A, 7805 1A, LM350 3A"
+        ],
+        [
+          "Cần tản nhiệt",
+          "Khi P = (V_in - V_out)·I > 1W",
+          "Cần tản nhiệt",
+          "Khi P = (V_in - V_out)·I > 1W"
+        ]
       ],
-      "applications": ["Cấp 3.3V cho ESP32 từ 5V", "Cấp 5V từ 12V", "Tham chiếu analog cho ADC"],
-      "notes": "P = (V_in - V_out) · I. 12V→5V ở 1A = 7W tỏa nhiệt — cần tản nhiệt lớn. Khi chênh áp lớn, dùng buck thay."
+      "applications": [
+        "Cấp 3.3V cho ESP32 từ 5V",
+        "Cấp 5V từ 12V",
+        "Tham chiếu analog cho ADC"
+      ],
+      "notes": "P = (V_in - V_out) · I. 12V→5V ở 1A = 7W tỏa nhiệt — cần tản nhiệt lớn. Khi chênh áp lớn, dùng buck thay.",
+      "enName": "Voltage regulator (LDO)",
+      "enCategory": "Power",
+      "enDescription": "Linear regulator, simple but dissipates (V_in - V_out) × I as heat.",
+      "enNotes": "P = (V_in - V_out) · I. 12V→5V ở 1A = 7W tỏa nhiệt — cần tản nhiệt lớn. Khi chênh áp lớn, dùng buck thay."
     },
     {
       "id": "relay",
@@ -212,12 +547,35 @@
       "image": "/svg/learn/relay.svg",
       "description": "Công tắc cơ điện (relay) hoặc bán dẫn (SSR) — điều khiển tải AC/DC công suất lớn bằng tín hiệu nhỏ.",
       "specs": [
-        ["Cuộn", "5V, 12V, 24V DC; dòng cuộn 30-100mA"],
-        ["Tiếp điểm", "SPDT, DPDT; dòng định mức 10A, 20A, 30A"],
-        ["SSR", "Cách ly quang, điều khiển AC bằng DC; zero-crossing hoặc random turn-on"]
+        [
+          "Cuộn",
+          "5V, 12V, 24V DC; dòng cuộn 30-100mA",
+          "Cuộn",
+          "5V, 12V, 24V DC; dòng cuộn 30-100mA"
+        ],
+        [
+          "Tiếp điểm",
+          "SPDT, DPDT; dòng định mức 10A, 20A, 30A",
+          "Tiếp điểm",
+          "SPDT, DPDT; dòng định mức 10A, 20A, 30A"
+        ],
+        [
+          "SSR",
+          "Cách ly quang, điều khiển AC bằng DC; zero-crossing hoặc random turn-on",
+          "SSR",
+          "Cách ly quang, điều khiển AC bằng DC; zero-crossing hoặc random turn-on"
+        ]
       ],
-      "applications": ["Điều khiển đèn, quạt, bơm 220V", "Bảo vệ thiết bị bằng cách cắt nguồn", "Tự động hóa công nghiệp"],
-      "notes": "BẮT BUỘC có diode 1N4007 mắc NGƯỢC song song cuộn — nếu không sẽ sinh xung ngược giết transistor/MCU. Hoặc dùng module relay tích hợp sẵn opto + diode."
+      "applications": [
+        "Điều khiển đèn, quạt, bơm 220V",
+        "Bảo vệ thiết bị bằng cách cắt nguồn",
+        "Tự động hóa công nghiệp"
+      ],
+      "notes": "BẮT BUỘC có diode 1N4007 mắc NGƯỢC song song cuộn — nếu không sẽ sinh xung ngược giết transistor/MCU. Hoặc dùng module relay tích hợp sẵn opto + diode.",
+      "enName": "Relay & SSR",
+      "enCategory": "Electromechanical",
+      "enDescription": "Switch for high-power AC/DC loads. Needs flyback diode across coil.",
+      "enNotes": "BẮT BUỘC có diode 1N4007 mắc NGƯỢC song song cuộn — nếu không sẽ sinh xung ngược giết transistor/MCU. Hoặc dùng module relay tích hợp sẵn opto + diode."
     },
     {
       "id": "ldr",
@@ -228,12 +586,35 @@
       "image": "/svg/learn/ldr.svg",
       "description": "Điện trở thay đổi theo ánh sáng. Tối: ~MΩ, sáng: vài trăm Ω.",
       "specs": [
-        ["Điện trở tối", "~1MΩ - 10MΩ"],
-        ["Điện trở sáng (1000 lux)", "~400Ω - 10kΩ"],
-        ["Thời gian đáp ứng", "~50ms"]
+        [
+          "Điện trở tối",
+          "~1MΩ - 10MΩ",
+          "Điện trở tối",
+          "~1MΩ - 10MΩ"
+        ],
+        [
+          "Điện trở sáng (1000 lux)",
+          "~400Ω - 10kΩ",
+          "Điện trở sáng (1000 lux)",
+          "~400Ω - 10kΩ"
+        ],
+        [
+          "Thời gian đáp ứng",
+          "~50ms",
+          "Thời gian đáp ứng",
+          "~50ms"
+        ]
       ],
-      "applications": ["Đèn tự sáng khi trời tối", "Cảm biến ánh sáng cho máy ảnh", "Theo dõi ánh nắng"],
-      "notes": "Kết hợp điện trở 10kΩ tạo cầu phân áp. Đọc qua ADC của MCU để biết mức ánh sáng."
+      "applications": [
+        "Đèn tự sáng khi trời tối",
+        "Cảm biến ánh sáng cho máy ảnh",
+        "Theo dõi ánh nắng"
+      ],
+      "notes": "Kết hợp điện trở 10kΩ tạo cầu phân áp. Đọc qua ADC của MCU để biết mức ánh sáng.",
+      "enName": "LDR / Photoresistor",
+      "enCategory": "Sensor",
+      "enDescription": "Resistance changes with light. Dark: ~MΩ, light: hundreds of Ω.",
+      "enNotes": "Kết hợp điện trở 10kΩ tạo cầu phân áp. Đọc qua ADC của MCU để biết mức ánh sáng."
     },
     {
       "id": "ntc",
@@ -244,12 +625,35 @@
       "image": "/svg/learn/ntc.svg",
       "description": "Điện trở giảm theo nhiệt độ. Phổ biến 10kΩ @ 25°C (NTC 10K).",
       "specs": [
-        ["R25", "Điện trở tại 25°C (thường 10K)"],
-        ["Beta (B)", "Hệ số nhiệt, 3435K, 3950K…"],
-        ["Công thức", "R(T) = R25 · exp(β · (1/T - 1/298.15))"]
+        [
+          "R25",
+          "Điện trở tại 25°C (thường 10K)",
+          "R25",
+          "Điện trở tại 25°C (thường 10K)"
+        ],
+        [
+          "Beta (B)",
+          "Hệ số nhiệt, 3435K, 3950K…",
+          "Beta (B)",
+          "Hệ số nhiệt, 3435K, 3950K…"
+        ],
+        [
+          "Công thức",
+          "R(T) = R25 · exp(β · (1/T - 1/298.15))",
+          "Công thức",
+          "R(T) = R25 · exp(β · (1/T - 1/298.15))"
+        ]
       ],
-      "applications": ["Đo nhiệt độ analog (qua ADC)", "Bảo vệ quá nhiệt (inrush current limiter)", "Bù nhiệt cho pin/cảm biến"],
-      "notes": "Không tuyến tính — cần tra bảng hoặc dùng công thức Steinhart-Hart. NTC 10K + R 10K tạo cầu phân áp tuyến tính gần 25°C."
+      "applications": [
+        "Đo nhiệt độ analog (qua ADC)",
+        "Bảo vệ quá nhiệt (inrush current limiter)",
+        "Bù nhiệt cho pin/cảm biến"
+      ],
+      "notes": "Không tuyến tính — cần tra bảng hoặc dùng công thức Steinhart-Hart. NTC 10K + R 10K tạo cầu phân áp tuyến tính gần 25°C.",
+      "enName": "NTC Thermistor",
+      "enCategory": "Sensor",
+      "enDescription": "Resistance decreases with temperature. Common 10kΩ @ 25°C (NTC 10K).",
+      "enNotes": "Không tuyến tính — cần tra bảng hoặc dùng công thức Steinhart-Hart. NTC 10K + R 10K tạo cầu phân áp tuyến tính gần 25°C."
     },
     {
       "id": "esp32",
@@ -260,15 +664,54 @@
       "image": "/svg/learn/esp32.svg",
       "description": "MCU WiFi+BT, 240MHz, 34 chân GPIO, ADC 12-bit, DAC, I²C, SPI, UART, PWM, touch.",
       "specs": [
-        ["Vi xử lý", "Xtensa LX6 (ESP32) hoặc RISC-V (ESP32-C3)"],
-        ["WiFi", "802.11 b/g/n 2.4GHz"],
-        ["Bluetooth", "BLE 4.2 + Classic"],
-        ["GPIO", "34 chân, nhiều chân chỉ input-only (34, 35, 36, 39)"],
-        ["ADC", "12-bit SAR, 18 kênh"],
-        ["Điện áp", "3.3V — IO KHÔNG chịu 5V"]
+        [
+          "Vi xử lý",
+          "Xtensa LX6 (ESP32) hoặc RISC-V (ESP32-C3)",
+          "Vi xử lý",
+          "Xtensa LX6 (ESP32) hoặc RISC-V (ESP32-C3)"
+        ],
+        [
+          "WiFi",
+          "802.11 b/g/n 2.4GHz",
+          "WiFi",
+          "802.11 b/g/n 2.4GHz"
+        ],
+        [
+          "Bluetooth",
+          "BLE 4.2 + Classic",
+          "Bluetooth",
+          "BLE 4.2 + Classic"
+        ],
+        [
+          "GPIO",
+          "34 chân, nhiều chân chỉ input-only (34, 35, 36, 39)",
+          "GPIO",
+          "34 chân, nhiều chân chỉ input-only (34, 35, 36, 39)"
+        ],
+        [
+          "ADC",
+          "12-bit SAR, 18 kênh",
+          "ADC",
+          "12-bit SAR, 18 kênh"
+        ],
+        [
+          "Điện áp",
+          "3.3V — IO KHÔNG chịu 5V",
+          "Điện áp",
+          "3.3V — IO KHÔNG chịu 5V"
+        ]
       ],
-      "applications": ["IoT", "Điều khiển PWM động cơ", "Web server", "MQTT"],
-      "notes": "GPIO 6-11 dùng cho flash — không dùng được. ADC2 không dùng khi WiFi bật. Dùng AMS1117-3.3 hoặc buck 3.3V, thêm tụ 100nF + 10µF sát chân nguồn."
+      "applications": [
+        "IoT",
+        "Điều khiển PWM động cơ",
+        "Web server",
+        "MQTT"
+      ],
+      "notes": "GPIO 6-11 dùng cho flash — không dùng được. ADC2 không dùng khi WiFi bật. Dùng AMS1117-3.3 hoặc buck 3.3V, thêm tụ 100nF + 10µF sát chân nguồn.",
+      "enName": "ESP32",
+      "enCategory": "MCU",
+      "enDescription": "WiFi+BT MCU, 240MHz, 34 GPIO, 12-bit ADC, I²C/SPI/UART/PWM/touch.",
+      "enNotes": "GPIO 6-11 dùng cho flash — không dùng được. ADC2 không dùng khi WiFi bật. Dùng AMS1117-3.3 hoặc buck 3.3V, thêm tụ 100nF + 10µF sát chân nguồn."
     },
     {
       "id": "atmega328",
@@ -279,14 +722,47 @@
       "image": "/svg/learn/atmega.svg",
       "description": "MCU 8-bit phổ biến nhất, đơn giản, dễ học. Có trên Arduino Uno.",
       "specs": [
-        ["Flash", "32KB"],
-        ["RAM", "2KB"],
-        ["EEPROM", "1KB"],
-        ["Clock", "16MHz (5V) hoặc 8MHz (3.3V)"],
-        ["ADC", "10-bit, 6 kênh"]
+        [
+          "Flash",
+          "32KB",
+          "Flash",
+          "32KB"
+        ],
+        [
+          "RAM",
+          "2KB",
+          "RAM",
+          "2KB"
+        ],
+        [
+          "EEPROM",
+          "1KB",
+          "EEPROM",
+          "1KB"
+        ],
+        [
+          "Clock",
+          "16MHz (5V) hoặc 8MHz (3.3V)",
+          "Clock",
+          "16MHz (5V) hoặc 8MHz (3.3V)"
+        ],
+        [
+          "ADC",
+          "10-bit, 6 kênh",
+          "ADC",
+          "10-bit, 6 kênh"
+        ]
       ],
-      "applications": ["Học tập Arduino", "Điều khiển LED, động cơ", "Đọc cảm biến đơn giản"],
-      "notes": "5V tolerant, IO chịu 5V. Rẻ hơn ESP32, ít tính năng hơn. Dùng khi không cần WiFi/BT và cần đơn giản."
+      "applications": [
+        "Học tập Arduino",
+        "Điều khiển LED, động cơ",
+        "Đọc cảm biến đơn giản"
+      ],
+      "notes": "5V tolerant, IO chịu 5V. Rẻ hơn ESP32, ít tính năng hơn. Dùng khi không cần WiFi/BT và cần đơn giản.",
+      "enName": "ATmega328P (Arduino Uno)",
+      "enCategory": "MCU",
+      "enDescription": "8-bit MCU, simple, easy to learn. 5V tolerant, 16MHz.",
+      "enNotes": "5V tolerant, IO chịu 5V. Rẻ hơn ESP32, ít tính năng hơn. Dùng khi không cần WiFi/BT và cần đơn giản."
     },
     {
       "id": "oled",
@@ -297,13 +773,40 @@
       "image": "/svg/learn/oled.svg",
       "description": "Màn hình OLED 128×64 pixel, I²C hoặc SPI, 3.3V, thư viện Adafruit/U8g2.",
       "specs": [
-        ["Độ phân giải", "128×64 (một số 128×32)"],
-        ["Giao tiếp", "I²C (0x3C) hoặc SPI"],
-        ["Điện áp", "3.3V - 5V"],
-        ["Màu", "Trắng, xanh dương, vàng (hai màu trở lên)"]
+        [
+          "Độ phân giải",
+          "128×64 (một số 128×32)",
+          "Độ phân giải",
+          "128×64 (một số 128×32)"
+        ],
+        [
+          "Giao tiếp",
+          "I²C (0x3C) hoặc SPI",
+          "Giao tiếp",
+          "I²C (0x3C) hoặc SPI"
+        ],
+        [
+          "Điện áp",
+          "3.3V - 5V",
+          "Điện áp",
+          "3.3V - 5V"
+        ],
+        [
+          "Màu",
+          "Trắng, xanh dương, vàng (hai màu trở lên)",
+          "Màu",
+          "Trắng, xanh dương, vàng (hai màu trở lên)"
+        ]
       ],
-      "applications": ["Hiển thị text, icon, đồ thị đơn giản", "Debug UI không cần Serial"],
-      "notes": "Burn-in sau vài ngàn giờ — tránh hiển thị tĩnh cùng nội dung. Có thư viện U8g2 mạnh hơn Adafruit cho custom font."
+      "applications": [
+        "Hiển thị text, icon, đồ thị đơn giản",
+        "Debug UI không cần Serial"
+      ],
+      "notes": "Burn-in sau vài ngàn giờ — tránh hiển thị tĩnh cùng nội dung. Có thư viện U8g2 mạnh hơn Adafruit cho custom font.",
+      "enName": "OLED SSD1306 0.96\"",
+      "enCategory": "Display",
+      "enDescription": "OLED display 128×64 pixels, I²C or SPI, 3.3V.",
+      "enNotes": "Burn-in sau vài ngàn giờ — tránh hiển thị tĩnh cùng nội dung. Có thư viện U8g2 mạnh hơn Adafruit cho custom font."
     },
     {
       "id": "buck",
@@ -314,13 +817,41 @@
       "image": "/svg/learn/buck.svg",
       "description": "Module nguồn switching — hiệu suất 85-95%, chênh áp lớn, dòng lớn.",
       "specs": [
-        ["Buck", "Hạ áp: MP1584EN, LM2596, TPS5430"],
-        ["Boost", "Tăng áp: MT3608, XL6009"],
-        ["Buck-Boost", "Tăng hoặc giảm: BQ25703"],
-        ["Hiệu suất", "85-95% (vs LDO 40-60%)"]
+        [
+          "Buck",
+          "Hạ áp: MP1584EN, LM2596, TPS5430",
+          "Buck",
+          "Hạ áp: MP1584EN, LM2596, TPS5430"
+        ],
+        [
+          "Boost",
+          "Tăng áp: MT3608, XL6009",
+          "Boost",
+          "Tăng áp: MT3608, XL6009"
+        ],
+        [
+          "Buck-Boost",
+          "Tăng hoặc giảm: BQ25703",
+          "Buck-Boost",
+          "Tăng hoặc giảm: BQ25703"
+        ],
+        [
+          "Hiệu suất",
+          "85-95% (vs LDO 40-60%)",
+          "Hiệu suất",
+          "85-95% (vs LDO 40-60%)"
+        ]
       ],
-      "applications": ["Cấp 3.3V/5V/12V cho MCU", "Pin Li-ion 3.7V → 5V", "Solar charger MPPT"],
-      "notes": "Đo bằng VOM trước khi cắm MCU — vặn nhầm 12V vào ESP32 là cháy. Buck có ripple ~50-100mV, không phù hợp cấp analog nhạy."
+      "applications": [
+        "Cấp 3.3V/5V/12V cho MCU",
+        "Pin Li-ion 3.7V → 5V",
+        "Solar charger MPPT"
+      ],
+      "notes": "Đo bằng VOM trước khi cắm MCU — vặn nhầm 12V vào ESP32 là cháy. Buck có ripple ~50-100mV, không phù hợp cấp analog nhạy.",
+      "enName": "Buck/Boost module",
+      "enCategory": "Power",
+      "enDescription": "Switching regulator, 85-95% efficiency, for high ΔV or high current.",
+      "enNotes": "Đo bằng VOM trước khi cắm MCU — vặn nhầm 12V vào ESP32 là cháy. Buck có ripple ~50-100mV, không phù hợp cấp analog nhạy."
     },
     {
       "id": "tp4056",
@@ -331,13 +862,41 @@
       "image": "/svg/learn/tp4056.svg",
       "description": "IC sạc pin Li-ion 1 cell 4.2V, dòng 1A. Mua loại CÓ bảo vệ (DW01 + FS8205).",
       "specs": [
-        ["V_in", "4.5V - 8V (micro-USB)"],
-        ["I_charge", "1A mặc định, điều chỉnh bằng R_PROG"],
-        ["V_battery", "4.2V ±1%"],
-        ["Bảo vệ", "Loại CÓ: chống quá xả 2.5V, quá dòng, ngắn mạch"]
+        [
+          "V_in",
+          "4.5V - 8V (micro-USB)",
+          "V_in",
+          "4.5V - 8V (micro-USB)"
+        ],
+        [
+          "I_charge",
+          "1A mặc định, điều chỉnh bằng R_PROG",
+          "I_charge",
+          "1A mặc định, điều chỉnh bằng R_PROG"
+        ],
+        [
+          "V_battery",
+          "4.2V ±1%",
+          "V_battery",
+          "4.2V ±1%"
+        ],
+        [
+          "Bảo vệ",
+          "Loại CÓ: chống quá xả 2.5V, quá dòng, ngắn mạch",
+          "Bảo vệ",
+          "Loại CÓ: chống quá xả 2.5V, quá dòng, ngắn mạch"
+        ]
       ],
-      "applications": ["Sạc pin 18650", "Pin dự phòng", "Thiết bị IoT chạy pin"],
-      "notes": "MUA BẢN CÓ BẢO VỆ — bản rẻ (1 IC) sẽ xả pin xuống dưới 2.5V làm chai vĩnh viễn, tệ hơn là phồng/cháy."
+      "applications": [
+        "Sạc pin 18650",
+        "Pin dự phòng",
+        "Thiết bị IoT chạy pin"
+      ],
+      "notes": "MUA BẢN CÓ BẢO VỆ — bản rẻ (1 IC) sẽ xả pin xuống dưới 2.5V làm chai vĩnh viễn, tệ hơn là phồng/cháy.",
+      "enName": "TP4056 Li-ion charger",
+      "enCategory": "Power",
+      "enDescription": "1-cell 4.2V Li-ion charger, 1A. Buy WITH protection version.",
+      "enNotes": "MUA BẢN CÓ BẢO VỆ — bản rẻ (1 IC) sẽ xả pin xuống dưới 2.5V làm chai vĩnh viễn, tệ hơn là phồng/cháy."
     },
     {
       "id": "hc-sr04",
@@ -348,13 +907,41 @@
       "image": "/svg/learn/hcsr04.svg",
       "description": "Cảm biến khoảng cách siêu âm 2cm - 400cm. Trigger 10µs, đo xung echo.",
       "specs": [
-        ["Tầm đo", "2cm - 400cm"],
-        ["Độ phân giải", "~3mm"],
-        ["Góc", "~15°"],
-        ["Điện áp", "5V"]
+        [
+          "Tầm đo",
+          "2cm - 400cm",
+          "Tầm đo",
+          "2cm - 400cm"
+        ],
+        [
+          "Độ phân giải",
+          "~3mm",
+          "Độ phân giải",
+          "~3mm"
+        ],
+        [
+          "Góc",
+          "~15°",
+          "Góc",
+          "~15°"
+        ],
+        [
+          "Điện áp",
+          "5V",
+          "Điện áp",
+          "5V"
+        ]
       ],
-      "applications": ["Tránh vật cản robot", "Đo mức nước bể", "Đo khoảng cách xe đậu"],
-      "notes": "Trigger 10µs HIGH, đo thời gian echo HIGH, chia 2 lấy cm (vận tốc âm ~343m/s). Góc hẹp — không thấy vật nghiêng quá. Dùng VL53L0X khi cần đo chính xác < 2m."
+      "applications": [
+        "Tránh vật cản robot",
+        "Đo mức nước bể",
+        "Đo khoảng cách xe đậu"
+      ],
+      "notes": "Trigger 10µs HIGH, đo thời gian echo HIGH, chia 2 lấy cm (vận tốc âm ~343m/s). Góc hẹp — không thấy vật nghiêng quá. Dùng VL53L0X khi cần đo chính xác < 2m.",
+      "enName": "HC-SR04 ultrasonic",
+      "enCategory": "Sensor",
+      "enDescription": "Distance sensor 2cm-400cm. Trigger 10µs, measure echo pulse.",
+      "enNotes": "Trigger 10µs HIGH, đo thời gian echo HIGH, chia 2 lấy cm (vận tốc âm ~343m/s). Góc hẹp — không thấy vật nghiêng quá. Dùng VL53L0X khi cần đo chính xác < 2m."
     },
     {
       "id": "dht22",
@@ -365,13 +952,41 @@
       "image": "/svg/learn/dht22.svg",
       "description": "Cảm biến nhiệt độ + độ ẩm, single-wire protocol, chính xác hơn DHT11.",
       "specs": [
-        ["Nhiệt độ", "-40°C đến 80°C, ±0.5°C"],
-        ["Độ ẩm", "0-100% RH, ±2-5%"],
-        ["Sampling", "0.5Hz (đọc 1 lần / 2 giây)"],
-        ["Điện áp", "3-5V"]
+        [
+          "Nhiệt độ",
+          "-40°C đến 80°C, ±0.5°C",
+          "Nhiệt độ",
+          "-40°C đến 80°C, ±0.5°C"
+        ],
+        [
+          "Độ ẩm",
+          "0-100% RH, ±2-5%",
+          "Độ ẩm",
+          "0-100% RH, ±2-5%"
+        ],
+        [
+          "Sampling",
+          "0.5Hz (đọc 1 lần / 2 giây)",
+          "Sampling",
+          "0.5Hz (đọc 1 lần / 2 giây)"
+        ],
+        [
+          "Điện áp",
+          "3-5V",
+          "Điện áp",
+          "3-5V"
+        ]
       ],
-      "applications": ["Trạm thời tiết", "Điều khiển quạt/điều hòa", "Nhà kính"],
-      "notes": "Cần thư viện Adafruit_DHT hoặc DHT sensor. Cần pull-up 10kΩ trên data line nếu dùng dây dài. Dùng BME280 nếu cần thêm áp suất."
+      "applications": [
+        "Trạm thời tiết",
+        "Điều khiển quạt/điều hòa",
+        "Nhà kính"
+      ],
+      "notes": "Cần thư viện Adafruit_DHT hoặc DHT sensor. Cần pull-up 10kΩ trên data line nếu dùng dây dài. Dùng BME280 nếu cần thêm áp suất.",
+      "enName": "DHT22 (AM2302)",
+      "enCategory": "Sensor",
+      "enDescription": "Temp + humidity sensor, single-wire, accurate to ±0.5°C.",
+      "enNotes": "Cần thư viện Adafruit_DHT hoặc DHT sensor. Cần pull-up 10kΩ trên data line nếu dùng dây dài. Dùng BME280 nếu cần thêm áp suất."
     },
     {
       "id": "i2c",
@@ -382,13 +997,40 @@
       "image": "/svg/learn/i2c.svg",
       "description": "2 dây (SDA, SCL), nhiều thiết bị, địa chỉ 7-bit. Tốc độ 100kHz/400kHz/1MHz.",
       "specs": [
-        ["Dây", "SDA (data), SCL (clock)"],
-        ["Pull-up", "4.7kΩ lên VCC, CHỈ 1 CẶP cho cả bus"],
-        ["Tốc độ", "Standard 100kHz, Fast 400kHz, Fast+ 1MHz"],
-        ["Địa chỉ", "7-bit (0-127) hoặc 10-bit"]
+        [
+          "Dây",
+          "SDA (data), SCL (clock)",
+          "Dây",
+          "SDA (data), SCL (clock)"
+        ],
+        [
+          "Pull-up",
+          "4.7kΩ lên VCC, CHỈ 1 CẶP cho cả bus",
+          "Pull-up",
+          "4.7kΩ lên VCC, CHỈ 1 CẶP cho cả bus"
+        ],
+        [
+          "Tốc độ",
+          "Standard 100kHz, Fast 400kHz, Fast+ 1MHz",
+          "Tốc độ",
+          "Standard 100kHz, Fast 400kHz, Fast+ 1MHz"
+        ],
+        [
+          "Địa chỉ",
+          "7-bit (0-127) hoặc 10-bit",
+          "Địa chỉ",
+          "7-bit (0-127) hoặc 10-bit"
+        ]
       ],
-      "applications": ["Nhiều cảm biến trên 2 chân MCU", "OLED + BME280 + MPU6050"],
-      "notes": "Nhiều module có pull-up sẵn trên board — gắn 5 module = 5 cặp pull-up song song, trở tổng quá nhỏ, bus chết. Tháo bớt pull-up trên module. Trùng địa chỉ: dùng chân ADDR hoặc TCA9548A multiplexer."
+      "applications": [
+        "Nhiều cảm biến trên 2 chân MCU",
+        "OLED + BME280 + MPU6050"
+      ],
+      "notes": "Nhiều module có pull-up sẵn trên board — gắn 5 module = 5 cặp pull-up song song, trở tổng quá nhỏ, bus chết. Tháo bớt pull-up trên module. Trùng địa chỉ: dùng chân ADDR hoặc TCA9548A multiplexer.",
+      "enName": "I²C bus",
+      "enCategory": "Bus",
+      "enDescription": "2-wire (SDA, SCL), multiple devices, 7-bit address. 100kHz/400kHz/1MHz.",
+      "enNotes": "Nhiều module có pull-up sẵn trên board — gắn 5 module = 5 cặp pull-up song song, trở tổng quá nhỏ, bus chết. Tháo bớt pull-up trên module. Trùng địa chỉ: dùng chân ADDR hoặc TCA9548A multiplexer."
     },
     {
       "id": "spi",
@@ -399,12 +1041,35 @@
       "image": "/svg/learn/spi.svg",
       "description": "4 dây (MOSI, MISO, SCK, CS), full-duplex, tốc độ cao hơn I²C nhiều.",
       "specs": [
-        ["Dây", "MOSI (Master Out), MISO (Master In), SCK (clock), CS/SS (chip select)"],
-        ["Tốc độ", "Lên đến 80MHz trên ESP32, 10MHz trên Arduino"],
-        ["Mode", "4 mode (CPOL/CPHA)"]
+        [
+          "Dây",
+          "MOSI (Master Out), MISO (Master In), SCK (clock), CS/SS (chip select)",
+          "Dây",
+          "MOSI (Master Out), MISO (Master In), SCK (clock), CS/SS (chip select)"
+        ],
+        [
+          "Tốc độ",
+          "Lên đến 80MHz trên ESP32, 10MHz trên Arduino",
+          "Tốc độ",
+          "Lên đến 80MHz trên ESP32, 10MHz trên Arduino"
+        ],
+        [
+          "Mode",
+          "4 mode (CPOL/CPHA)",
+          "Mode",
+          "4 mode (CPOL/CPHA)"
+        ]
       ],
-      "applications": ["Thẻ nhớ SD", "Màn hình TFT", "ADC tốc độ cao"],
-      "notes": "Mỗi slave cần 1 chân CS riêng. Nên có pull-up 10kΩ trên CS để tránh chọn nhầm lúc MCU boot."
+      "applications": [
+        "Thẻ nhớ SD",
+        "Màn hình TFT",
+        "ADC tốc độ cao"
+      ],
+      "notes": "Mỗi slave cần 1 chân CS riêng. Nên có pull-up 10kΩ trên CS để tránh chọn nhầm lúc MCU boot.",
+      "enName": "SPI bus",
+      "enCategory": "Bus",
+      "enDescription": "4-wire (MOSI, MISO, SCK, CS), full-duplex, much faster than I²C.",
+      "enNotes": "Mỗi slave cần 1 chân CS riêng. Nên có pull-up 10kΩ trên CS để tránh chọn nhầm lúc MCU boot."
     },
     {
       "id": "nrf24",
@@ -415,13 +1080,41 @@
       "image": "/svg/learn/nrf24.svg",
       "description": "Module RF giá rẻ 2.4GHz, tầm 100m (có anten) hoặc 1km (PA+LNA).",
       "specs": [
-        ["Tần số", "2.4GHz ISM"],
-        ["Tốc độ", "250kbps, 1Mbps, 2Mbps"],
-        ["Giao tiếp", "SPI"],
-        ["Điện áp", "3.3V (KHÔNG 5V)"]
+        [
+          "Tần số",
+          "2.4GHz ISM",
+          "Tần số",
+          "2.4GHz ISM"
+        ],
+        [
+          "Tốc độ",
+          "250kbps, 1Mbps, 2Mbps",
+          "Tốc độ",
+          "250kbps, 1Mbps, 2Mbps"
+        ],
+        [
+          "Giao tiếp",
+          "SPI",
+          "Giao tiếp",
+          "SPI"
+        ],
+        [
+          "Điện áp",
+          "3.3V (KHÔNG 5V)",
+          "Điện áp",
+          "3.3V (KHÔNG 5V)"
+        ]
       ],
-      "applications": ["Tay điều khiển", "Mạng cảm biến", "Điều khiển robot không dây"],
-      "notes": "BẮT BUỘC thêm tụ 100µF + 100nF sát chân nguồn 3.3V — không có thì reset liên tục. Cần 11 chân GPIO (5 data + 1 IRQ). Bản có anten PCB tầm 10-30m, bản SMA + PA tầm 100m+."
+      "applications": [
+        "Tay điều khiển",
+        "Mạng cảm biến",
+        "Điều khiển robot không dây"
+      ],
+      "notes": "BẮT BUỘC thêm tụ 100µF + 100nF sát chân nguồn 3.3V — không có thì reset liên tục. Cần 11 chân GPIO (5 data + 1 IRQ). Bản có anten PCB tầm 10-30m, bản SMA + PA tầm 100m+.",
+      "enName": "nRF24L01+ (RF 2.4GHz)",
+      "enCategory": "RF",
+      "enDescription": "Low-cost RF module 2.4GHz, range 100m (with antenna). SPI interface.",
+      "enNotes": "BẮT BUỘC thêm tụ 100µF + 100nF sát chân nguồn 3.3V — không có thì reset liên tục. Cần 11 chân GPIO (5 data + 1 IRQ). Bản có anten PCB tầm 10-30m, bản SMA + PA tầm 100m+."
     },
     {
       "id": "mpu6050",
@@ -432,13 +1125,42 @@
       "image": "/svg/learn/mpu6050.svg",
       "description": "Gia tốc kế 3 trục + con quay hồi chuyển 3 trục. I²C 0x68.",
       "specs": [
-        ["Gia tốc", "±2/4/8/16 g"],
-        ["Gyro", "±250/500/1000/2000 °/s"],
-        ["Giao tiếp", "I²C 0x68 hoặc 0x69 (ADDR=HIGH)"],
-        ["Ngắt", "Có chân INT"]
+        [
+          "Gia tốc",
+          "±2/4/8/16 g",
+          "Gia tốc",
+          "±2/4/8/16 g"
+        ],
+        [
+          "Gyro",
+          "±250/500/1000/2000 °/s",
+          "Gyro",
+          "±250/500/1000/2000 °/s"
+        ],
+        [
+          "Giao tiếp",
+          "I²C 0x68 hoặc 0x69 (ADDR=HIGH)",
+          "Giao tiếp",
+          "I²C 0x68 hoặc 0x69 (ADDR=HIGH)"
+        ],
+        [
+          "Ngắt",
+          "Có chân INT",
+          "Ngắt",
+          "Có chân INT"
+        ]
       ],
-      "applications": ["Drone", "Robot cân bằng", "Đếm bước chân", "Motion detection"],
-      "notes": "Bù trôi gyro bằng gia tốc (complementary filter hoặc Kalman). MPU6050 cũ, có thể bị ngừng sản xuất — thay bằng MPU9250 (thêm từ kế) hoặc BMI270."
+      "applications": [
+        "Drone",
+        "Robot cân bằng",
+        "Đếm bước chân",
+        "Motion detection"
+      ],
+      "notes": "Bù trôi gyro bằng gia tốc (complementary filter hoặc Kalman). MPU6050 cũ, có thể bị ngừng sản xuất — thay bằng MPU9250 (thêm từ kế) hoặc BMI270.",
+      "enName": "MPU6050 (IMU 6-axis)",
+      "enCategory": "Sensor",
+      "enDescription": "3-axis accel + 3-axis gyro. I²C 0x68. Need complementary/Kalman filter.",
+      "enNotes": "Bù trôi gyro bằng gia tốc (complementary filter hoặc Kalman). MPU6050 cũ, có thể bị ngừng sản xuất — thay bằng MPU9250 (thêm từ kế) hoặc BMI270."
     },
     {
       "id": "bme280",
@@ -449,13 +1171,41 @@
       "image": "/svg/learn/bme280.svg",
       "description": "Cảm biến nhiệt + ẩm + áp suất, I²C 0x76/0x77, chính xác cao.",
       "specs": [
-        ["Nhiệt độ", "-40°C đến 85°C, ±0.01°C"],
-        ["Độ ẩm", "0-100% RH, ±3%"],
-        ["Áp suất", "300-1100 hPa, ±1 hPa"],
-        ["Giao tiếp", "I²C hoặc SPI"]
+        [
+          "Nhiệt độ",
+          "-40°C đến 85°C, ±0.01°C",
+          "Nhiệt độ",
+          "-40°C đến 85°C, ±0.01°C"
+        ],
+        [
+          "Độ ẩm",
+          "0-100% RH, ±3%",
+          "Độ ẩm",
+          "0-100% RH, ±3%"
+        ],
+        [
+          "Áp suất",
+          "300-1100 hPa, ±1 hPa",
+          "Áp suất",
+          "300-1100 hPa, ±1 hPa"
+        ],
+        [
+          "Giao tiếp",
+          "I²C hoặc SPI",
+          "Giao tiếp",
+          "I²C hoặc SPI"
+        ]
       ],
-      "applications": ["Trạm thời tiết", "Đo độ cao (từ áp suất)", "Bù áp suất cho drone"],
-      "notes": "Dùng thư viện Adafruit_BME280. I²C address mặc định 0x76, có thể 0x77 tùy board. Cảm biến đắt hơn DHT22 nhưng chính xác hơn nhiều."
+      "applications": [
+        "Trạm thời tiết",
+        "Đo độ cao (từ áp suất)",
+        "Bù áp suất cho drone"
+      ],
+      "notes": "Dùng thư viện Adafruit_BME280. I²C address mặc định 0x76, có thể 0x77 tùy board. Cảm biến đắt hơn DHT22 nhưng chính xác hơn nhiều.",
+      "enName": "BME280",
+      "enCategory": "Sensor",
+      "enDescription": "Temp + humidity + pressure, I²C 0x76/0x77, very accurate.",
+      "enNotes": "Dùng thư viện Adafruit_BME280. I²C address mặc định 0x76, có thể 0x77 tùy board. Cảm biến đắt hơn DHT22 nhưng chính xác hơn nhiều."
     },
     {
       "id": "sim800",
@@ -466,13 +1216,41 @@
       "image": "/svg/learn/sim800l.svg",
       "description": "Module GSM/GPRS 2G, gửi SMS, gọi điện, kết nối internet. Cần SIM 2G (đã tắt ở VN).",
       "specs": [
-        ["Băng tần", "GSM 850/900/1800/1900MHz (2G)"],
-        ["AT commands", "Giao tiếp UART"],
-        ["Điện áp", "3.4V - 4.4V (CẦN nguồn riêng 2A)"],
-        ["Anten", "SMA hoặc PCB"]
+        [
+          "Băng tần",
+          "GSM 850/900/1800/1900MHz (2G)",
+          "Băng tần",
+          "GSM 850/900/1800/1900MHz (2G)"
+        ],
+        [
+          "AT commands",
+          "Giao tiếp UART",
+          "AT commands",
+          "Giao tiếp UART"
+        ],
+        [
+          "Điện áp",
+          "3.4V - 4.4V (CẦN nguồn riêng 2A)",
+          "Điện áp",
+          "3.4V - 4.4V (CẦN nguồn riêng 2A)"
+        ],
+        [
+          "Anten",
+          "SMA hoặc PCB",
+          "Anten",
+          "SMA hoặc PCB"
+        ]
       ],
-      "applications": ["Gửi SMS cảnh báo", "Điều khiển từ xa qua SMS", "Gọi điện thoại tự động"],
-      "notes": "Tiêu thụ 2A khi truyền — dùng nguồn 5V/2A riêng, KHÔNG cấp từ 3.3V của Arduino. 2G đã tắt ở VN từ 2024 — cân nhắc NB-IoT/SIM7600 thay."
+      "applications": [
+        "Gửi SMS cảnh báo",
+        "Điều khiển từ xa qua SMS",
+        "Gọi điện thoại tự động"
+      ],
+      "notes": "Tiêu thụ 2A khi truyền — dùng nguồn 5V/2A riêng, KHÔNG cấp từ 3.3V của Arduino. 2G đã tắt ở VN từ 2024 — cân nhắc NB-IoT/SIM7600 thay.",
+      "enName": "SIM800L (GSM)",
+      "enCategory": "RF",
+      "enDescription": "GSM/GPRS 2G module. Sends SMS, makes calls. Needs 2A supply. 2G shut down in VN.",
+      "enNotes": "Tiêu thụ 2A khi truyền — dùng nguồn 5V/2A riêng, KHÔNG cấp từ 3.3V của Arduino. 2G đã tắt ở VN từ 2024 — cân nhắc NB-IoT/SIM7600 thay."
     },
     {
       "id": "usbc",
@@ -483,12 +1261,34 @@
       "image": "/svg/learn/usbc.svg",
       "description": "Connector USB-C 24 chân, có thể dùng cho power-only hoặc data + PD.",
       "specs": [
-        ["Chân", "GND, VBUS, D+, D-, CC1, CC2, SBU1, SBU2"],
-        ["Power", "Mặc định 5V/3A, với PD lên đến 20V/5A (100W)"],
-        ["CC", "Cần có điện trở 5.1kΩ xuống GND để báo cho nguồn biết là device"]
+        [
+          "Chân",
+          "GND, VBUS, D+, D-, CC1, CC2, SBU1, SBU2",
+          "Chân",
+          "GND, VBUS, D+, D-, CC1, CC2, SBU1, SBU2"
+        ],
+        [
+          "Power",
+          "Mặc định 5V/3A, với PD lên đến 20V/5A (100W)",
+          "Power",
+          "Mặc định 5V/3A, với PD lên đến 20V/5A (100W)"
+        ],
+        [
+          "CC",
+          "Cần có điện trở 5.1kΩ xuống GND để báo cho nguồn biết là device",
+          "CC",
+          "Cần có điện trở 5.1kΩ xuống GND để báo cho nguồn biết là device"
+        ]
       ],
-      "applications": ["Cấp nguồn 5V cho board", "Data USB"],
-      "notes": "Power-only: chỉ cần VBUS + GND + CC1/CC2 với 5.1kΩ xuống GND. Data: cần thêm D+/D- và chip USB như CH340, CP2102."
+      "applications": [
+        "Cấp nguồn 5V cho board",
+        "Data USB"
+      ],
+      "notes": "Power-only: chỉ cần VBUS + GND + CC1/CC2 với 5.1kΩ xuống GND. Data: cần thêm D+/D- và chip USB như CH340, CP2102.",
+      "enName": "USB-C connector",
+      "enCategory": "Connector",
+      "enDescription": "24-pin USB-C, power-only (5.1kΩ to GND) or data + PD (100W).",
+      "enNotes": "Power-only: chỉ cần VBUS + GND + CC1/CC2 với 5.1kΩ xuống GND. Data: cần thêm D+/D- và chip USB như CH340, CP2102."
     }
   ],
   "formulas": [
@@ -498,13 +1298,25 @@
       "category": "Cơ bản",
       "expression": "V = I × R",
       "variables": [
-        ["V", "Điện áp (V)"],
-        ["I", "Dòng điện (A)"],
-        ["R", "Điện trở (Ω)"]
+        [
+          "V",
+          "Điện áp (V)"
+        ],
+        [
+          "I",
+          "Dòng điện (A)"
+        ],
+        [
+          "R",
+          "Điện trở (Ω)"
+        ]
       ],
       "calculator": "ohm",
       "description": "Quan hệ giữa điện áp, dòng điện và điện trở. Công thức nền tảng của điện tử.",
-      "notes": "Có 3 dạng: V = I·R, I = V/R, R = V/I. Áp dụng cho mạch DC và cả AC ở dạng tức thời."
+      "notes": "Có 3 dạng: V = I·R, I = V/R, R = V/I. Áp dụng cho mạch DC và cả AC ở dạng tức thời.",
+      "enName": "Ohm's Law",
+      "enDescription": "Fundamental relationship between voltage, current, and resistance. Foundation of all electronics.",
+      "enNotes": "Three forms: V = I·R, I = V/R, R = V/I. Applies to DC circuits and instantaneously to AC."
     },
     {
       "id": "power",
@@ -512,14 +1324,29 @@
       "category": "Cơ bản",
       "expression": "P = V × I = I² × R = V² / R",
       "variables": [
-        ["P", "Công suất (W)"],
-        ["V", "Điện áp (V)"],
-        ["I", "Dòng điện (A)"],
-        ["R", "Điện trở (Ω)"]
+        [
+          "P",
+          "Công suất (W)"
+        ],
+        [
+          "V",
+          "Điện áp (V)"
+        ],
+        [
+          "I",
+          "Dòng điện (A)"
+        ],
+        [
+          "R",
+          "Điện trở (Ω)"
+        ]
       ],
       "calculator": "power",
       "description": "Ba công thức tương đương — chọn dạng nào tiện nhất tuỳ biến biết trước.",
-      "notes": "Điện trở cần công suất định mức >= P tiêu thụ (thường chọn gấp 2 lần để có margin)."
+      "notes": "Điện trở cần công suất định mức >= P tiêu thụ (thường chọn gấp 2 lần để có margin).",
+      "enName": "Electrical power",
+      "enDescription": "Three equivalent formulas — pick whichever has the variables you know.",
+      "enNotes": "Resistor power rating must be >= P dissipated (usually 2× for margin)."
     },
     {
       "id": "divider",
@@ -527,14 +1354,29 @@
       "category": "Cơ bản",
       "expression": "V_out = V_in × R₂ / (R₁ + R₂)",
       "variables": [
-        ["V_out", "Điện áp ra"],
-        ["V_in", "Điện áp vào"],
-        ["R₁", "Điện trở trên"],
-        ["R₂", "Điện trở dưới"]
+        [
+          "V_out",
+          "Điện áp ra"
+        ],
+        [
+          "V_in",
+          "Điện áp vào"
+        ],
+        [
+          "R₁",
+          "Điện trở trên"
+        ],
+        [
+          "R₂",
+          "Điện trở dưới"
+        ]
       ],
       "calculator": "divider",
       "description": "Hạ áp bằng 2 điện trở. Chỉ dùng để đọc tín hiệu/tạo tham chiếu — KHÔNG cấp nguồn cho tải.",
-      "notes": "Khi mắc tải song song R₂, R₂_eff = R₂ || R_load làm V_out thay đổi. Tỉ số R₂/(R₁+R₂) càng nhỏ, V_load càng nhỏ thì ảnh hưởng càng ít."
+      "notes": "Khi mắc tải song song R₂, R₂_eff = R₂ || R_load làm V_out thay đổi. Tỉ số R₂/(R₁+R₂) càng nhỏ, V_load càng nhỏ thì ảnh hưởng càng ít.",
+      "enName": "Voltage divider",
+      "enDescription": "Reduce voltage with two resistors. Only use to read signals or create references — DO NOT power a load (loading changes Vout).",
+      "enNotes": "With load R_L in parallel with R2, R2_eff = R2 || R_L shifts Vout. Lower ratio = less effect from low R_L."
     },
     {
       "id": "led-r",
@@ -542,14 +1384,29 @@
       "category": "LED",
       "expression": "R = (V_CC - V_f) / I_f",
       "variables": [
-        ["V_CC", "Điện áp nguồn"],
-        ["V_f", "Điện áp forward của LED"],
-        ["I_f", "Dòng forward mong muốn"],
-        ["R", "Điện trở hạn dòng"]
+        [
+          "V_CC",
+          "Điện áp nguồn"
+        ],
+        [
+          "V_f",
+          "Điện áp forward của LED"
+        ],
+        [
+          "I_f",
+          "Dòng forward mong muốn"
+        ],
+        [
+          "R",
+          "Điện trở hạn dòng"
+        ]
       ],
       "calculator": "led",
       "description": "Tính R cho LED ở dòng và điện áp cho trước. Đỏ ~1.8V, xanh lá/xanh dương/trắng ~3.0-3.2V.",
-      "notes": "Nếu tính ra 150Ω, chọn 220Ω cho an toàn. Nếu tính ra 800Ω, chọn 1kΩ — LED sẽ mờ hơn nhưng an toàn. V_f thay đổi theo dòng và nhiệt độ."
+      "notes": "Nếu tính ra 150Ω, chọn 220Ω cho an toàn. Nếu tính ra 800Ω, chọn 1kΩ — LED sẽ mờ hơn nhưng an toàn. V_f thay đổi theo dòng và nhiệt độ.",
+      "enName": "LED current-limiting resistor",
+      "enDescription": "Calculate R for an LED at a given voltage and current. Red ~1.8V, green/blue/white ~3.0-3.2V.",
+      "enNotes": "If calc is 150Ω, pick 220Ω for safety. If 800Ω, pick 1kΩ — LED will be dimmer but safe. V_f varies with current and temperature."
     },
     {
       "id": "rc-tau",
@@ -557,13 +1414,25 @@
       "category": "Tần số",
       "expression": "τ = R × C",
       "variables": [
-        ["τ", "Hằng số thời gian (giây)"],
-        ["R", "Điện trở (Ω)"],
-        ["C", "Tụ điện (F)"]
+        [
+          "τ",
+          "Hằng số thời gian (giây)"
+        ],
+        [
+          "R",
+          "Điện trở (Ω)"
+        ],
+        [
+          "C",
+          "Tụ điện (F)"
+        ]
       ],
       "calculator": "rc-tau",
       "description": "Thời gian để tụ nạp 63% (1τ) hoặc xả 63%. Sau 5τ coi như đầy/xả hết.",
-      "notes": "Để đổi sang tần số cắt: f_c = 1 / (2π·R·C). Thường dùng: R tính bằng Ω, C tính bằng F, τ ra giây."
+      "notes": "Để đổi sang tần số cắt: f_c = 1 / (2π·R·C). Thường dùng: R tính bằng Ω, C tính bằng F, τ ra giây.",
+      "enName": "RC time constant",
+      "enDescription": "Time for a capacitor to charge 63% (1τ) or discharge 63%. After 5τ it's effectively full/empty.",
+      "enNotes": "For cutoff frequency: f_c = 1 / (2π·R·C). Common: R in Ω, C in F, τ in seconds."
     },
     {
       "id": "rc-fc",
@@ -571,13 +1440,25 @@
       "category": "Tần số",
       "expression": "f_c = 1 / (2π × R × C)",
       "variables": [
-        ["f_c", "Tần số cắt -3dB (Hz)"],
-        ["R", "Điện trở (Ω)"],
-        ["C", "Tụ điện (F)"]
+        [
+          "f_c",
+          "Tần số cắt -3dB (Hz)"
+        ],
+        [
+          "R",
+          "Điện trở (Ω)"
+        ],
+        [
+          "C",
+          "Tụ điện (F)"
+        ]
       ],
       "calculator": "rc-fc",
       "description": "Tần số mà tại đó tín hiệu bị suy hao 3dB (còn 70.7%). Dùng cho lọc thông thấp/thông cao RC.",
-      "notes": "Bode plot: từ 1 thập phân trên f_c: -20dB/decade. Hai cực RC nối tiếp: -40dB/decade."
+      "notes": "Bode plot: từ 1 thập phân trên f_c: -20dB/decade. Hai cực RC nối tiếp: -40dB/decade.",
+      "enName": "RC filter cutoff",
+      "enDescription": "Frequency at which signal is attenuated -3dB (70.7% remaining). Used for low-pass / high-pass RC filters.",
+      "enNotes": "Bode plot: from 1 decade above f_c: -20dB/decade. Two RC stages in series: -40dB/decade."
     },
     {
       "id": "bjt-rb",
@@ -585,16 +1466,37 @@
       "category": "BJT",
       "expression": "R_B = (V_in - V_BE) × h_FE / (I_C × k)",
       "variables": [
-        ["R_B", "Điện trở giữa MCU và Base"],
-        ["V_in", "Điện áp ra của MCU (3.3V hoặc 5V)"],
-        ["V_BE", "0.7V"],
-        ["h_FE", "Hệ số khuyếch đại dòng (xem datasheet)"],
-        ["I_C", "Dòng collector mong muốn"],
-        ["k", "Hệ số dự trữ, thường = 5"]
+        [
+          "R_B",
+          "Điện trở giữa MCU và Base"
+        ],
+        [
+          "V_in",
+          "Điện áp ra của MCU (3.3V hoặc 5V)"
+        ],
+        [
+          "V_BE",
+          "0.7V"
+        ],
+        [
+          "h_FE",
+          "Hệ số khuyếch đại dòng (xem datasheet)"
+        ],
+        [
+          "I_C",
+          "Dòng collector mong muốn"
+        ],
+        [
+          "k",
+          "Hệ số dự trữ, thường = 5"
+        ]
       ],
       "calculator": "bjt",
       "description": "Tính R_B để BJT chắc chắn bão hòa. k=5 đảm bảo I_B dư để dòng I_C đạt được ngay cả khi h_FE thấp.",
-      "notes": "Dùng Darlington (TIP120) khi cần h_FE rất cao (>1000). Lưu ý: V_CE(sat) ~0.2V khi bão hòa — không dùng làm switch cho tải nhạy áp."
+      "notes": "Dùng Darlington (TIP120) khi cần h_FE rất cao (>1000). Lưu ý: V_CE(sat) ~0.2V khi bão hòa — không dùng làm switch cho tải nhạy áp.",
+      "enName": "BJT base resistor",
+      "enDescription": "Calculate R_B to ensure BJT is fully saturated. k=5 reserves margin for low h_FE units.",
+      "enNotes": "Use Darlington (TIP120) when very high h_FE is needed (>1000). Note: V_CE(sat) ~0.2V when saturated — not a switch for voltage-sensitive loads."
     },
     {
       "id": "opamp-noninvert",
@@ -602,13 +1504,25 @@
       "category": "Op-amp",
       "expression": "A_v = 1 + R_f / R_g",
       "variables": [
-        ["A_v", "Hệ số khuếch đại điện áp"],
-        ["R_f", "Điện trở feedback (từ out về inverting input)"],
-        ["R_g", "Điện trở ground (từ inverting input xuống GND)"]
+        [
+          "A_v",
+          "Hệ số khuếch đại điện áp"
+        ],
+        [
+          "R_f",
+          "Điện trở feedback (từ out về inverting input)"
+        ],
+        [
+          "R_g",
+          "Điện trở ground (từ inverting input xuống GND)"
+        ]
       ],
       "calculator": "opamp",
       "description": "Khuếch đại không đảo cực. Tín hiệu ra cùng pha với vào. Buffer khi R_f = 0, R_g = ∞ → A_v = 1.",
-      "notes": "Bandwidth thực = GBW / A_v. LM358 GBW=1MHz, A_v=10 → bandwidth 100kHz."
+      "notes": "Bandwidth thực = GBW / A_v. LM358 GBW=1MHz, A_v=10 → bandwidth 100kHz.",
+      "enName": "Op-amp non-inverting",
+      "enDescription": "Non-inverting amplifier. Signal output in phase with input. Buffer when R_f = 0, R_g = ∞ → A_v = 1.",
+      "enNotes": "Real bandwidth = GBW / A_v. LM358 GBW=1MHz, A_v=10 → bandwidth 100kHz."
     },
     {
       "id": "opamp-invert",
@@ -616,13 +1530,25 @@
       "category": "Op-amp",
       "expression": "A_v = -R_f / R_in",
       "variables": [
-        ["A_v", "Hệ số khuếch đại (âm)"],
-        ["R_f", "Điện trở feedback"],
-        ["R_in", "Điện trở vào"]
+        [
+          "A_v",
+          "Hệ số khuếch đại (âm)"
+        ],
+        [
+          "R_f",
+          "Điện trở feedback"
+        ],
+        [
+          "R_in",
+          "Điện trở vào"
+        ]
       ],
       "calculator": "opamp",
       "description": "Khuếch đại đảo cực. Trở kháng vào = R_in, thấp hơn non-inverting.",
-      "notes": "Dùng cho summing amplifier: V_out = -(V1·R_f/R1 + V2·R_f/R2 + ...)."
+      "notes": "Dùng cho summing amplifier: V_out = -(V1·R_f/R1 + V2·R_f/R2 + ...).",
+      "enName": "Op-amp inverting",
+      "enDescription": "Inverting amplifier. Input impedance = R_in, lower than non-inverting.",
+      "enNotes": "Used for summing amplifier: V_out = -(V1·R_f/R1 + V2·R_f/R2 + ...)."
     },
     {
       "id": "555-astable",
@@ -630,14 +1556,29 @@
       "category": "555",
       "expression": "f = 1.44 / ((R1 + 2·R2) × C)",
       "variables": [
-        ["f", "Tần số (Hz)"],
-        ["R1", "Điện trở giữa VCC và chân 7"],
-        ["R2", "Điện trở giữa chân 7 và chân 6/2"],
-        ["C", "Tụ giữa chân 6 và GND"]
+        [
+          "f",
+          "Tần số (Hz)"
+        ],
+        [
+          "R1",
+          "Điện trở giữa VCC và chân 7"
+        ],
+        [
+          "R2",
+          "Điện trở giữa chân 7 và chân 6/2"
+        ],
+        [
+          "C",
+          "Tụ giữa chân 6 và GND"
+        ]
       ],
       "calculator": "555",
       "description": "Tạo xung vuông liên tục (oscillator). Duty cycle từ 50% đến ~100% tuỳ R1/R2.",
-      "notes": "Duty = (R1 + R2) / (R1 + 2·R2). Để có duty = 50% thật sự, mắc diode song song R1 (anode ở chân 7, cathode ở chân 6)."
+      "notes": "Duty = (R1 + R2) / (R1 + 2·R2). Để có duty = 50% thật sự, mắc diode song song R1 (anode ở chân 7, cathode ở chân 6).",
+      "enName": "IC 555 - Astable",
+      "enDescription": "Continuous square wave oscillator. Duty cycle from 50% to ~100% depending on R1/R2.",
+      "enNotes": "Duty = (R1 + R2) / (R1 + 2R2). For true 50%, put a diode in parallel with R1 (anode at pin 7, cathode at pin 6)."
     },
     {
       "id": "555-mono",
@@ -645,13 +1586,25 @@
       "category": "555",
       "expression": "T = 1.1 × R × C",
       "variables": [
-        ["T", "Thời gian xung ra HIGH (giây)"],
-        ["R", "Điện trở giữa VCC và chân 7"],
-        ["C", "Tụ giữa chân 6 và GND"]
+        [
+          "T",
+          "Thời gian xung ra HIGH (giây)"
+        ],
+        [
+          "R",
+          "Điện trở giữa VCC và chân 7"
+        ],
+        [
+          "C",
+          "Tụ giữa chân 6 và GND"
+        ]
       ],
       "calculator": "555-mono",
       "description": "Tạo xung đơn — trigger 1 lần, output HIGH trong T giây, sau đó về LOW.",
-      "notes": "R từ 1kΩ đến 10MΩ, C từ 100pF đến 100µF. T từ µs đến hàng giờ."
+      "notes": "R từ 1kΩ đến 10MΩ, C từ 100pF đến 100µF. T từ µs đến hàng giờ.",
+      "enName": "IC 555 - Monostable",
+      "enDescription": "Single pulse — trigger once, output HIGH for T seconds, then back LOW.",
+      "enNotes": "R from 1kΩ to 10MΩ, C from 100pF to 100µF. T from µs to hours."
     },
     {
       "id": "buck-d",
@@ -659,12 +1612,24 @@
       "category": "Nguồn",
       "expression": "D = V_out / V_in",
       "variables": [
-        ["D", "Duty cycle (0-1)"],
-        ["V_out", "Điện áp ra"],
-        ["V_in", "Điện áp vào"]
+        [
+          "D",
+          "Duty cycle (0-1)"
+        ],
+        [
+          "V_out",
+          "Điện áp ra"
+        ],
+        [
+          "V_in",
+          "Điện áp vào"
+        ]
       ],
       "description": "Tỉ số thời gian switch đóng trong 1 chu kỳ. LDO tỏa nhiệt (V_in - V_out)·I, buck hiệu suất 90%+.",
-      "notes": "Ripple ΔV_out = I_out·(1-D)/(8·f·C) với buck đồng bộ. f càng cao ripple càng nhỏ nhưng switching loss tăng."
+      "notes": "Ripple ΔV_out = I_out·(1-D)/(8·f·C) với buck đồng bộ. f càng cao ripple càng nhỏ nhưng switching loss tăng.",
+      "enName": "Buck converter duty",
+      "enDescription": "Duty cycle = V_out / V_in. Ripple ΔV_out = I_out·(1-D)/(8·f·C) for synchronous buck.",
+      "enNotes": "Higher switching frequency → smaller ripple but more switching loss."
     },
     {
       "id": "ldo-heat",
@@ -672,14 +1637,29 @@
       "category": "Nguồn",
       "expression": "P = (V_in - V_out) × I",
       "variables": [
-        ["P", "Công suất tỏa nhiệt (W)"],
-        ["V_in", "Điện áp vào"],
-        ["V_out", "Điện áp ra"],
-        ["I", "Dòng tải"]
+        [
+          "P",
+          "Công suất tỏa nhiệt (W)"
+        ],
+        [
+          "V_in",
+          "Điện áp vào"
+        ],
+        [
+          "V_out",
+          "Điện áp ra"
+        ],
+        [
+          "I",
+          "Dòng tải"
+        ]
       ],
       "calculator": "ldo",
       "description": "LDO tỏa nhiệt theo chênh áp nhân dòng. 12V→5V ở 1A = 7W — cần tản nhiệt lớn.",
-      "notes": "Khi P > 1W, gắn tản nhiệt TO-220. Khi chênh áp > 5V hoặc dòng > 500mA, nên dùng buck thay vì LDO."
+      "notes": "Khi P > 1W, gắn tản nhiệt TO-220. Khi chênh áp > 5V hoặc dòng > 500mA, nên dùng buck thay vì LDO.",
+      "enName": "LDO heat dissipation",
+      "enDescription": "LDO dissipates (V_in - V_out) × I. 12V→5V at 1A = 7W — needs a heatsink.",
+      "enNotes": "When V_diff > 5V or I > 500mA, use a buck converter instead of LDO."
     },
     {
       "id": "r-parallel",
@@ -687,12 +1667,21 @@
       "category": "Cơ bản",
       "expression": "1/R_total = 1/R₁ + 1/R₂ + ...",
       "variables": [
-        ["R_total", "Điện trở tương đương"],
-        ["R₁, R₂, ...", "Các điện trở thành phần"]
+        [
+          "R_total",
+          "Điện trở tương đương"
+        ],
+        [
+          "R₁, R₂, ...",
+          "Các điện trở thành phần"
+        ]
       ],
       "calculator": "r-parallel",
       "description": "Điện trở song song luôn nhỏ hơn thành phần nhỏ nhất. Dùng khi cần giá trị không chuẩn (1.5kΩ = 1kΩ + 3kΩ).",
-      "notes": "Hai điện trở bằng nhau: R_total = R/2. 10 điện trở bằng nhau: R_total = R/10. Công thức nhanh: R = (R1×R2)/(R1+R2)."
+      "notes": "Hai điện trở bằng nhau: R_total = R/2. 10 điện trở bằng nhau: R_total = R/10. Công thức nhanh: R = (R1×R2)/(R1+R2).",
+      "enName": "Parallel resistors",
+      "enDescription": "Equivalent resistance is always smaller than the smallest. Use to get non-standard values (1.5kΩ = 1kΩ + 3kΩ).",
+      "enNotes": "Two equal resistors: R_eq = R/2. Ten equal resistors: R_eq = R/10. Quick: R = (R1×R2)/(R1+R2)."
     },
     {
       "id": "r-series",
@@ -700,12 +1689,21 @@
       "category": "Cơ bản",
       "expression": "R_total = R₁ + R₂ + ...",
       "variables": [
-        ["R_total", "Tổng điện trở"],
-        ["R₁, R₂, ...", "Các điện trở thành phần"]
+        [
+          "R_total",
+          "Tổng điện trở"
+        ],
+        [
+          "R₁, R₂, ...",
+          "Các điện trở thành phần"
+        ]
       ],
       "calculator": "r-series",
       "description": "Cộng đơn giản. Dùng khi cần giá trị lớn hơn (3.3kΩ = 1kΩ + 2.2kΩ).",
-      "notes": "Mỗi điện trở phải chịu được công suất của riêng nó. Công suất tổng = tổng công suất từng cái."
+      "notes": "Mỗi điện trở phải chịu được công suất của riêng nó. Công suất tổng = tổng công suất từng cái.",
+      "enName": "Series resistors",
+      "enDescription": "Just add. Use to get a higher value (3.3kΩ = 1kΩ + 2.2kΩ).",
+      "enNotes": "Each resistor must handle its own power. Total power = sum of individual powers."
     },
     {
       "id": "c-parallel",
@@ -713,11 +1711,20 @@
       "category": "Cơ bản",
       "expression": "C_total = C₁ + C₂ + ...",
       "variables": [
-        ["C_total", "Tổng điện dung"],
-        ["C₁, C₂, ...", "Các tụ thành phần"]
+        [
+          "C_total",
+          "Tổng điện dung"
+        ],
+        [
+          "C₁, C₂, ...",
+          "Các tụ thành phần"
+        ]
       ],
       "description": "Cộng đơn giản. Điện áp định mức lấy theo tụ thấp nhất.",
-      "notes": "Cẩn thận phân cực khi mắc song song tụ electrolytic. Tụ có ESR thấp nhất chiếm ưu thế ở tần số cao."
+      "notes": "Cẩn thận phân cực khi mắc song song tụ electrolytic. Tụ có ESR thấp nhất chiếm ưu thế ở tần số cao.",
+      "enName": "Parallel capacitors",
+      "enDescription": "Just add. Voltage rating = lowest of the bunch. Watch polarity when paralleling electrolytics.",
+      "enNotes": "The cap with the lowest ESR dominates at high frequency."
     },
     {
       "id": "c-series",
@@ -725,11 +1732,20 @@
       "category": "Cơ bản",
       "expression": "1/C_total = 1/C₁ + 1/C₂ + ...",
       "variables": [
-        ["C_total", "Tổng điện dung"],
-        ["C₁, C₂, ...", "Các tụ thành phần"]
+        [
+          "C_total",
+          "Tổng điện dung"
+        ],
+        [
+          "C₁, C₂, ...",
+          "Các tụ thành phần"
+        ]
       ],
       "description": "Tương tự điện trở song song. Điện áp định mức CỘNG dồn.",
-      "notes": "Hai tụ bằng nhau: C_total = C/2. Thường dùng để tăng điện áp chịu đựng (2 tụ 100µF/25V nối tiếp = 50µF/50V)."
+      "notes": "Hai tụ bằng nhau: C_total = C/2. Thường dùng để tăng điện áp chịu đựng (2 tụ 100µF/25V nối tiếp = 50µF/50V).",
+      "enName": "Series capacitors",
+      "enDescription": "Like parallel resistors. Voltage ratings ADD up.",
+      "enNotes": "Two equal caps: C_eq = C/2. Often used to double voltage rating (2× 100µF/25V → 50µF/50V)."
     },
     {
       "id": "battery-time",
@@ -737,13 +1753,25 @@
       "category": "Nguồn",
       "expression": "t = C / I",
       "variables": [
-        ["t", "Thời gian (giờ)"],
-        ["C", "Dung lượng pin (Ah hoặc mAh)"],
-        ["I", "Dòng (A hoặc mA)"]
+        [
+          "t",
+          "Thời gian (giờ)"
+        ],
+        [
+          "C",
+          "Dung lượng pin (Ah hoặc mAh)"
+        ],
+        [
+          "I",
+          "Dòng (A hoặc mA)"
+        ]
       ],
       "calculator": "battery",
       "description": "Thời gian sạc đầy = dung lượng / dòng sạc. Thực tế phải trừ 10-20% hao hụt.",
-      "notes": "Pin 3000mAh sạc 1A = ~3 giờ. Xả ở 100mA = ~30 giờ. Tuổi thọ pin giảm nhanh nếu xả sâu dưới 20%."
+      "notes": "Pin 3000mAh sạc 1A = ~3 giờ. Xả ở 100mA = ~30 giờ. Tuổi thọ pin giảm nhanh nếu xả sâu dưới 20%.",
+      "enName": "Battery charge/discharge time",
+      "enDescription": "Time = capacity / current. Subtract 10-20% for real-world losses.",
+      "enNotes": "3000 mAh battery at 100 mA → ~30 hours. Deep discharge below 20% shortens battery life significantly."
     },
     {
       "id": "three-phase",
@@ -751,65 +1779,380 @@
       "category": "AC",
       "expression": "P = √3 × U × I × cosφ",
       "variables": [
-        ["P", "Công suất (W)"],
-        ["U", "Điện áp dây (V)"],
-        ["I", "Dòng điện (A)"],
-        ["cosφ", "Hệ số công suất (0-1, thường 0.8-0.9)"]
+        [
+          "P",
+          "Công suất (W)"
+        ],
+        [
+          "U",
+          "Điện áp dây (V)"
+        ],
+        [
+          "I",
+          "Dòng điện (A)"
+        ],
+        [
+          "cosφ",
+          "Hệ số công suất (0-1, thường 0.8-0.9)"
+        ]
       ],
       "description": "Công thức tính công suất cho tải 3 pha cân bằng. U là điện áp dây (line-to-line), không phải điện áp pha.",
-      "notes": "Động cơ 3 pha 380V/10A với cosφ=0.85 tiêu thụ ~5.6kW. cosφ thấp → tổn hao phản kháng lớn → phạt tiền."
+      "notes": "Động cơ 3 pha 380V/10A với cosφ=0.85 tiêu thụ ~5.6kW. cosφ thấp → tổn hao phản kháng lớn → phạt tiền.",
+      "enName": "Three-phase power",
+      "enDescription": "Power for balanced three-phase loads. U is line-to-line voltage (not phase voltage).",
+      "enNotes": "3-phase motor 380V/10A at cosφ=0.85 → ~5.6 kW. Low cosφ → reactive power losses → penalty fees."
     }
   ],
   "glossary": [
-    {"term": "VCC / VDD", "category": "Nguồn", "definition": "Điện áp nguồn dương. VCC thường dùng cho BJT, VDD cho MOSFET/CMOS. Logic: IC càng phức tạp càng thấp (1.8V cho CPU, 5V cho 74xx, 12V cho op-amp)."},
-    {"term": "VSS / GND", "category": "Nguồn", "definition": "Điện áp tham chiếu 0V, mass/đất. Mọi mạch đều có 1 mass chung — kết nối các mass của các phần lại với nhau."},
-    {"term": "Pull-up", "category": "Digital", "definition": "Điện trở nối từ chân lên VCC. Đảm bảo chân ở mức HIGH khi không có driver nào kéo xuống. Giá trị thường 4.7kΩ-10kΩ."},
-    {"term": "Pull-down", "category": "Digital", "definition": "Điện trở nối từ chân xuống GND. Đảm bảo chân ở mức LOW khi không có driver nào kéo lên. Tránh chân 'lơ lửng' gây nhiễu."},
-    {"term": "Hysteresis", "category": "Tín hiệu", "definition": "Hiện tượng ngưỡng kích khác ngưỡng tắt. Ví dụ: thermostat bật lò ở 20°C, tắt ở 25°C — tránh bật tắt liên tục quanh 1 ngưỡng."},
-    {"term": "Slew rate", "category": "Op-amp", "definition": "Tốc độ thay đổi điện áp ra (V/µs). LM358: 0.3V/µs, TL071: 13V/µs, OPA627: 55V/µs. Quan trọng cho tín hiệu tần số cao/biên độ lớn."},
-    {"term": "CMRR", "category": "Op-amp", "definition": "Common-Mode Rejection Ratio — tỉ số khử tín hiệu chung (cùng pha cả 2 input). Càng cao càng tốt (80-120dB). Quan trọng cho sensor, ADC."},
-    {"term": "PSRR", "category": "Op-amp", "definition": "Power Supply Rejection Ratio — khả năng cách ly nhiễu từ nguồn. Cao = op-amp không bị ảnh hưởng bởi nhiễu VCC."},
-    {"term": "ESR", "category": "Tụ", "definition": "Equivalent Series Resistance — điện trở trong của tụ. ESR thấp = tụ tốt cho lọc nguồn, buck/boost. Tụ electrolytic rẻ có ESR cao, loại low-ESR đắt hơn."},
-    {"term": "Ripple", "category": "Nguồn", "definition": "Dao động điện áp DC còn sót lại sau chỉnh lưu. Buck thường 20-100mV. Nguồn analog nhạy cần LDO sau buck."},
-    {"term": "Dead time", "category": "PWM", "definition": "Thời gian cả 2 FET trong cầu H đều tắt trước khi FET kia bật. Tránh chập nguồn. Thường 100-500ns cho cầu H mosfet."},
-    {"term": "Duty cycle", "category": "PWM", "definition": "Tỉ số thời gian HIGH trong 1 chu kỳ PWM. 0% = luôn LOW, 100% = luôn HIGH, 50% = trung bình."},
-    {"term": "Soft start", "category": "Nguồn", "definition": "Tăng dần điện áp/dòng khi khởi động. Tránh inrush current làm sụt áp nguồn. LM2576, TPS5430 có sẵn chân SS."},
-    {"term": "Inrush current", "category": "Nguồn", "definition": "Dòng khởi động lớn (gấp 5-10 lần dòng danh định) khi tụ nguồn nạp từ 0. Thường < 1ms nhưng có thể reset MCU."},
-    {"term": "Brown-out", "category": "Nguồn", "definition": "Sụt áp nguồn thoáng qua. MCU có brown-out detector (BOD) tự reset khi VCC < ngưỡng (ví dụ 2.7V cho ESP32)."},
-    {"term": "Watchdog", "category": "MCU", "definition": "Bộ đếm giờ tự reset MCU nếu code treo quá lâu. Phải 'feed' watchdog thường xuyên trong loop. ESP32: esp_task_wdt_init()."},
-    {"term": "I²C address", "category": "Giao tiếp", "definition": "Địa chỉ 7-bit (0-127) của thiết bị trên bus I²C. Thường in trên board, có thể chọn bằng chân ADDR (0x68/0x69 cho MPU6050)."},
-    {"term": "SMD footprint", "category": "PCB", "definition": "Kích thước pad trên PCB cho linh kiện dán. 0805 = 2.0×1.25mm, 0603 = 1.6×0.8mm, 0402 = 1.0×0.5mm. Sai footprint = mất tiền làm PCB."},
-    {"term": "DRC", "category": "PCB", "definition": "Design Rule Check — kiểm tra tự động các lỗi layout (khoảng cách track, kích thước via, khoảng cách pad). LUÔN chạy DRC trước khi gửi file."},
-    {"term": "Ground plane", "category": "PCB", "definition": "Lớp đồng liền mạch che toàn bộ mặt PCB, nối với GND. Giảm nhiễu, giảm trở kháng mass, tăng công suất mang. CỰC KỲ quan trọng cho mạch tốc độ cao."},
-    {"term": "Via", "category": "PCB", "definition": "Lỗ mạ đồng nối giữa 2 lớp (top-bottom, top-inner). Vias kích thước 0.3/0.6mm thường dùng, 0.2/0.4mm cho mạch dày đặc."},
-    {"term": "Thermal pad", "category": "PCB", "definition": "Pad lớn dưới IC công suất (LDO, MOSFET) để tản nhiệt. Phải có thermal vias kết nối tới ground plane để truyền nhiệt."},
-    {"term": "BOM", "category": "PCB", "definition": "Bill of Materials — danh sách tất cả linh kiện trên board với mã sản phẩm (JLCPCB dùng để đặt SMD tự động)."},
-    {"term": "Pick-and-place", "category": "PCB", "definition": "File vị trí linh kiện SMD (X, Y, góc xoay, mặt). Dùng cho máy SMT tự động. Sai 1mm = board hỏng."},
-    {"term": "Gerber", "category": "PCB", "definition": "File đồ họa xuất cho nhà máy PCB. Bao gồm các lớp đồng, mask, silk, drill. RS-274X là chuẩn phổ biến."},
-    {"term": "MCU", "category": "MCU", "definition": "MicroController Unit — vi xử lý tích hợp Flash, RAM, peripherals. Arduino Uno = ATmega328P, ESP32, STM32, RP2040."},
-    {"term": "ADC", "category": "MCU", "definition": "Analog-to-Digital Converter — đọc điện áp analog thành số. 10-bit = 0-1023, 12-bit = 0-4095. ESP32 ADC 12-bit không chính xác, dùng ADS1115 cho chính xác."},
-    {"term": "PWM", "category": "MCU", "definition": "Pulse Width Modulation — xung vuông tần số cố định, duty thay đổi. Dùng điều khiển độ sáng LED, tốc độ động cơ, servo."},
-    {"term": "RTC", "category": "MCU", "definition": "Real-Time Clock — IC đếm giờ chạy bằng pin riêng khi mất điện. DS3231 chính xác ±2ppm (~1 phút/năm)."},
-    {"term": "DMA", "category": "MCU", "definition": "Direct Memory Access — truyền dữ liệu giữa peripherals và RAM không cần CPU. Quan trọng cho audio, camera, ADC tốc độ cao."},
-    {"term": "FPU", "category": "MCU", "definition": "Floating Point Unit — phần cứng tính toán số thực. ESP32 có FPU, ATmega328P không (tính float chậm)."},
-    {"term": "RTOS", "category": "MCU", "definition": "Real-Time Operating System — FreeRTOS, Zephyr, chạy nhiều task song song. Cần cho mạch phức tạp (WiFi + cảm biến + UI)."},
-    {"term": "MOSI/MISO/SCK", "category": "Giao tiếp", "definition": "SPI bus signals: MOSI = Master Out Slave In, MISO = Master In Slave Out, SCK = Serial Clock, CS = Chip Select."},
-    {"term": "SDA/SCL", "category": "Giao tiếp", "definition": "I²C bus signals: SDA = Serial Data, SCL = Serial Clock. Cả 2 đều cần pull-up lên VCC."},
-    {"term": "TX/RX", "category": "Giao tiếp", "definition": "UART signals: TX = Transmit, RX = Receive. Khi nối 2 MCU, TX của MCU A nối RX của MCU B và ngược lại."},
-    {"term": "Baud rate", "category": "Giao tiếp", "definition": "Tốc độ truyền UART (bit/giây). 9600, 115200 phổ biến. Cả 2 bên phải cùng baud, cùng cấu hình (8N1 = 8 data, N parity, 1 stop)."},
-    {"term": "Baud rate", "category": "Giao tiếp", "definition": "Tốc độ truyền UART. Phổ biến: 9600, 115200. 2 thiết bị phải cùng baud."},
-    {"term": "Active-low", "category": "Digital", "definition": "Tín hiệu được kích hoạt bằng mức LOW thay vì HIGH. Ví dụ: chân CS của SD card là active-low, kéo xuống GND để chọn."},
-    {"term": "Open-collector", "category": "Digital", "definition": "Ngõ ra chỉ có thể kéo xuống GND, không kéo lên VCC. Cần pull-up bên ngoài. Cho phép nối nhiều thiết bị chung 1 dây (wired-OR)."},
-    {"term": "Open-drain", "category": "Digital", "definition": "Tương tự open-collector nhưng dùng MOSFET. I²C là open-drain."},
-    {"term": "Push-pull", "category": "Digital", "definition": "Ngõ ra có thể kéo lên HIGH hoặc kéo xuống LOW. Nhanh, mạnh hơn open-collector, nhưng không thể nối chung."},
-    {"term": "Tri-state", "category": "Digital", "definition": "Ngõ ra có 3 trạng thái: HIGH, LOW, và high-impedance (Z, floating). Dùng cho bus nhiều thiết bị."},
-    {"term": "Schmitt trigger", "category": "Digital", "definition": "Cổng logic có hysteresis. Đảm bảo tín hiệu vào chậm/nhiễu vẫn cho ra xung vuông sạch. Ví dụ: 74HC14."},
-    {"term": "Debounce", "category": "Digital", "definition": "Loại bỏ rung phím cơ. Có thể dùng phần cứng (RC + Schmitt) hoặc phần mềm (delay 50ms)."},
-    {"term": "CRC", "category": "Giao tiếp", "definition": "Cyclic Redundancy Check — checksum phát hiện lỗi truyền. CRC-8, CRC-16, CRC-32. Cảm biến và storage thường dùng."},
-    {"term": "EMI", "category": "Nhiễu", "definition": "Electromagnetic Interference — nhiễu điện từ. Buck converter, động cơ, relay phát EMI mạnh. Dùng ferrite bead, shielding, layout tốt."},
-    {"term": "ESD", "category": "Bảo vệ", "definition": "Electrostatic Discharge — phóng tĩnh điện. Có thể giết IC trong vài chục V. Chân USB, nút nhấn ngoài trời cần TVS diode."},
-    {"term": "TVS diode", "category": "Bảo vệ", "definition": "Transient Voltage Suppressor — diode chống xung quá áp. Giống zener nhưng phản ứng nhanh hơn nhiều. SMAJ5.0A cho 5V."},
-    {"term": "Fuse", "category": "Bảo vệ", "definition": "Cầu chì — ngắt mạch khi quá dòng. Có loại 1 lần (cầu chì thuỷ tinh) và tự phục hồi (PPTC, polyfuse)."},
-    {"term": "Optocoupler", "category": "Cách ly", "definition": "LED + phototransistor trong cùng package. Cách ly điện 2 phía, chống nhiễu loop mass. PC817 phổ biến."}
+    {
+      "term": "VCC / VDD",
+      "category": "Nguồn",
+      "definition": "Điện áp nguồn dương. VCC thường dùng cho BJT, VDD cho MOSFET/CMOS. Logic: IC càng phức tạp càng thấp (1.8V cho CPU, 5V cho 74xx, 12V cho op-amp).",
+      "enTerm": "VCC / VDD",
+      "enDefinition": "Positive supply voltage. VCC is for BJT, VDD for MOSFET/CMOS. Lower voltage = lower power; 1.8V for CPUs, 5V for 74xx logic, 12V for op-amps."
+    },
+    {
+      "term": "VSS / GND",
+      "category": "Nguồn",
+      "definition": "Điện áp tham chiếu 0V, mass/đất. Mọi mạch đều có 1 mass chung — kết nối các mass của các phần lại với nhau.",
+      "enTerm": "VSS / GND",
+      "enDefinition": "Reference 0V rail, also called mass/ground. Every circuit has one shared ground — connect all sub-circuits' grounds together."
+    },
+    {
+      "term": "Pull-up",
+      "category": "Digital",
+      "definition": "Điện trở nối từ chân lên VCC. Đảm bảo chân ở mức HIGH khi không có driver nào kéo xuống. Giá trị thường 4.7kΩ-10kΩ.",
+      "enTerm": "Pull-up",
+      "enDefinition": "A resistor from a pin to VCC. Ensures pin reads HIGH when no driver pulls it down. Typically 4.7kΩ to 10kΩ."
+    },
+    {
+      "term": "Pull-down",
+      "category": "Digital",
+      "definition": "Điện trở nối từ chân xuống GND. Đảm bảo chân ở mức LOW khi không có driver nào kéo lên. Tránh chân 'lơ lửng' gây nhiễu.",
+      "enTerm": "Pull-down",
+      "enDefinition": "A resistor from a pin to GND. Ensures pin reads LOW when no driver pulls it up. Prevents floating-pin noise."
+    },
+    {
+      "term": "Hysteresis",
+      "category": "Tín hiệu",
+      "definition": "Hiện tượng ngưỡng kích khác ngưỡng tắt. Ví dụ: thermostat bật lò ở 20°C, tắt ở 25°C — tránh bật tắt liên tục quanh 1 ngưỡng.",
+      "enTerm": "Hysteresis",
+      "enDefinition": "Different trigger thresholds for on vs off (e.g. thermostat turns on at 20°C, off at 25°C). Prevents rapid on/off cycling around one threshold."
+    },
+    {
+      "term": "Slew rate",
+      "category": "Op-amp",
+      "definition": "Tốc độ thay đổi điện áp ra (V/µs). LM358: 0.3V/µs, TL071: 13V/µs, OPA627: 55V/µs. Quan trọng cho tín hiệu tần số cao/biên độ lớn.",
+      "enTerm": "Slew rate",
+      "enDefinition": "How fast the output voltage can change (V/µs). LM358 = 0.3V/µs, TL071 = 13V/µs. Important for high-frequency or large-signal signals."
+    },
+    {
+      "term": "CMRR",
+      "category": "Op-amp",
+      "definition": "Common-Mode Rejection Ratio — tỉ số khử tín hiệu chung (cùng pha cả 2 input). Càng cao càng tốt (80-120dB). Quan trọng cho sensor, ADC.",
+      "enTerm": "CMRR",
+      "enDefinition": "Common-Mode Rejection Ratio — how well the op-amp rejects signals common to both inputs. Higher = better (80-120 dB)."
+    },
+    {
+      "term": "PSRR",
+      "category": "Op-amp",
+      "definition": "Power Supply Rejection Ratio — khả năng cách ly nhiễu từ nguồn. Cao = op-amp không bị ảnh hưởng bởi nhiễu VCC.",
+      "enTerm": "PSRR",
+      "enDefinition": "Power Supply Rejection Ratio — how well the op-amp isolates supply noise. Higher = cleaner output."
+    },
+    {
+      "term": "ESR",
+      "category": "Tụ",
+      "definition": "Equivalent Series Resistance — điện trở trong của tụ. ESR thấp = tụ tốt cho lọc nguồn, buck/boost. Tụ electrolytic rẻ có ESR cao, loại low-ESR đắt hơn.",
+      "enTerm": "ESR",
+      "enDefinition": "Equivalent Series Resistance — internal resistance of a capacitor. Low-ESR caps are better for power filtering and buck/boost converters."
+    },
+    {
+      "term": "Ripple",
+      "category": "Nguồn",
+      "definition": "Dao động điện áp DC còn sót lại sau chỉnh lưu. Buck thường 20-100mV. Nguồn analog nhạy cần LDO sau buck.",
+      "enTerm": "Ripple",
+      "enDefinition": "Residual AC oscillation on a DC supply after rectification. Buck converters typically 20-100 mV. Sensitive analog needs LDO after buck."
+    },
+    {
+      "term": "Dead time",
+      "category": "PWM",
+      "definition": "Thời gian cả 2 FET trong cầu H đều tắt trước khi FET kia bật. Tránh chập nguồn. Thường 100-500ns cho cầu H mosfet.",
+      "enTerm": "Dead time",
+      "enDefinition": "Brief period when both FETs in an H-bridge are off before the other turns on. Prevents shoot-through. Usually 100-500 ns for MOSFETs."
+    },
+    {
+      "term": "Duty cycle",
+      "category": "PWM",
+      "definition": "Tỉ số thời gian HIGH trong 1 chu kỳ PWM. 0% = luôn LOW, 100% = luôn HIGH, 50% = trung bình.",
+      "enTerm": "Duty cycle",
+      "enDefinition": "Fraction of time a PWM signal is HIGH in one period. 0% = always LOW, 100% = always HIGH, 50% = average."
+    },
+    {
+      "term": "Soft start",
+      "category": "Nguồn",
+      "definition": "Tăng dần điện áp/dòng khi khởi động. Tránh inrush current làm sụt áp nguồn. LM2576, TPS5430 có sẵn chân SS.",
+      "enTerm": "Soft start",
+      "enDefinition": "Gradually ramping voltage/current on power-up. Prevents inrush current from sagging the supply. LM2576, TPS5430 have SS pins."
+    },
+    {
+      "term": "Inrush current",
+      "category": "Nguồn",
+      "definition": "Dòng khởi động lớn (gấp 5-10 lần dòng danh định) khi tụ nguồn nạp từ 0. Thường < 1ms nhưng có thể reset MCU.",
+      "enTerm": "Inrush current",
+      "enDefinition": "Large startup current (5-10× normal) when bulk caps charge from 0V. Usually <1 ms but can reset the MCU."
+    },
+    {
+      "term": "Brown-out",
+      "category": "Nguồn",
+      "definition": "Sụt áp nguồn thoáng qua. MCU có brown-out detector (BOD) tự reset khi VCC < ngưỡng (ví dụ 2.7V cho ESP32).",
+      "enTerm": "Brown-out",
+      "enDefinition": "Brief supply voltage drop. MCUs have brown-out detectors (BOD) that reset when VCC < threshold (e.g. 2.7V for ESP32)."
+    },
+    {
+      "term": "Watchdog",
+      "category": "MCU",
+      "definition": "Bộ đếm giờ tự reset MCU nếu code treo quá lâu. Phải 'feed' watchdog thường xuyên trong loop. ESP32: esp_task_wdt_init().",
+      "enTerm": "Watchdog",
+      "enDefinition": "Hardware timer that resets the MCU if code hangs too long. Must be \"fed\" regularly in the main loop. ESP32: esp_task_wdt_init()."
+    },
+    {
+      "term": "I²C address",
+      "category": "Giao tiếp",
+      "definition": "Địa chỉ 7-bit (0-127) của thiết bị trên bus I²C. Thường in trên board, có thể chọn bằng chân ADDR (0x68/0x69 cho MPU6050).",
+      "enTerm": "I²C address",
+      "enDefinition": "7-bit address (0-127) of a device on the I²C bus. Often selectable via ADDR pin (MPU6050: 0x68/0x69)."
+    },
+    {
+      "term": "SMD footprint",
+      "category": "PCB",
+      "definition": "Kích thước pad trên PCB cho linh kiện dán. 0805 = 2.0×1.25mm, 0603 = 1.6×0.8mm, 0402 = 1.0×0.5mm. Sai footprint = mất tiền làm PCB.",
+      "enTerm": "SMD footprint",
+      "enDefinition": "PCB pad size for a surface-mount part. 0805 = 2.0×1.25mm, 0603 = 1.6×0.8mm, 0402 = 1.0×0.5mm. Wrong footprint = wasted PCB."
+    },
+    {
+      "term": "DRC",
+      "category": "PCB",
+      "definition": "Design Rule Check — kiểm tra tự động các lỗi layout (khoảng cách track, kích thước via, khoảng cách pad). LUÔN chạy DRC trước khi gửi file.",
+      "enTerm": "DRC",
+      "enDefinition": "Design Rule Check — automated check for layout errors (trace spacing, via size, pad clearance). ALWAYS run before sending files for fab."
+    },
+    {
+      "term": "Ground plane",
+      "category": "PCB",
+      "definition": "Lớp đồng liền mạch che toàn bộ mặt PCB, nối với GND. Giảm nhiễu, giảm trở kháng mass, tăng công suất mang. CỰC KỲ quan trọng cho mạch tốc độ cao.",
+      "enTerm": "Ground plane",
+      "enDefinition": "Continuous copper pour covering a PCB layer, connected to GND. Reduces noise, lowers ground impedance, increases current capacity. Critical for high-speed."
+    },
+    {
+      "term": "Via",
+      "category": "PCB",
+      "definition": "Lỗ mạ đồng nối giữa 2 lớp (top-bottom, top-inner). Vias kích thước 0.3/0.6mm thường dùng, 0.2/0.4mm cho mạch dày đặc.",
+      "enTerm": "Via",
+      "enDefinition": "Plated hole connecting two PCB layers (top-bottom, top-inner). 0.3/0.6mm is standard; 0.2/0.4mm for dense designs."
+    },
+    {
+      "term": "Thermal pad",
+      "category": "PCB",
+      "definition": "Pad lớn dưới IC công suất (LDO, MOSFET) để tản nhiệt. Phải có thermal vias kết nối tới ground plane để truyền nhiệt.",
+      "enTerm": "Thermal pad",
+      "enDefinition": "Large pad under power ICs (LDO, MOSFET) for heat dissipation. Requires thermal vias to the ground plane."
+    },
+    {
+      "term": "BOM",
+      "category": "PCB",
+      "definition": "Bill of Materials — danh sách tất cả linh kiện trên board với mã sản phẩm (JLCPCB dùng để đặt SMD tự động).",
+      "enTerm": "BOM",
+      "enDefinition": "Bill of Materials — list of every part on the board with part numbers. JLCPCB uses this for SMT auto-assembly."
+    },
+    {
+      "term": "Pick-and-place",
+      "category": "PCB",
+      "definition": "File vị trí linh kiện SMD (X, Y, góc xoay, mặt). Dùng cho máy SMT tự động. Sai 1mm = board hỏng.",
+      "enTerm": "Pick-and-place",
+      "enDefinition": "File with X, Y position, rotation, and side for each SMD component. Used by SMT machines. 1mm off = ruined board."
+    },
+    {
+      "term": "Gerber",
+      "category": "PCB",
+      "definition": "File đồ họa xuất cho nhà máy PCB. Bao gồm các lớp đồng, mask, silk, drill. RS-274X là chuẩn phổ biến.",
+      "enTerm": "Gerber",
+      "enDefinition": "Graphics file exported for PCB fab. Includes copper layers, mask, silk, drill. RS-274X is the standard format."
+    },
+    {
+      "term": "MCU",
+      "category": "MCU",
+      "definition": "MicroController Unit — vi xử lý tích hợp Flash, RAM, peripherals. Arduino Uno = ATmega328P, ESP32, STM32, RP2040.",
+      "enTerm": "MCU",
+      "enDefinition": "MicroController Unit — a CPU with Flash, RAM, and peripherals integrated. Arduino Uno = ATmega328P, ESP32, STM32, RP2040."
+    },
+    {
+      "term": "ADC",
+      "category": "MCU",
+      "definition": "Analog-to-Digital Converter — đọc điện áp analog thành số. 10-bit = 0-1023, 12-bit = 0-4095. ESP32 ADC 12-bit không chính xác, dùng ADS1115 cho chính xác.",
+      "enTerm": "ADC",
+      "enDefinition": "Analog-to-Digital Converter — reads voltage as a number. 10-bit = 0-1023, 12-bit = 0-4095. ESP32 ADC is 12-bit but not very accurate — ADS1115 for precision."
+    },
+    {
+      "term": "PWM",
+      "category": "MCU",
+      "definition": "Pulse Width Modulation — xung vuông tần số cố định, duty thay đổi. Dùng điều khiển độ sáng LED, tốc độ động cơ, servo.",
+      "enTerm": "PWM",
+      "enDefinition": "Pulse Width Modulation — fixed-frequency square wave with variable duty. Used for LED dimming, motor speed, servo control."
+    },
+    {
+      "term": "RTC",
+      "category": "MCU",
+      "definition": "Real-Time Clock — IC đếm giờ chạy bằng pin riêng khi mất điện. DS3231 chính xác ±2ppm (~1 phút/năm).",
+      "enTerm": "RTC",
+      "enDefinition": "Real-Time Clock — counts time, runs from a separate battery. DS3231 is accurate to ±2 ppm (~1 minute/year)."
+    },
+    {
+      "term": "DMA",
+      "category": "MCU",
+      "definition": "Direct Memory Access — truyền dữ liệu giữa peripherals và RAM không cần CPU. Quan trọng cho audio, camera, ADC tốc độ cao.",
+      "enTerm": "DMA",
+      "enDefinition": "Direct Memory Access — moves data between peripherals and RAM without CPU. Important for audio, camera, high-speed ADC."
+    },
+    {
+      "term": "FPU",
+      "category": "MCU",
+      "definition": "Floating Point Unit — phần cứng tính toán số thực. ESP32 có FPU, ATmega328P không (tính float chậm).",
+      "enTerm": "FPU",
+      "enDefinition": "Floating Point Unit — hardware for floating-point math. ESP32 has it; ATmega328P doesn't (slow float math)."
+    },
+    {
+      "term": "RTOS",
+      "category": "MCU",
+      "definition": "Real-Time Operating System — FreeRTOS, Zephyr, chạy nhiều task song song. Cần cho mạch phức tạp (WiFi + cảm biến + UI).",
+      "enTerm": "RTOS",
+      "enDefinition": "Real-Time Operating System — FreeRTOS, Zephyr. Runs multiple tasks concurrently. Needed for complex systems (WiFi + sensor + UI)."
+    },
+    {
+      "term": "MOSI/MISO/SCK",
+      "category": "Giao tiếp",
+      "definition": "SPI bus signals: MOSI = Master Out Slave In, MISO = Master In Slave Out, SCK = Serial Clock, CS = Chip Select.",
+      "enTerm": "MOSI/MISO/SCK",
+      "enDefinition": "SPI bus signals: MOSI = Master Out Slave In, MISO = Master In Slave Out, SCK = clock, CS = chip select."
+    },
+    {
+      "term": "SDA/SCL",
+      "category": "Giao tiếp",
+      "definition": "I²C bus signals: SDA = Serial Data, SCL = Serial Clock. Cả 2 đều cần pull-up lên VCC.",
+      "enTerm": "SDA/SCL",
+      "enDefinition": "I²C bus signals: SDA = Serial Data, SCL = Serial Clock. Both need pull-up to VCC."
+    },
+    {
+      "term": "TX/RX",
+      "category": "Giao tiếp",
+      "definition": "UART signals: TX = Transmit, RX = Receive. Khi nối 2 MCU, TX của MCU A nối RX của MCU B và ngược lại.",
+      "enTerm": "TX/RX",
+      "enDefinition": "UART signals: TX = Transmit, RX = Receive. When connecting two MCUs, TX of A goes to RX of B and vice versa."
+    },
+    {
+      "term": "Baud rate",
+      "category": "Giao tiếp",
+      "definition": "Tốc độ truyền UART (bit/giây). 9600, 115200 phổ biến. Cả 2 bên phải cùng baud, cùng cấu hình (8N1 = 8 data, N parity, 1 stop).",
+      "enTerm": "Baud rate",
+      "enDefinition": "UART transmission speed (bits/second). Common: 9600, 115200. Both sides must match baud, parity, stop bits."
+    },
+    {
+      "term": "Baud rate",
+      "category": "Giao tiếp",
+      "definition": "Tốc độ truyền UART. Phổ biến: 9600, 115200. 2 thiết bị phải cùng baud.",
+      "enTerm": "Baud rate",
+      "enDefinition": "UART transmission speed (bits/second). Common: 9600, 115200. Both sides must match baud, parity, stop bits."
+    },
+    {
+      "term": "Active-low",
+      "category": "Digital",
+      "definition": "Tín hiệu được kích hoạt bằng mức LOW thay vì HIGH. Ví dụ: chân CS của SD card là active-low, kéo xuống GND để chọn.",
+      "enTerm": "Active-low",
+      "enDefinition": "Signal is enabled by LOW instead of HIGH. Example: SD card CS pin is active-low — pull LOW to select."
+    },
+    {
+      "term": "Open-collector",
+      "category": "Digital",
+      "definition": "Ngõ ra chỉ có thể kéo xuống GND, không kéo lên VCC. Cần pull-up bên ngoài. Cho phép nối nhiều thiết bị chung 1 dây (wired-OR).",
+      "enTerm": "Open-collector",
+      "enDefinition": "Output can only pull down to GND, not up to VCC. Needs external pull-up. Allows multiple devices on one wire (wired-OR)."
+    },
+    {
+      "term": "Open-drain",
+      "category": "Digital",
+      "definition": "Tương tự open-collector nhưng dùng MOSFET. I²C là open-drain.",
+      "enTerm": "Open-drain",
+      "enDefinition": "Same as open-collector but using MOSFET. I²C is open-drain."
+    },
+    {
+      "term": "Push-pull",
+      "category": "Digital",
+      "definition": "Ngõ ra có thể kéo lên HIGH hoặc kéo xuống LOW. Nhanh, mạnh hơn open-collector, nhưng không thể nối chung.",
+      "enTerm": "Push-pull",
+      "enDefinition": "Output can drive both HIGH and LOW. Faster and stronger than open-collector, but cannot be wired-OR."
+    },
+    {
+      "term": "Tri-state",
+      "category": "Digital",
+      "definition": "Ngõ ra có 3 trạng thái: HIGH, LOW, và high-impedance (Z, floating). Dùng cho bus nhiều thiết bị.",
+      "enTerm": "Tri-state",
+      "enDefinition": "Output has 3 states: HIGH, LOW, and high-impedance (Z, floating). Used for buses with multiple devices."
+    },
+    {
+      "term": "Schmitt trigger",
+      "category": "Digital",
+      "definition": "Cổng logic có hysteresis. Đảm bảo tín hiệu vào chậm/nhiễu vẫn cho ra xung vuông sạch. Ví dụ: 74HC14.",
+      "enTerm": "Schmitt trigger",
+      "enDefinition": "Logic gate with hysteresis. Slow/noisy input still produces clean square-wave output. Example: 74HC14."
+    },
+    {
+      "term": "Debounce",
+      "category": "Digital",
+      "definition": "Loại bỏ rung phím cơ. Có thể dùng phần cứng (RC + Schmitt) hoặc phần mềm (delay 50ms).",
+      "enTerm": "Debounce",
+      "enDefinition": "Remove switch bounce (mechanical chatter). Can be hardware (RC + Schmitt) or software (50ms delay)."
+    },
+    {
+      "term": "CRC",
+      "category": "Giao tiếp",
+      "definition": "Cyclic Redundancy Check — checksum phát hiện lỗi truyền. CRC-8, CRC-16, CRC-32. Cảm biến và storage thường dùng.",
+      "enTerm": "CRC",
+      "enDefinition": "Cyclic Redundancy Check — checksum for detecting transmission errors. CRC-8, CRC-16, CRC-32. Used by sensors and storage."
+    },
+    {
+      "term": "EMI",
+      "category": "Nhiễu",
+      "definition": "Electromagnetic Interference — nhiễu điện từ. Buck converter, động cơ, relay phát EMI mạnh. Dùng ferrite bead, shielding, layout tốt.",
+      "enTerm": "EMI",
+      "enDefinition": "Electromagnetic Interference — noise from switching circuits. Buck converters, motors, relays emit EMI. Use ferrite beads, shielding, good layout."
+    },
+    {
+      "term": "ESD",
+      "category": "Bảo vệ",
+      "definition": "Electrostatic Discharge — phóng tĩnh điện. Có thể giết IC trong vài chục V. Chân USB, nút nhấn ngoài trời cần TVS diode.",
+      "enTerm": "ESD",
+      "enDefinition": "Electrostatic Discharge — static electricity spark. Can kill ICs in tens of volts. USB ports, outdoor buttons need TVS diodes."
+    },
+    {
+      "term": "TVS diode",
+      "category": "Bảo vệ",
+      "definition": "Transient Voltage Suppressor — diode chống xung quá áp. Giống zener nhưng phản ứng nhanh hơn nhiều. SMAJ5.0A cho 5V.",
+      "enTerm": "TVS diode",
+      "enDefinition": "Transient Voltage Suppressor — fast-clamping diode for overvoltage. SMAJ5.0A for 5V lines."
+    },
+    {
+      "term": "Fuse",
+      "category": "Bảo vệ",
+      "definition": "Cầu chì — ngắt mạch khi quá dòng. Có loại 1 lần (cầu chì thuỷ tinh) và tự phục hồi (PPTC, polyfuse).",
+      "enTerm": "Fuse",
+      "enDefinition": "Circuit breaker that opens on overcurrent. One-time (glass fuse) or self-resetting (PPTC, polyfuse)."
+    },
+    {
+      "term": "Optocoupler",
+      "category": "Cách ly",
+      "definition": "LED + phototransistor trong cùng package. Cách ly điện 2 phía, chống nhiễu loop mass. PC817 phổ biến.",
+      "enTerm": "Optocoupler",
+      "enDefinition": "LED + phototransistor in one package. Galvanic isolation between two sides, breaks ground loops. PC817 is common."
+    }
   ]
 }
