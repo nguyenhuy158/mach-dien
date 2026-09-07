@@ -3,7 +3,7 @@ import { SIM, SHOP, isNaPart, nrm } from '../data/circuits'
 import type { Circuit } from '../data/circuits'
 import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
-import { Share2, Check } from 'lucide-react'
+import { Share2, Check, Printer } from 'lucide-react'
 import { useI18n, tStr } from '../i18n'
 
 interface Props {
@@ -32,6 +32,7 @@ export function CircuitCard({ c, flash }: Props) {
         </span>
         <h3 className="text-lg font-bold tracking-tight flex-1">{c.name}</h3>
         <ShareButton id={`m-${c.l}-${c.n}`} name={c.name} />
+        <PrintButton id={`m-${c.l}-${c.n}`} />
       </div>
       <div className="goal text-sm text-[var(--color-muted)] mb-3">{c.goal}</div>
 
@@ -108,7 +109,6 @@ function ShareButton({ id, name }: { id: string; name: string }) {
       setDone(true)
       setTimeout(() => setDone(false), 1500)
     } catch {
-      // Final fallback: prompt
       window.prompt(label, url)
     }
   }
@@ -119,6 +119,32 @@ function ShareButton({ id, name }: { id: string; name: string }) {
       className="size-7 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-acc)] print:hidden"
     >
       {done ? <Check className="size-3.5" /> : <Share2 className="size-3.5" />}
+    </button>
+  )
+}
+
+function PrintButton({ id }: { id: string }) {
+  const { T, tvn, mode } = useI18n()
+  const label = tStr(T.print, tvn.print, mode)
+  const onClick = () => {
+    // Highlight the card before printing
+    document.querySelectorAll('.card.printing').forEach(el => el.classList.remove('printing'))
+    const el = document.getElementById(id)
+    if (el) {
+      el.classList.add('printing')
+      window.print()
+      setTimeout(() => el.classList.remove('printing'), 1000)
+    } else {
+      window.print()
+    }
+  }
+  return (
+    <button
+      onClick={onClick}
+      title={label}
+      className="size-7 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-acc)] print:hidden"
+    >
+      <Printer className="size-3.5" />
     </button>
   )
 }
