@@ -3,6 +3,7 @@ import { SIM, SHOP, isNaPart, nrm } from '../data/circuits'
 import type { Circuit } from '../data/circuits'
 import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
+import { ResourcesPanel } from './ResourcesPanel'
 import { Share2, Check, Printer } from 'lucide-react'
 import { useI18n, tStr } from '../i18n'
 
@@ -91,6 +92,8 @@ export function CircuitCard({ c, flash }: Props) {
           <span dangerouslySetInnerHTML={{ __html: c.warn }} />
         </div>
       )}
+
+      <ResourcesPanel partNames={c.parts.map(p => p[0])} />
     </article>
   )
 }
@@ -127,7 +130,6 @@ function PrintButton({ id }: { id: string }) {
   const { T, tvn, mode } = useI18n()
   const label = tStr(T.print, tvn.print, mode)
   const onClick = () => {
-    // Highlight the card before printing
     document.querySelectorAll('.card.printing').forEach(el => el.classList.remove('printing'))
     const el = document.getElementById(id)
     if (el) {
