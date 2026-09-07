@@ -84,6 +84,7 @@ pre { border-radius: .75rem; padding: .75rem; overflow-x: auto; background: #0f1
 @media print {
   body { background: white !important; color: black !important; font-size: 12px; }
   main { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+  header, footer, .lg, nav.tabs, .ctl, #gs, #gsbox, #cart, .print-hidden { display: none !important; }
   .card { display: none !important; }
   .card.printing { display: block !important; }
   .card {
