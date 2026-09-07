@@ -1,0 +1,29 @@
+{
+  "name": "mach-dien",
+  "version": "1.0.0",
+  "description": "Mạch điện tử cơ bản — 23 mạch chia 3 level với danh sách linh kiện, giá từ banlinhkien.com / caka.vn và mô phỏng Falstad.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["electronics", "circuits", "vietnamese", "react", "vite"],
+  "license": "MIT",
+  "packageManager": "pnpm@12.3.4",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^1.41.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^7.0.0"
+  }
+}
