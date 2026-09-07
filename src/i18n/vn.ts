@@ -125,4 +125,10 @@ export const vn = {
   langBilingual: 'EN/VN',
   langEn: 'EN',
   langVn: 'VN',
+
+  // Theme toggle
+  themeTitle: 'Giao diện',
+  themeAuto: 'Tự động',
+  themeLight: 'Sáng',
+  themeDark: 'Tối',
 }

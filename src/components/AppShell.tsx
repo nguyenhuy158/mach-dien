@@ -1,13 +1,14 @@
 import { useState, useMemo, useEffect } from 'react'
-import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap, Languages } from 'lucide-react'
+import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap, Languages, Sun } from 'lucide-react'
 import { LEVELS, CIRCUITS, isNaPart } from '../data/circuits'
+import { useI18n, Bilingual, tStr } from '../i18n'
+import { useTheme } from '../theme'
+import { FloatingCalculator } from './learn/tools/FloatingCalculator'
 import { CircuitCard } from './CircuitCard'
 import { GlobalSearch } from './GlobalSearch'
 import { SettingsMenu } from './SettingsMenu'
 import { Cart } from './Cart'
 import { LearnShell } from './learn/LearnShell'
-import { FloatingCalculator } from './learn/tools/FloatingCalculator'
-import { useI18n, Bilingual, tStr } from '../i18n'
 
 type Filter = 'all' | '1' | '2' | '3' | 'na'
 
@@ -151,6 +152,9 @@ function Header({
               <LanguageToggle />
             </span>
             <span className="relative">
+              <ThemeToggle />
+            </span>
+            <span className="relative">
               <button
                 id="setbtn"
                 onClick={onSettings}
@@ -185,8 +189,29 @@ function LanguageToggle() {
     </button>
   )
 }
+function ThemeToggle() {
+  const { mode, setMode, resolved } = useTheme()
+  const { mode: langMode, T, tvn } = useI18n()
+  const cycle = () => {
+    const order: Array<'auto' | 'light' | 'dark'> = ['auto', 'light', 'dark']
+    setMode(order[(order.indexOf(mode) + 1) % order.length])
+  }
+  const label = mode === 'auto' ? tStr(T.themeAuto, tvn.themeAuto, langMode)
+                : mode === 'light' ? tStr(T.themeLight, tvn.themeLight, langMode)
+                : tStr(T.themeDark, tvn.themeDark, langMode)
+  return (
+    <button
+      onClick={cycle}
+      title={`${tStr(T.themeTitle, tvn.themeTitle, langMode)}: ${label}`}
+      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold border border-[var(--color-border)] hover:border-[var(--color-acc)] transition min-w-[3.5rem] justify-center"
+    >
+      {resolved === 'dark' ? <Sun className="size-3.5" /> : <Sun className="size-3.5" />}
+      {label}
+    </button>
+  )
+}
 
-function FilterBar({
+ function FilterBar({
   filter, setFilter, query, setQuery, hidden,
 }: {
   filter: Filter

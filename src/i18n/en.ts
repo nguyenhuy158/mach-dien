@@ -125,4 +125,10 @@ export const en = {
   langBilingual: 'EN/VN',
   langEn: 'EN',
   langVn: 'VN',
+
+  // Theme toggle
+  themeTitle: 'Theme',
+  themeAuto: 'Auto',
+  themeLight: 'Light',
+  themeDark: 'Dark',
 }
