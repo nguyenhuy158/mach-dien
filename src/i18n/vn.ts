@@ -111,6 +111,9 @@ export const vn = {
   // Settings
   settingsTitle: 'Bật/tắt cột',
   settingsReset: 'Hiện lại tất cả',
+  settingsSync: 'Sao lưu / đồng bộ',
+  settingsExport: 'Xuất JSON',
+  settingsImport: 'Nhập JSON',
   settingsGroup: {
     cart: 'Bảng giỏ hàng',
     card: 'Bảng linh kiện trong mạch',

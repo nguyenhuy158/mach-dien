@@ -118,7 +118,9 @@ export const en = {
 
   // Floating calc
   floatTitle: '⚡ Ohm: V = I·R',
-  floatHint: 'V (V)', floatHint2: 'I (A)', floatHint3: 'R (Ω)',
+  settingsSync: 'Backup / sync',
+  settingsExport: 'Export JSON',
+  settingsImport: 'Import JSON',
 
   // Language toggle
   langTitle: 'Language',

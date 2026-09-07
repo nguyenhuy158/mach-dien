@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useI18n, Bilingual } from '../i18n'
+import { exportAll, importAll, downloadJSON, pickJSON } from '../sync'
 
 const COLS = [
   { key: 'cart', cols: [
@@ -45,7 +46,8 @@ function applyColCss(disabled: string[]) {
 
 export function SettingsMenu({ onClose }: { onClose: () => void }) {
   const [cols, setCols] = useState<Record<string, boolean>>(loadCols())
-  const { T, tvn, mode } = useI18n()
+  const [importMsg, setImportMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const { T, tvn } = useI18n()
 
   useEffect(() => {
     const all = COLS.flatMap(g => g.cols.map(c => c[0]))
@@ -64,6 +66,16 @@ export function SettingsMenu({ onClose }: { onClose: () => void }) {
   const reset = () => {
     setCols({})
     saveCols({})
+  }
+
+  const handleImport = async () => {
+    const f = await pickJSON()
+    if (!f) return
+    const r = importAll(f)
+    setImportMsg({ ok: r.ok, text: r.message })
+    if (r.ok) {
+      setTimeout(() => window.location.reload(), 1500)
+    }
   }
 
   return (
@@ -97,9 +109,35 @@ export function SettingsMenu({ onClose }: { onClose: () => void }) {
             </div>
           </div>
         ))}
+
         <button onClick={reset} className="w-full text-sm py-1.5 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition">
           <Bilingual en={T.settingsReset} vn={tvn.settingsReset} />
         </button>
+
+        <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-2">
+            <Bilingual en={T.settingsSync} vn={tvn.settingsSync} />
+          </h4>
+          <div className="flex gap-2">
+            <button
+              onClick={() => downloadJSON(`machdien-backup-${Date.now()}.json`, exportAll())}
+              className="flex-1 text-sm py-1.5 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition"
+            >
+              <Bilingual en={T.settingsExport} vn={tvn.settingsExport} />
+            </button>
+            <button
+              onClick={handleImport}
+              className="flex-1 text-sm py-1.5 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition"
+            >
+              <Bilingual en={T.settingsImport} vn={tvn.settingsImport} />
+            </button>
+          </div>
+          {importMsg && (
+            <div className={`mt-2 text-xs ${importMsg.ok ? 'text-[var(--color-ok)]' : 'text-[var(--color-na)]'}`}>
+              {importMsg.text}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
