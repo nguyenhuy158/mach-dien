@@ -1,6 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { QrCode, X } from 'lucide-react'
 import jsQR from 'jsqr'
+
+// Dev-time guard: if jsQR was tree-shaken or removed, iOS users get
+// silent failure because BarcodeDetector is undefined on iOS Safari.
+// This block runs once at module load. The whole jsQR library is
+// ~50KB; keeping the import here is the cost of iPhone support.
+if (typeof jsQR !== 'function' && import.meta.env.DEV) {
+  console.warn('[QrScanner] jsQR missing — iOS Safari scan will be broken')
+}
 import { useI18n, Bilingual } from '../i18n'
 import { haptic } from '../utils/ux'
 
@@ -9,10 +17,12 @@ interface Props {
   className?: string
 }
 
-// Camera + QR/barcode scan. Tries native BarcodeDetector first
-// (Chrome 83+, Edge, Android WebView). Falls back to jsQR
-// (works everywhere including iOS Safari 16.4+ and Firefox).
-// File picker is the third path for desktop.
+// Camera + QR/barcode scan.
+// Path 1: native BarcodeDetector (Chrome 83+, Edge, Android WebView).
+// Path 2: jsQR — the ONLY path that works on iOS Safari, which does not
+//          implement BarcodeDetector as of 2026. Feature-detect
+//          (`if (Native)` is false on iOS Safari) makes jsQR the fallback.
+//          Do not remove jsQR. Path 3: file picker (desktop / no camera).
 export function QrScannerButton({ onScan, className = '' }: Props) {
   const { mode, T, tvn } = useI18n()
   const [open, setOpen] = useState(false)
