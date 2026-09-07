@@ -40,7 +40,7 @@ export const en = {
   noSource: 'buy elsewhere',
   discount: 'Discount',
   formula: 'Formula',
-  applications: 'Applications',
+  share: 'Share link',
   notes: 'Notes',
   bookmarked: 'OWNED',
   cart: {

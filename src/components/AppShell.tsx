@@ -39,6 +39,15 @@ export function AppShell() {
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
+  // Deep link from URL hash on first mount
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (id) {
+      setTimeout(() => jumpTo(id), 200)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const jumpTo = (id: string) => {
     if (id.startsWith('cmp-') || id.startsWith('fml-')) setTab('h')
     else setTab('m')

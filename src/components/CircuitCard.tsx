@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { SIM, SHOP, isNaPart, nrm } from '../data/circuits'
 import type { Circuit } from '../data/circuits'
 import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
+import { Share2, Check } from 'lucide-react'
+import { useI18n, tStr } from '../i18n'
 
 interface Props {
   c: Circuit
@@ -27,7 +30,8 @@ export function CircuitCard({ c, flash }: Props) {
         <span className="num font-mono text-sm font-bold text-[var(--color-muted)]">
           {c.l}.{c.n}
         </span>
-        <h3 className="text-lg font-bold tracking-tight">{c.name}</h3>
+        <h3 className="text-lg font-bold tracking-tight flex-1">{c.name}</h3>
+        <ShareButton id={`m-${c.l}-${c.n}`} name={c.name} />
       </div>
       <div className="goal text-sm text-[var(--color-muted)] mb-3">{c.goal}</div>
 
@@ -87,5 +91,34 @@ export function CircuitCard({ c, flash }: Props) {
         </div>
       )}
     </article>
+  )
+}
+
+function ShareButton({ id, name }: { id: string; name: string }) {
+  const [done, setDone] = useState(false)
+  const { T, tvn, mode } = useI18n()
+  const label = tStr(T.share, tvn.share, mode)
+  const onClick = async () => {
+    const url = window.location.origin + window.location.pathname + '#' + id
+    if (navigator.share) {
+      try { await navigator.share({ title: name, url }); return } catch { /* fallthrough */ }
+    }
+    try {
+      await navigator.clipboard.writeText(url)
+      setDone(true)
+      setTimeout(() => setDone(false), 1500)
+    } catch {
+      // Final fallback: prompt
+      window.prompt(label, url)
+    }
+  }
+  return (
+    <button
+      onClick={onClick}
+      title={label}
+      className="size-7 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-acc)] print:hidden"
+    >
+      {done ? <Check className="size-3.5" /> : <Share2 className="size-3.5" />}
+    </button>
   )
 }

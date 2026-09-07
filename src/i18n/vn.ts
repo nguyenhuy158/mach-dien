@@ -39,6 +39,7 @@ export const vn = {
   image: 'Ảnh',
   noSource: 'mua chỗ khác',
   discount: 'Giảm giá',
+  share: 'Sao chép liên kết',
   formula: 'Công thức',
   applications: 'Ứng dụng',
   notes: 'Ghi chú',
