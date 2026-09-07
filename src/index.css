@@ -70,7 +70,7 @@ h1, h2, h3 { font-family: var(--font-display); }
 .own { opacity: .5; }
 .owntag { font-size: 10px; color: var(--color-ok); margin-left: .5rem; }
 
-.thumb { width: 40px; height: 40px; border-radius: .5rem; background: white; ring: 1px solid rgb(0 0 0 / .05); object-fit: contain; }
+.thumb { width: 40px; height: 40px; border-radius: .5rem; background: var(--color-card); object-fit: contain; border: 1px solid var(--color-border); }
 .ph { width: 40px; height: 40px; border-radius: .5rem; background: var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-muted); }
 
 .fm, .warn, .proj { border-radius: .75rem; }

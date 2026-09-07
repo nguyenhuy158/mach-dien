@@ -9,7 +9,8 @@ import { GlobalSearch } from './GlobalSearch'
 import { SettingsMenu } from './SettingsMenu'
 import { Cart } from './Cart'
 import { LearnShell } from './learn/LearnShell'
-
+import { BackToTop } from './BackToTop'
+import { haptic } from '../utils/ux'
 type Filter = 'all' | '1' | '2' | '3' | 'na'
 
 export function AppShell() {
@@ -96,6 +97,7 @@ export function AppShell() {
       <Footer />
 
       <FloatingCalculator />
+      <BackToTop />
 
       {searchOpen && <GlobalSearch onClose={() => setSearchOpen(false)} onJump={jumpTo} />}
       {settingsOpen && <SettingsMenu onClose={() => setSettingsOpen(false)} />}

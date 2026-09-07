@@ -1,4 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
+import { Mic } from 'lucide-react'
+import { VoiceSearchButton } from './VoiceSearchButton'
+import { haptic } from '../utils/ux'
 import { CIRCUITS, SHOP, SIM, IMG, EXTRA, nrm } from '../data/circuits'
 import { COMPONENTS, FORMULAS, GLOSSARY } from '../data/learn'
 import { useI18n, tStr, pickLang } from '../i18n'
@@ -124,16 +127,19 @@ export function GlobalSearch({ onClose, onJump }: Props) {
         className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl shadow-2xl w-full max-w-2xl mx-4 overflow-hidden fade-in"
         onClick={e => e.stopPropagation()}
       >
-        <input
-          ref={inputRef}
-          id="gsq"
-          value={q}
-          onChange={e => setQ(e.target.value)}
-          onKeyDown={onKey}
-          placeholder={tStr(T.searchPlaceholder, tvn.searchPlaceholder, mode)}
-          autoComplete="off"
-          className="w-full px-5 py-4 text-lg border-b border-[var(--color-border)] bg-transparent focus:outline-none"
-        />
+        <div className="flex items-center border-b border-[var(--color-border)]">
+          <input
+            ref={inputRef}
+            id="gsq"
+            value={q}
+            onChange={e => { haptic(5); setQ(e.target.value) }}
+            onKeyDown={onKey}
+            placeholder={tStr(T.searchPlaceholder, tvn.searchPlaceholder, mode)}
+            autoComplete="off"
+            className="flex-1 px-5 py-4 text-lg bg-transparent focus:outline-none"
+          />
+          <div className="pr-2"><VoiceSearchButton onResult={t => setQ(t)} /></div>
+        </div>
         <div id="gsres" className="max-h-[60vh] overflow-y-auto">
           {!q && <div className="empty p-6 text-center text-[var(--color-muted)]">{tStr(T.searchEmptyHint, tvn.searchEmptyHint, mode)}</div>}
           {q && !hits.length && <div className="empty p-6 text-center text-[var(--color-muted)]">{tStr(T.searchNoResults, tvn.searchNoResults, mode)}</div>}
@@ -148,7 +154,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
                   onMouseEnter={() => setSel(i)}
                 >
                   {x.img ? (
-                    <img loading="lazy" src={x.img} alt="" className="size-8 rounded bg-white object-contain ring-1 ring-black/5" />
+                    <img loading="lazy" src={x.img} alt="" className="size-8 rounded bg-[var(--color-card)] object-contain ring-1 ring-[var(--color-border)]" />
                   ) : (
                     <div className="size-8 rounded bg-[var(--color-border)] flex items-center justify-center text-base">{x.ic}</div>
                   )}

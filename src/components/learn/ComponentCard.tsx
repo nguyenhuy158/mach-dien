@@ -14,7 +14,7 @@ export function ComponentCard({ c, bookmarked, onToggleBookmark }: Props) {
       className="card p-5 bg-[var(--color-card)] border border-[var(--color-border)]"
     >
       <header className="flex items-start gap-3 mb-3">
-        <div className="size-16 rounded-lg bg-white ring-1 ring-black/5 dark:ring-white/10 flex items-center justify-center shrink-0">
+        <div className="size-16 rounded-lg bg-[var(--color-card)] ring-1 ring-[var(--color-border)] flex items-center justify-center shrink-0">
           <SchematicGlyph kind={c.schematic} />
         </div>
         <div className="flex-1 min-w-0">
