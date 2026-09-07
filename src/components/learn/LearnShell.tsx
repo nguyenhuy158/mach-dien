@@ -5,6 +5,9 @@ import { ComponentCard } from './ComponentCard'
 import { FormulaCard } from './FormulaCard'
 import { GlossaryList } from './GlossaryList'
 import { Roadmap } from './Roadmap'
+import { ComparisonTool } from './ComparisonTool'
+import { MyBuilds } from './MyBuilds'
+import { QuizMode } from './QuizMode'
 import { ResistorColorCode } from './tools/ResistorColorCode'
 import { SmdLookup } from './tools/SmdLookup'
 import { CheatSheet } from './CheatSheet'
@@ -106,6 +109,9 @@ export function LearnShell() {
     <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6 mt-6">
       <aside className="space-y-4">
         <Roadmap bookmarked={bookmarks} />
+        <QuizMode />
+        <ComparisonTool />
+        <MyBuilds />
 
         <nav className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden">
           <button
