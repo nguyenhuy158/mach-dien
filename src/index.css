@@ -105,19 +105,37 @@ pre { border-radius: .75rem; padding: .75rem; overflow-x: auto; background: #0f1
 }
 .lg { border-radius: .75rem; padding: .75rem; background: color-mix(in srgb, var(--color-acc) 6%, transparent); border: 1px solid color-mix(in srgb, var(--color-acc) 20%, transparent); margin: 0 1.5rem 1.5rem; }
 
-mark { background: color-mix(in srgb, var(--color-acc) 35%, transparent); color: inherit; border-radius: 2px; padding: 0 2px; }
-
-.flash { animation: flash 1.8s ease-out; }
-@keyframes flash {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-acc) 50%, transparent); }
-  100% { box-shadow: 0 0 0 0 transparent; }
+/* Mobile-first responsive */
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+  h1 { font-size: 1.25rem !important; }
+  .sub { display: none; }
+  .lg { margin: 0 0.75rem 1rem; padding: 0.5rem 0.75rem; font-size: 12px; }
+  .ctl { padding: 0 0.75rem !important; flex-direction: column; align-items: stretch !important; }
+  .ctl input { min-width: 0 !important; }
+  main { padding: 0 0.75rem 6rem !important; }
+  nav.tabs { gap: 0.25rem !important; }
+  nav.tabs button { padding: 0.375rem 0.75rem !important; font-size: 0.8125rem !important; }
+  nav.tabs button kbd { display: none; }
+  .card { padding: 0.875rem !important; }
+  .card h3 { font-size: 1rem !important; }
+  table { font-size: 12px !important; }
+  table th, table td { padding: 0.375rem 0.25rem !important; }
+  .p-name, .p-im, .p-qty, .p-blk, .p-caka, .k-name, .k-im, .k-qty, .k-price, .k-line, .k-src, .k-use, .k-no, .k-own { padding: 0.375rem 0.25rem !important; }
+  .thumb, .ph { width: 32px !important; height: 32px !important; }
+  .lvlhead { font-size: 0.875rem !important; }
+  .lvlhead h2 { font-size: 1.125rem !important; }
+  .bilingual-vn { display: block; font-size: 0.8em; color: var(--color-muted); }
+  /* Hide column on small screens (will appear in settings menu) */
+  .k-src, .p-caka { display: none; }
+  /* Floating calculator smaller on mobile */
+  .floating-calc { bottom: 4rem !important; right: 0.5rem !important; }
 }
 
-.hide { display: none !important; }
-
-.tab-active { background: var(--color-acc) !important; color: var(--color-bg) !important; }
-
-.fade-in { animation: fadeIn .2s ease-out; }
+/* On larger screens allow the second source column back */
+@media (min-width: 768px) {
+  .k-src, .p-caka { display: table-cell; }
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
