@@ -119,7 +119,7 @@ function Header({
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-2xl font-extrabold tracking-tight flex items-center gap-2">
+            <h1 className="text-2xl font-extrabold tracking-tight leading-tight">
               <span className="text-[var(--color-acc)]">⚡</span>{' '}
               <Bilingual en={T.siteTitle} vn={tvn.siteTitle} />
             </h1>
