@@ -20,11 +20,13 @@
   "packageManager": "pnpm@12.3.4",
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "jspdf": "^4.2.1",
     "jsqr": "^1.4.0",
     "lucide-react": "^1.41.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

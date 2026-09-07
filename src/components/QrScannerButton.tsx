@@ -9,19 +9,24 @@ interface Props {
   className?: string
 }
 
-// Camera + QR scan. Uses getUserMedia (mobile Safari OK with permission)
-// + jsQR for offline decode. Falls back to file upload on desktop.
+// Camera + QR/barcode scan. Tries native BarcodeDetector first
+// (Chrome 83+, Edge, Android WebView). Falls back to jsQR
+// (works everywhere including iOS Safari 16.4+ and Firefox).
+// File picker is the third path for desktop.
 export function QrScannerButton({ onScan, className = '' }: Props) {
   const { mode, T, tvn } = useI18n()
   const [open, setOpen] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [usingNative, setUsingNative] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const nativeDetectorRef = useRef<any>(null)
 
   useEffect(() => {
     if (!open) return
     let raf = 0
+    let stopped = false
     const start = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -32,10 +37,35 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
           videoRef.current.srcObject = stream
           await videoRef.current.play()
         }
+        // Try native BarcodeDetector first
+        const Native = (window as any).BarcodeDetector
+        if (Native) {
+          try {
+            const detector = new Native({ formats: ['qr_code', 'ean_13', 'code_128', 'upc_a'] })
+            nativeDetectorRef.current = detector
+            setUsingNative(true)
+            const tick = async () => {
+              if (stopped || !videoRef.current) return
+              try {
+                const codes = await detector.detect(videoRef.current)
+                if (codes && codes[0]?.rawValue) {
+                  haptic(30)
+                  onScan(codes[0].rawValue)
+                  cleanup()
+                  return
+                }
+              } catch { /* frame error, try next */ }
+              raf = requestAnimationFrame(tick)
+            }
+            raf = requestAnimationFrame(tick)
+            return
+          } catch { /* fall through to jsQR */ }
+        }
+        // Fallback: jsQR
         const tick = () => {
+          if (stopped) return
           const v = videoRef.current
-          if (!v || !streamRef.current) return
-          if (v.readyState === v.HAVE_ENOUGH_DATA) {
+          if (v && v.readyState === v.HAVE_ENOUGH_DATA) {
             const c = document.createElement('canvas')
             c.width = v.videoWidth
             c.height = v.videoHeight
@@ -62,6 +92,7 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
     start()
     return cleanup
     function cleanup() {
+      stopped = true
       cancelAnimationFrame(raf)
       streamRef.current?.getTracks().forEach(t => t.stop())
       streamRef.current = null
@@ -69,25 +100,31 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
     }
   }, [open, onScan])
 
-  const handleFile = (file: File) => {
+  const handleFile = async (file: File) => {
+    const Native = (window as any).BarcodeDetector
     const reader = new FileReader()
-    reader.onload = () => {
+    reader.onload = async () => {
       const img = new Image()
-      img.onload = () => {
+      img.onload = async () => {
         const c = document.createElement('canvas')
         c.width = img.width
         c.height = img.height
         const ctx = c.getContext('2d')
         if (!ctx) return
         ctx.drawImage(img, 0, 0)
+        // Try native first
+        if (Native) {
+          try {
+            const detector = new Native({ formats: ['qr_code', 'ean_13', 'code_128', 'upc_a'] })
+            const codes = await detector.detect(c)
+            if (codes?.[0]?.rawValue) { haptic(30); onScan(codes[0].rawValue); return }
+          } catch { /* fall through */ }
+        }
+        // Fallback jsQR
         const data = ctx.getImageData(0, 0, c.width, c.height)
         const code = jsQR(data.data, c.width, c.height)
-        if (code?.data) {
-          haptic(30)
-          onScan(code.data)
-        } else {
-          setError('No QR detected in image')
-        }
+        if (code?.data) { haptic(30); onScan(code.data) }
+        else { setError('No barcode detected in image') }
       }
       img.src = String(reader.result)
     }
@@ -99,7 +136,7 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
       <button
         onClick={() => { haptic(8); setOpen(true); setError(null) }}
         className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium border border-[var(--color-border)] hover:border-[var(--color-acc)] transition ${className}`}
-        title="Scan QR"
+        title="Scan QR / barcode"
       >
         <QrCode className="size-3.5" /> <Bilingual en="QR" vn="QR" />
       </button>
@@ -107,8 +144,11 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={() => setOpen(false)}>
           <div className="bg-[var(--color-card)] rounded-2xl p-4 max-w-md w-full" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold flex items-center gap-2"><QrCode className="size-4" /> <Bilingual en="Scan QR" vn="Quét QR" /></h3>
-              <button onClick={() => setOpen(false)} className="size-7 rounded-full hover:bg-[var(--color-border)] flex items-center justify-center">
+              <h3 className="font-semibold flex items-center gap-2">
+                <QrCode className="size-4" /> <Bilingual en="Scan QR / barcode" vn="Quét QR / barcode" />
+                {usingNative && <span className="text-[10px] text-[var(--color-ok)]">native</span>}
+              </h3>
+              <button onClick={() => setOpen(false)} className="size-7 rounded-full hover:bg-[var(--color-border)] flex items-center justify-center" aria-label="Close">
                 <X className="size-4" />
               </button>
             </div>
@@ -133,7 +173,7 @@ export function QrScannerButton({ onScan, className = '' }: Props) {
               />
             </div>
             <p className="text-xs text-[var(--color-muted)] mt-2 text-center">
-              <Bilingual en="Point camera at a QR code" vn="Hướng camera vào QR code" />
+              <Bilingual en="Point camera at a QR / barcode" vn="Hướng camera vào QR / barcode" />
             </p>
           </div>
         </div>

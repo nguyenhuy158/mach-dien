@@ -1,11 +1,72 @@
+
+function downloadPDF() {
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+  const W = 210, M = 12
+  let y = M
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(16)
+  doc.text('MACH DIEN TU CO BAN - Basic Electronics Cheat Sheet', M, y); y += 8
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9)
+  doc.text('23 circuits, 29 components, 19 formulas, 50 glossary terms', M, y); y += 6
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11)
+  doc.text('Color code (4-band)', M, y); y += 4
+  doc.setFontSize(8)
+  for (const c of COLOR_BANDS) {
+    const rgb = hex2rgb(c.hex)
+    doc.setFillColor(rgb[0], rgb[1], rgb[2])
+    doc.rect(M, y - 3, 4, 4, 'F')
+    doc.text(c.color + '  digit=' + c.digit + '  x' + c.mult, M + 6, y)
+    y += 4
+    if (y > 280) { doc.addPage(); y = M }
+  }
+  y += 2
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11)
+  doc.text('Formulas', M, y); y += 5
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal')
+  for (const f of FORMULAS) {
+    const lines = doc.splitTextToSize(f.name + ':  ' + f.expression, W - 2 * M)
+    doc.text(lines, M, y)
+    y += lines.length * 3.5 + 1
+    if (y > 280) { doc.addPage(); y = M }
+  }
+  y += 2
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11)
+  doc.text('Glossary', M, y); y += 5
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal')
+  for (const g of GLOSSARY) {
+    const head = g.term + '  (' + g.category + '): '
+    const text = head + g.definition
+    const lines = doc.splitTextToSize(text, W - 2 * M)
+    doc.text(lines, M, y)
+    y += lines.length * 3.5 + 1
+    if (y > 280) { doc.addPage(); y = M }
+  }
+
+  doc.save('mach-dien-cheatsheet.pdf')
+}
+
+function hex2rgb(hex: string): [number, number, number] {
+  const h = hex.replace('#', '')
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]
+}
+
 import { COMPONENTS, FORMULAS, GLOSSARY, COLOR_BANDS, TOLERANCE_BANDS } from '../../data/learn'
-import { Printer } from 'lucide-react'
+import { Printer, FileDown } from 'lucide-react'
 import { useI18n, Bilingual } from '../../i18n'
+import { jsPDF } from 'jspdf'
 
 export function CheatSheet() {
   return (
     <div>
       <div className="mb-3 flex justify-end print:hidden">
+        <button
+          onClick={() => downloadPDF()}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] hover:border-[var(--color-acc)] transition"
+        >
+          <FileDown className="size-3.5" /> <Bilingual en="Download PDF" vn="Tải PDF" />
+        </button>
         <button
           onClick={() => window.print()}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] hover:border-[var(--color-acc)] transition"
