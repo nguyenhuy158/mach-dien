@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { CIRCUITS, SHOP, SIM, IMG, EXTRA, nrm } from '../data/circuits'
 import { COMPONENTS, FORMULAS, GLOSSARY } from '../data/learn'
+import { useI18n, tStr, pickLang } from '../i18n'
 
 interface Hit {
   g: string
@@ -21,18 +22,20 @@ export function GlobalSearch({ onClose, onJump }: Props) {
   const [q, setQ] = useState('')
   const [sel, setSel] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { mode, T, tvn } = useI18n()
 
   useEffect(() => {
     inputRef.current?.select()
     inputRef.current?.focus()
   }, [])
 
+  const g = pickLang(mode, T, tvn).searchGroup
+
   const idx = useMemo(() => {
     const out: Hit[] = []
     const seen = new Set<string>()
     CIRCUITS.forEach(c => out.push({
-      g: 'Mạch',
-      ic: '🔧',
+      g: g.mach, ic: '🔧',
       t: `${c.l}.${c.n} ${c.name}`,
       s: c.goal,
       go: () => onJump(`m-${c.l}-${c.n}`),
@@ -47,8 +50,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       const sh = SHOP[name] || {}
       const src = sh.b || sh.c
       out.push({
-        g: 'Linh kiện',
-        ic: '⚡',
+        g: g.part, ic: '⚡',
         img: src ? IMG[src.u] : undefined,
         t: name,
         s: `${e.spec} · dùng ở ${e.uses.map(c => `${c.l}.${c.n}`).join(', ')}`,
@@ -61,8 +63,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       if (!x || seen.has(x.u)) return
       seen.add(x.u)
       out.push({
-        g: 'Sản phẩm ở shop',
-        ic: '🛒',
+        g: g.product, ic: '🛒',
         img: IMG[x.u],
         t: x.t,
         s: `${k === 'b' ? 'banlinhkien.com' : 'caka.vn'} · cho ${name}`,
@@ -71,40 +72,35 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       })
     }))
     EXTRA.forEach(e => out.push({
-      g: 'Mua thêm (CSV)',
-      ic: '📦',
+      g: g.csv, ic: '📦',
       img: IMG[e[4]],
       t: e[0],
+      s: `banlinhkien.com · ${e[1]} ${e[2]}`,
+      r: e[3].toLocaleString('vi-VN') + 'đ',
       go: () => window.open(e[4], '_blank', 'noopener'),
     }))
     COMPONENTS.forEach(c => out.push({
-      g: 'Linh kiện (Học)',
-      ic: '🔌',
-      t: c.name,
-      s: c.description,
+      g: g.learnCmp, ic: '🔌',
+      t: c.name, s: c.description,
       go: () => onJump('cmp-' + c.id),
     }))
     FORMULAS.forEach(f => out.push({
-      g: 'Công thức (Học)',
-      ic: '📐',
-      t: f.name,
-      s: f.expression,
+      g: g.learnFml, ic: '📐',
+      t: f.name, s: f.expression,
       go: () => onJump('fml-' + f.id),
     }))
-    GLOSSARY.forEach(g => out.push({
-      g: 'Thuật ngữ (Học)',
-      ic: '📖',
-      t: g.term,
-      s: g.definition,
+    GLOSSARY.forEach(gl => out.push({
+      g: g.learnGloss, ic: '📖',
+      t: gl.term, s: gl.definition,
       go: () => onJump('glossary'),
     }))
     return out
-  }, [onJump])
+  }, [onJump, g])
 
   const hits = useMemo(() => {
     const ts = nrm(q).split(/\s+/).filter(Boolean)
     if (!ts.length) return []
-    return idx.filter(x => ts.every(t => nrm(x.t + ' ' + x.s).includes(t))).slice(0, 40)
+    return idx.filter(x => ts.every(t => nrm((x.t || '') + ' ' + (x.s || '')).includes(t))).slice(0, 40)
   }, [q, idx])
 
   useEffect(() => setSel(0), [q])
@@ -134,13 +130,13 @@ export function GlobalSearch({ onClose, onJump }: Props) {
           value={q}
           onChange={e => setQ(e.target.value)}
           onKeyDown={onKey}
-          placeholder="Tìm mạch, linh kiện, sản phẩm, giá…"
+          placeholder={tStr(T.searchPlaceholder, tvn.searchPlaceholder, mode)}
           autoComplete="off"
           className="w-full px-5 py-4 text-lg border-b border-[var(--color-border)] bg-transparent focus:outline-none"
         />
         <div id="gsres" className="max-h-[60vh] overflow-y-auto">
-          {!q && <div className="empty p-6 text-center text-[var(--color-muted)]">Gõ để tìm: tên mạch, linh kiện, mã IC, tên sản phẩm…</div>}
-          {q && !hits.length && <div className="empty p-6 text-center text-[var(--color-muted)]">Không thấy gì khớp 🤷</div>}
+          {!q && <div className="empty p-6 text-center text-[var(--color-muted)]">{tStr(T.searchEmptyHint, tvn.searchEmptyHint, mode)}</div>}
+          {q && !hits.length && <div className="empty p-6 text-center text-[var(--color-muted)]">{tStr(T.searchNoResults, tvn.searchNoResults, mode)}</div>}
           {hits.map((x, i) => {
             const head = x.g !== lastGroup ? (lastGroup = x.g, <div className="gh px-5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)]">{x.g}</div>) : null
             return (
@@ -157,6 +153,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
                     <div className="size-8 rounded bg-[var(--color-border)] flex items-center justify-center text-base">{x.ic}</div>
                   )}
                   <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm truncate" dangerouslySetInnerHTML={{ __html: hl(x.t, q) }} />
                     <div className="text-xs text-[var(--color-muted)] truncate" dangerouslySetInnerHTML={{ __html: hl(x.s || '', q) }} />
                   </div>
                   {x.r && <em className="text-xs font-mono text-[var(--color-muted)] whitespace-nowrap">{x.r}</em>}
@@ -166,9 +163,7 @@ export function GlobalSearch({ onClose, onJump }: Props) {
           })}
         </div>
         <div id="gsfoot" className="flex justify-end gap-4 px-5 py-2 border-t border-[var(--color-border)] text-xs text-[var(--color-muted)]">
-          <span>↑↓ chọn</span>
-          <span>↵ mở</span>
-          <span>Esc đóng</span>
+          <span>{tStr(T.searchFooter, tvn.searchFooter, mode)}</span>
         </div>
       </div>
     </div>

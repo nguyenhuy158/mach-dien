@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react'
+import { useI18n, Bilingual } from '../i18n'
 
 const COLS = [
-  { label: 'Bảng giỏ hàng', cols: [
-    ['k-own', 'Đã có'], ['k-no', '#'], ['k-im', 'Ảnh'], ['k-name', 'Linh kiện'],
-    ['k-use', 'Dùng cho mạch'], ['k-qty', 'SL'], ['k-price', 'Đơn giá'], ['k-line', 'Thành tiền'], ['k-src', 'Nguồn'],
+  { key: 'cart', cols: [
+    ['k-own', 'Đã có', 'Owned'],
+    ['k-no', '#', '#'],
+    ['k-im', 'Ảnh', 'Img'],
+    ['k-name', 'Linh kiện', 'Component'],
+    ['k-use', 'Dùng cho mạch', 'Used in'],
+    ['k-qty', 'SL', 'Qty'],
+    ['k-price', 'Đơn giá', 'Unit'],
+    ['k-line', 'Thành tiền', 'Line'],
+    ['k-src', 'Nguồn', 'Source'],
   ]},
-  { label: 'Bảng linh kiện trong mạch', cols: [
-    ['p-im', 'Ảnh'], ['p-name', 'Linh kiện'], ['p-spec', 'Thông số'],
-    ['p-qty', 'SL'], ['p-blk', 'Giá banlinhkien'], ['p-caka', 'Giá caka.vn'],
+  { key: 'card', cols: [
+    ['p-im', 'Ảnh', 'Img'],
+    ['p-name', 'Linh kiện', 'Component'],
+    ['p-spec', 'Thông số', 'Spec'],
+    ['p-qty', 'SL', 'Qty'],
+    ['p-blk', 'Giá banlinhkien', 'banlinhkien price'],
+    ['p-caka', 'Giá caka.vn', 'caka.vn price'],
   ]},
 ]
 
@@ -33,6 +45,7 @@ function applyColCss(disabled: string[]) {
 
 export function SettingsMenu({ onClose }: { onClose: () => void }) {
   const [cols, setCols] = useState<Record<string, boolean>>(loadCols())
+  const { T, tvn, mode } = useI18n()
 
   useEffect(() => {
     const all = COLS.flatMap(g => g.cols.map(c => c[0]))
@@ -41,9 +54,9 @@ export function SettingsMenu({ onClose }: { onClose: () => void }) {
   }, [cols])
 
   const toggle = (k: string, v: boolean) => {
-    const next = { ...cols, [k]: v }
-    if (!v) next[k] = false
-    else delete next[k]
+    const next = { ...cols }
+    if (v) delete next[k]
+    else next[k] = false
     setCols(next)
     saveCols(next)
   }
@@ -60,10 +73,15 @@ export function SettingsMenu({ onClose }: { onClose: () => void }) {
         onClick={e => e.stopPropagation()}
       >
         {COLS.map(g => (
-          <div key={g.label} className="mb-4 last:mb-0">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-2">{g.label}</h4>
+          <div key={g.key} className="mb-4 last:mb-0">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-2">
+              <Bilingual
+                en={T.settingsGroup[g.key as 'cart' | 'card']}
+                vn={tvn.settingsGroup[g.key as 'cart' | 'card']}
+              />
+            </h4>
             <div className="space-y-1.5">
-              {g.cols.map(([k, label]) => (
+              {g.cols.map(([k, vnLabel, enLabel]) => (
                 <label key={k} className="flex items-center gap-2 text-sm cursor-pointer">
                   <input
                     type="checkbox"
@@ -71,14 +89,16 @@ export function SettingsMenu({ onClose }: { onClose: () => void }) {
                     onChange={e => toggle(k, e.target.checked)}
                     className="rounded"
                   />
-                  <span>{label}</span>
+                  <span>
+                    <Bilingual en={enLabel} vn={vnLabel} />
+                  </span>
                 </label>
               ))}
             </div>
           </div>
         ))}
         <button onClick={reset} className="w-full text-sm py-1.5 rounded-full border border-[var(--color-border)] hover:border-[var(--color-acc)] transition">
-          Hiện lại tất cả
+          <Bilingual en={T.settingsReset} vn={tvn.settingsReset} />
         </button>
       </div>
     </div>

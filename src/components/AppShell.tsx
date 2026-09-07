@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap } from 'lucide-react'
+import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap, Languages } from 'lucide-react'
 import { LEVELS, CIRCUITS, isNaPart } from '../data/circuits'
 import { CircuitCard } from './CircuitCard'
 import { GlobalSearch } from './GlobalSearch'
@@ -7,6 +7,7 @@ import { SettingsMenu } from './SettingsMenu'
 import { Cart } from './Cart'
 import { LearnShell } from './learn/LearnShell'
 import { FloatingCalculator } from './learn/tools/FloatingCalculator'
+import { useI18n, Bilingual, tStr } from '../i18n'
 
 type Filter = 'all' | '1' | '2' | '3' | 'na'
 
@@ -17,6 +18,7 @@ export function AppShell() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [flashId, setFlashId] = useState<string | null>(null)
+  const { mode, T, tvn } = useI18n()
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -37,7 +39,6 @@ export function AppShell() {
   }, [])
 
   const jumpTo = (id: string) => {
-    // Route to right tab based on id prefix
     if (id.startsWith('cmp-') || id.startsWith('fml-')) setTab('h')
     else setTab('m')
     setFilter('all')
@@ -71,7 +72,7 @@ export function AppShell() {
       />
 
       <div className="lg">
-        <i /> Dòng tô đỏ = <b>không tìm thấy</b> ở cả banlinhkien.com và caka.vn (phải mua chỗ khác: Hshop, Nshop, Icdayroi, Shopee…). Giá lấy trực tiếp từ trang bán, bấm vào giá để mở sản phẩm. Rê chuột lên giá để xem đúng tên sản phẩm.
+        <i /> {tStr(T.infoNa, tvn.infoNa, mode)}
       </div>
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-6 pb-12">
@@ -101,16 +102,19 @@ function Header({
   onSettings: () => void
 }) {
   const isMac = typeof navigator !== 'undefined' && /Mac/.test(navigator.platform)
+  const { mode, setMode, T, tvn } = useI18n()
+
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_srgb,var(--color-bg)_85%,transparent)] border-b border-[var(--color-border)]">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-2xl font-extrabold tracking-tight flex items-center gap-2">
-              <span className="text-[var(--color-acc)]">⚡</span> Mạch điện tử cơ bản
+              <span className="text-[var(--color-acc)]">⚡</span>{' '}
+              <Bilingual en={T.siteTitle} vn={tvn.siteTitle} />
             </h1>
             <div className="sub text-xs text-[var(--color-muted)] mt-0.5">
-              23 mạch chia 3 level — kèm danh sách linh kiện đầy đủ
+              <Bilingual en={T.siteSubtitle} vn={tvn.siteSubtitle} />
             </div>
           </div>
           <nav className="tabs flex items-center gap-2 flex-wrap">
@@ -119,35 +123,38 @@ function Header({
               onClick={() => onTab('m')}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${tab === 'm' ? 'tab-active' : ''}`}
             >
-              <LayoutGrid className="size-3.5" /> Mạch điện
+              <LayoutGrid className="size-3.5" /> <Bilingual en={T.tabMach} vn={tvn.tabMach} />
             </button>
             <button
               data-t="h"
               onClick={() => onTab('h')}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${tab === 'h' ? 'tab-active' : ''}`}
             >
-              <GraduationCap className="size-3.5" /> Học
+              <GraduationCap className="size-3.5" /> <Bilingual en={T.tabHoc} vn={tvn.tabHoc} />
             </button>
             <button
               data-t="g"
               onClick={() => onTab('g')}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${tab === 'g' ? 'tab-active' : ''}`}
             >
-              <ShoppingCart className="size-3.5" /> Giỏ hàng
+              <ShoppingCart className="size-3.5" /> <Bilingual en={T.tabGio} vn={tvn.tabGio} />
             </button>
             <button
               id="gsbtn"
               onClick={onSearch}
-              title="Tìm mọi thứ (⌘K)"
+              title={tStr(T.search, tvn.search, mode)}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)]"
             >
-              <Search className="size-3.5" /> Tìm mọi thứ <kbd className="text-[10px] opacity-70">{isMac ? '⌘K' : 'Ctrl K'}</kbd>
+              <Search className="size-3.5" /> <Bilingual en={T.search} vn={tvn.search} /> <kbd className="text-[10px] opacity-70">{isMac ? '⌘K' : 'Ctrl K'}</kbd>
             </button>
+            <span className="relative">
+              <LanguageToggle />
+            </span>
             <span className="relative">
               <button
                 id="setbtn"
                 onClick={onSettings}
-                title="Bật/tắt cột"
+                title={tStr(T.settingsTitle, tvn.settingsTitle, mode)}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)]"
               >
                 <Settings2 className="size-3.5" />
@@ -160,6 +167,25 @@ function Header({
   )
 }
 
+function LanguageToggle() {
+  const { mode, setMode, T, tvn } = useI18n()
+  const next = () => {
+    const order = ['bilingual', 'en', 'vn'] as const
+    const i = order.indexOf(mode)
+    setMode(order[(i + 1) % order.length])
+  }
+  const label = mode === 'bilingual' ? 'EN/VN' : mode === 'en' ? 'EN' : 'VN'
+  return (
+    <button
+      onClick={next}
+      title={tStr(T.langTitle, tvn.langTitle, mode)}
+      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold border border-[var(--color-border)] hover:border-[var(--color-acc)] transition min-w-[3.5rem] justify-center"
+    >
+      <Languages className="size-3.5" /> {label}
+    </button>
+  )
+}
+
 function FilterBar({
   filter, setFilter, query, setQuery, hidden,
 }: {
@@ -169,6 +195,7 @@ function FilterBar({
   setQuery: (q: string) => void
   hidden?: boolean
 }) {
+  const { mode, T, tvn } = useI18n()
   if (hidden) return null
   return (
     <div className="ctl max-w-6xl mx-auto px-6 pt-4 flex flex-wrap gap-2 items-center">
@@ -180,14 +207,17 @@ function FilterBar({
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] transition hover:border-[var(--color-acc)] ${filter === f ? 'tab-active' : ''}`}
         >
           {f === 'na' && <AlertTriangle className="size-3.5" />}
-          {f === 'all' ? 'Tất cả' : f === 'na' ? 'Thiếu nguồn' : `Level ${f}`}
+          <Bilingual
+            en={f === 'all' ? T.filterAll : f === 'na' ? T.filterNa : T.filterLevel(parseInt(f))}
+            vn={f === 'all' ? tvn.filterAll : f === 'na' ? tvn.filterNa : tvn.filterLevel(parseInt(f))}
+          />
         </button>
       ))}
       <input
         id="q"
         value={query}
         onChange={e => setQuery(e.target.value.toLowerCase())}
-        placeholder="Tìm mạch hoặc linh kiện… (vd: mosfet, 555, relay)"
+        placeholder={tStr(T.searchHintMach, tvn.searchHintMach, mode)}
         className="flex-1 min-w-[200px] rounded-full px-4 py-1.5 text-sm border border-[var(--color-border)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-acc)_35%,transparent)] focus:outline-none bg-transparent"
       />
     </div>
@@ -245,17 +275,16 @@ function isNaCircuit(c: { parts: [string, string, string, string][] }): boolean 
 }
 
 function Footer() {
+  const { T, tvn, mode } = useI18n()
   return (
     <footer className="max-w-6xl mx-auto px-6 py-6 text-xs text-[var(--color-muted)] border-t border-[var(--color-border)] mt-8 space-y-1">
       <p>
-        Giá lấy tự động từ <a className="underline" href="https://banlinhkien.com/" target="_blank">banlinhkien.com</a> và{' '}
-        <a className="underline" href="https://caka.vn/" target="_blank">caka.vn</a> (cập nhật 09/2026) — có thể đổi, kiểm tra lại khi đặt hàng. Ký hiệu ✕ = shop đó không có, — = không phải linh kiện mua lẻ.
+        {tStr(T.footerPrice, tvn.footerPrice, mode)}
       </p>
       <p>
-        Mô phỏng trước khi ráp: <a className="underline" href="https://www.falstad.com/circuit/" target="_blank">Falstad</a> ·{' '}
-        <a className="underline" href="https://wokwi.com" target="_blank">Wokwi</a> (có Arduino/ESP32).
+        {tStr(T.footerSim, tvn.footerSim, mode)}
       </p>
-      <p><b>An toàn:</b> không đụng vào điện 220V khi chưa có người hướng dẫn trực tiếp.</p>
+      <p><b>{mode === 'vn' ? 'An toàn' : 'Safety'}:</b> {mode === 'vn' ? 'không đụng vào điện 220V khi chưa có người hướng dẫn trực tiếp.' : 'do not touch 220V mains without direct supervision.'}</p>
     </footer>
   )
 }

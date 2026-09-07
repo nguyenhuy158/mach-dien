@@ -8,6 +8,7 @@ import { Roadmap } from './Roadmap'
 import { ResistorColorCode } from './tools/ResistorColorCode'
 import { SmdLookup } from './tools/SmdLookup'
 import { CheatSheet } from './CheatSheet'
+import { useI18n, Bilingual } from '../../i18n'
 
 type Section = 'components' | 'formulas' | 'glossary' | 'tools' | 'cheatsheet'
 type Filter = 'all' | string
@@ -113,7 +114,7 @@ export function LearnShell() {
               section === 'components' ? 'bg-[color-mix(in_srgb,var(--color-acc)_15%,transparent)] text-[var(--color-acc)] font-semibold' : 'hover:bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)]'
             }`}
           >
-            <GraduationCap className="size-4" /> Linh kiện <span className="ml-auto text-xs opacity-70">{COMPONENTS.length}</span>
+            <GraduationCap className="size-4" /> <Bilingual en="Components" vn="Linh kiện" /> <span className="ml-auto text-xs opacity-70">{COMPONENTS.length}</span>
           </button>
           <button
             onClick={() => setSection('formulas')}
@@ -121,7 +122,7 @@ export function LearnShell() {
               section === 'formulas' ? 'bg-[color-mix(in_srgb,var(--color-acc)_15%,transparent)] text-[var(--color-acc)] font-semibold' : 'hover:bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)]'
             }`}
           >
-            <Sparkles className="size-4" /> Công thức <span className="ml-auto text-xs opacity-70">{FORMULAS.length}</span>
+            <Sparkles className="size-4" /> <Bilingual en="Formulas" vn="Công thức" /> <span className="ml-auto text-xs opacity-70">{FORMULAS.length}</span>
           </button>
           <button
             onClick={() => setSection('glossary')}
@@ -129,7 +130,7 @@ export function LearnShell() {
               section === 'glossary' ? 'bg-[color-mix(in_srgb,var(--color-acc)_15%,transparent)] text-[var(--color-acc)] font-semibold' : 'hover:bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)]'
             }`}
           >
-            <ChevronRight className="size-4" /> Thuật ngữ <span className="ml-auto text-xs opacity-70">{GLOSSARY.length}</span>
+            <ChevronRight className="size-4" /> <Bilingual en="Glossary" vn="Thuật ngữ" /> <span className="ml-auto text-xs opacity-70">{GLOSSARY.length}</span>
           </button>
           <button
             onClick={() => setSection('tools')}
@@ -137,7 +138,7 @@ export function LearnShell() {
               section === 'tools' ? 'bg-[color-mix(in_srgb,var(--color-acc)_15%,transparent)] text-[var(--color-acc)] font-semibold' : 'hover:bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)]'
             }`}
           >
-            🛠️ Tra cứu nhanh
+            🛠️ <Bilingual en="Quick lookup" vn="Tra cứu nhanh" />
           </button>
           <button
             onClick={() => setSection('cheatsheet')}
@@ -145,7 +146,7 @@ export function LearnShell() {
               section === 'cheatsheet' ? 'bg-[color-mix(in_srgb,var(--color-acc)_15%,transparent)] text-[var(--color-acc)] font-semibold' : 'hover:bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)]'
             }`}
           >
-            🖨️ Cheat Sheet
+            🖨️ <Bilingual en="Cheat Sheet" vn="Cheat Sheet" />
           </button>
         </nav>
       </aside>
@@ -227,6 +228,7 @@ function Toolbar({
   categories: string[]
   setShowBookmarkedOnly: (b: boolean) => void
 }) {
+  const { mode } = useI18n()
   return (
     <div className="mb-4 space-y-3">
       <div className="flex gap-2 flex-wrap items-center">
@@ -235,7 +237,7 @@ function Toolbar({
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Tìm kiếm…"
+            placeholder={mode === 'vn' ? 'Tìm kiếm…' : 'Search…'}
             className="w-full rounded-full pl-9 pr-4 py-2 text-sm border border-[var(--color-border)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-acc)_35%,transparent)] focus:outline-none bg-transparent"
           />
         </div>
@@ -247,11 +249,11 @@ function Toolbar({
               : 'border-[var(--color-border)] hover:border-[var(--color-acc)]'
           }`}
         >
-          <Bookmark className="size-3.5" /> Đã đánh dấu
+          <Bookmark className="size-3.5" /> <Bilingual en="Bookmarked" vn="Đã đánh dấu" />
         </button>
       </div>
       <div className="flex gap-1.5 flex-wrap">
-        <Pill active={filter === 'all'} onClick={() => setFilter('all')}>Tất cả</Pill>
+        <Pill active={filter === 'all'} onClick={() => setFilter('all')}><Bilingual en="All" vn="Tất cả" /></Pill>
         {categories.map(c => (
           <Pill key={c} active={filter === c} onClick={() => setFilter(c)}>{c}</Pill>
         ))}

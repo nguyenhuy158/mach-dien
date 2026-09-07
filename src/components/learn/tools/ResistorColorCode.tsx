@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { COLOR_BANDS, TOLERANCE_BANDS, decodeResistor, formatResistance } from '../../../data/learn'
+import { useI18n, Bilingual } from '../../../i18n'
 
 export function ResistorColorCode() {
   const [b1, setB1] = useState('nâu')
@@ -7,6 +8,7 @@ export function ResistorColorCode() {
   const [b3, setB3] = useState('đen')
   const [mult, setMult] = useState('nâu')
   const [tol, setTol] = useState('vàng')
+  const { T, tvn } = useI18n()
 
   const result = decodeResistor(b1, b2, b3, mult, tol)
   const totalOhms = result.value
@@ -15,10 +17,13 @@ export function ResistorColorCode() {
 
   return (
     <div className="card p-5 bg-[var(--color-card)] border border-[var(--color-border)]">
-      <h3 className="text-lg font-bold tracking-tight mb-1">Mã màu điện trở (4 vạch)</h3>
-      <p className="text-xs text-[var(--color-muted)] mb-4">Chọn màu từng vạch → giá trị tự tính.</p>
+      <h3 className="text-lg font-bold tracking-tight mb-1">
+        <Bilingual en={T.learnResistor} vn={tvn.learnResistor} />
+      </h3>
+      <p className="text-xs text-[var(--color-muted)] mb-4">
+        <Bilingual en="Pick each band → value is auto-calculated." vn="Chọn màu từng vạch → giá trị tự tính." />
+      </p>
 
-      {/* Visual band */}
       <div className="flex items-center justify-center gap-1 mb-4 py-3 bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)] rounded-xl">
         <ResistorLead />
         <Band color={TOLERANCE_BANDS[tol]?.hex || '#000'} />
@@ -36,20 +41,25 @@ export function ResistorColorCode() {
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <BandPicker label="Vạch 1" value={b1} onChange={setB1} />
-        <BandPicker label="Vạch 2" value={b2} onChange={setB2} />
-        <BandPicker label="Hệ số" value={mult} onChange={setMult} />
-        <BandPicker label="Sai số" value={tol} onChange={setTol} bands={[
-          { color: 'nâu', hex: TOLERANCE_BANDS['nâu'].hex, label: '±1%' },
-          { color: 'đỏ', hex: TOLERANCE_BANDS['đỏ'].hex, label: '±2%' },
-          { color: 'vàng', hex: TOLERANCE_BANDS['vàng'].hex, label: '±5%' },
-          { color: 'bạc', hex: TOLERANCE_BANDS['bạc'].hex, label: '±10%' },
-        ]} />
+        <BandPicker label={T.learnResistorBand(1)} value={b1} onChange={setB1} />
+        <BandPicker label={T.learnResistorBand(2)} value={b2} onChange={setB2} />
+        <BandPicker label={T.learnResistorMult} value={mult} onChange={setMult} />
+        <BandPicker
+          label={T.learnResistorTol}
+          value={tol}
+          onChange={setTol}
+          bands={[
+            { color: 'nâu', hex: TOLERANCE_BANDS['nâu'].hex, label: '±1%' },
+            { color: 'đỏ', hex: TOLERANCE_BANDS['đỏ'].hex, label: '±2%' },
+            { color: 'vàng', hex: TOLERANCE_BANDS['vàng'].hex, label: '±5%' },
+            { color: 'bạc', hex: TOLERANCE_BANDS['bạc'].hex, label: '±10%' },
+          ]}
+        />
       </div>
 
       <div className="mt-4 p-3 rounded-lg bg-[color-mix(in_srgb,var(--color-acc)_8%,transparent)] border border-[color-mix(in_srgb,var(--color-acc)_20%,transparent)] text-xs">
-        <b>SMD 3 số:</b> 103 = 10×10³ = 10kΩ, 472 = 47×10² = 4.7kΩ, 4R7 = 4.7Ω
-        <br /><b>SMD 4 số:</b> 1001 = 100×10¹ = 1kΩ, 4702 = 470×10² = 47kΩ
+        <b>SMD 3-digit:</b> 103 = 10×10³ = 10kΩ, 472 = 47×10² = 4.7kΩ, 4R7 = 4.7Ω<br />
+        <b>SMD 4-digit:</b> 1001 = 100×10¹ = 1kΩ, 4702 = 470×10² = 47kΩ
       </div>
     </div>
   )

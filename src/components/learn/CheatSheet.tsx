@@ -1,5 +1,6 @@
 import { COMPONENTS, FORMULAS, GLOSSARY, COLOR_BANDS, TOLERANCE_BANDS } from '../../data/learn'
 import { Printer } from 'lucide-react'
+import { useI18n, Bilingual } from '../../i18n'
 
 export function CheatSheet() {
   return (
@@ -9,7 +10,7 @@ export function CheatSheet() {
           onClick={() => window.print()}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border border-[var(--color-border)] hover:border-[var(--color-acc)] transition"
         >
-          <Printer className="size-3.5" /> In / Xuất PDF
+          <Printer className="size-3.5" /> <Bilingual en="Print / Export PDF" vn="In / Xuất PDF" />
         </button>
       </div>
 
