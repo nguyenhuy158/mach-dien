@@ -98,20 +98,20 @@ export function downloadJSON(filename: string, obj: unknown) {
 }
 
 export async function pickJSON(): Promise<unknown | null> {
-  const { promise, resolve } = Promise.withResolvers<unknown | null>()
-  const input = document.createElement('input')
-  input.type = 'file'
-  input.accept = 'application/json,.json'
-  input.onchange = () => {
-    const file = input.files?.[0]
-    if (!file) { resolve(null); return }
-    const reader = new FileReader()
-    reader.onload = () => {
-      try { resolve(JSON.parse(String(reader.result))) }
-      catch { resolve(null) }
+  return new Promise<unknown | null>((resolve) => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'application/json,.json'
+    input.onchange = () => {
+      const file = input.files?.[0]
+      if (!file) { resolve(null); return }
+      const reader = new FileReader()
+      reader.onload = () => {
+        try { resolve(JSON.parse(String(reader.result))) }
+        catch { resolve(null) }
+      }
+      reader.readAsText(file)
     }
-    reader.readAsText(file)
-  }
-  input.click()
-  return promise
+    input.click()
+  })
 }

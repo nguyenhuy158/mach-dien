@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap, Languages, Sun } from 'lucide-react'
+import { LayoutGrid, ShoppingCart, Search, Settings2, AlertTriangle, GraduationCap, Languages, Sun, Moon } from 'lucide-react'
 import { LEVELS, CIRCUITS, isNaPart } from '../data/circuits'
 import { useI18n, Bilingual, tStr } from '../i18n'
 import { useTheme } from '../theme'
@@ -214,7 +214,7 @@ function ThemeToggle() {
       title={`${tStr(T.themeTitle, tvn.themeTitle, langMode)}: ${label}`}
       className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold border border-[var(--color-border)] hover:border-[var(--color-acc)] transition min-w-[3.5rem] justify-center"
     >
-      {resolved === 'dark' ? <Sun className="size-3.5" /> : <Sun className="size-3.5" />}
+      {resolved === 'dark' ? <Sun className="size-3.5" /> : <Moon className="size-3.5" />}
       {label}
     </button>
   )

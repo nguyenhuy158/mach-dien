@@ -58,7 +58,7 @@ body { margin: 0; min-height: 100vh; }
 h1, h2, h3 { font-family: var(--font-display); }
 
 /* Custom utilities */
-.card { border-radius: 1rem; box-shadow: 0 1px 2px rgb(0 0 0 / .06); transition: box-shadow .2s, transform .2s; }
+.card { border-radius: 1rem; box-shadow: 0 1px 2px rgb(0 0 0 / .06); transition: box-shadow .2s, transform .2s; background: var(--color-card); }
 .card:hover { box-shadow: 0 8px 28px -10px rgb(0 0 0 / .35); }
 .badge { border-radius: 9999px; padding: 0.125rem 0.625rem; font-family: var(--font-display); font-weight: 700; }
 .b1 { background: color-mix(in srgb, var(--color-b1) 18%, transparent); color: var(--color-b1); }
@@ -79,14 +79,41 @@ h1, h2, h3 { font-family: var(--font-display); }
 .proj { background: color-mix(in srgb, var(--color-acc) 6%, transparent); border: 1px solid color-mix(in srgb, var(--color-acc) 20%, transparent); padding: .75rem; }
 
 pre { border-radius: .75rem; padding: .75rem; overflow-x: auto; background: #0f172a; color: #e2e8f0; font-size: 12px; }
+.lg { border-radius: .75rem; padding: .75rem; background: color-mix(in srgb, var(--color-acc) 6%, transparent); border: 1px solid color-mix(in srgb, var(--color-acc) 20%, transparent); margin: 0 1.5rem 1.5rem; }
 
-/* Print styles — one card per page */
+/* Search highlight */
+mark { background: color-mix(in srgb, var(--color-acc) 35%, transparent); color: inherit; border-radius: 2px; padding: 0 2px; }
+
+/* Card flash when deep-linked */
+.flash { animation: flash 1.8s ease-out; }
+@keyframes flash {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-acc) 50%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Hide utility used by filter (hide empty level sections) */
+.hide { display: none !important; }
+
+/* Active tab/filter pill */
+.tab-active {
+  background: var(--color-acc) !important;
+  color: var(--color-bg) !important;
+  border-color: var(--color-acc) !important;
+}
+
+/* Fade-in for popups */
+.fade-in { animation: fadeIn .2s ease-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Print styles — one card per page when .printing; else all cards */
 @media print {
   body { background: white !important; color: black !important; font-size: 12px; }
   main { max-width: none !important; padding: 0 !important; margin: 0 !important; }
   header, footer, .lg, nav.tabs, .ctl, #gs, #gsbox, #cart, .print-hidden { display: none !important; }
-  .card { display: none !important; }
-  .card.printing { display: block !important; }
+  /* Default: print all cards */
   .card {
     page-break-after: always;
     page-break-inside: avoid;
@@ -97,14 +124,13 @@ pre { border-radius: .75rem; padding: .75rem; overflow-x: auto; background: #0f1
     margin: 0 0 1cm 0 !important;
   }
   .card * { color: black !important; }
-  table { color: black !important; border-collapse: collapse !important; }
-  th, td { border-bottom: 1px solid #999 !important; color: black !important; }
-  a { color: black !important; text-decoration: underline !important; }
-  .sch { max-width: 100% !important; }
+  /* If a card is marked .printing, hide all others */
+  main:has(.card.printing) .card:not(.printing) { display: none !important; }
+  .card { display: block !important; }
+  .sch { max-width: 100% !important; filter: invert(1); }
   pre { background: #f5f5f5 !important; color: black !important; border: 1px solid #ccc !important; }
   .fm, .warn, .proj { background: #f9f9f9 !important; border: 1px solid #ccc !important; }
 }
-.lg { border-radius: .75rem; padding: .75rem; background: color-mix(in srgb, var(--color-acc) 6%, transparent); border: 1px solid color-mix(in srgb, var(--color-acc) 20%, transparent); margin: 0 1.5rem 1.5rem; }
 
 /* Mobile-first responsive */
 @media (max-width: 640px) {
@@ -121,23 +147,17 @@ pre { border-radius: .75rem; padding: .75rem; overflow-x: auto; background: #0f1
   .card { padding: 0.875rem !important; }
   .card h3 { font-size: 1rem !important; }
   table { font-size: 12px !important; }
-  table th, table td { padding: 0.375rem 0.25rem !important; }
+  table th, table td { padding: 0.375rem 0.25rem !important; white-space: nowrap; }
   .p-name, .p-im, .p-qty, .p-blk, .p-caka, .k-name, .k-im, .k-qty, .k-price, .k-line, .k-src, .k-use, .k-no, .k-own { padding: 0.375rem 0.25rem !important; }
   .thumb, .ph { width: 32px !important; height: 32px !important; }
   .lvlhead { font-size: 0.875rem !important; }
   .lvlhead h2 { font-size: 1.125rem !important; }
-  .bilingual-vn { display: block; font-size: 0.8em; color: var(--color-muted); }
   /* Hide column on small screens (will appear in settings menu) */
   .k-src, .p-caka { display: none; }
-  /* Floating calculator smaller on mobile */
-  .floating-calc { bottom: 4rem !important; right: 0.5rem !important; }
 }
 
 /* On larger screens allow the second source column back */
 @media (min-width: 768px) {
   .k-src, .p-caka { display: table-cell; }
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: none; }
-}
+
