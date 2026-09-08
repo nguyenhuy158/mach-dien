@@ -99,6 +99,30 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       t: gl.term, s: gl.definition,
       go: () => onJump('glossary'),
     }))
+    out.push({
+      g: 'Công cụ (Tools)', ic: '🔄',
+      t: 'Chuyển đổi đơn vị (Unit Converter)',
+      s: 'Đổi tụ pF, nF, µF · trở kΩ, MΩ · cỡ dây AWG · tần số Hz, kHz',
+      go: () => onJump('tools'),
+    })
+    out.push({
+      g: 'Công cụ (Tools)', ic: '⚡',
+      t: 'Sơ đồ chân vi điều khiển (MCU Pinout)',
+      s: 'Tra cứu chân ESP32 30-pin, Arduino Nano · lọc chân ADC, I2C, SPI, PWM',
+      go: () => onJump('tools'),
+    })
+    out.push({
+      g: 'Công cụ (Tools)', ic: '🎨',
+      t: 'Mã màu điện trở (Color Code Calculator)',
+      s: 'Chọn màu 4 vạch tính ngay giá trị Ohm và dải sai số',
+      go: () => onJump('tools'),
+    })
+    out.push({
+      g: 'Công cụ (Tools)', ic: '🔍',
+      t: 'Tra cứu mã dán SMD (SMD Resistor Code)',
+      s: 'Giải mã 3 số, 4 số, mã R (103 = 10kΩ, 4R7 = 4.7Ω)',
+      go: () => onJump('tools'),
+    })
     return out
   }, [onJump, g])
 

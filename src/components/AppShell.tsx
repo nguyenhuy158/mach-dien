@@ -50,7 +50,7 @@ export function AppShell() {
   }, [])
 
   const jumpTo = (id: string) => {
-    if (id.startsWith('cmp-') || id.startsWith('fml-')) setTab('h')
+    if (id.startsWith('cmp-') || id.startsWith('fml-') || id === 'tools' || id === 'glossary') setTab('h')
     else setTab('m')
     setFilter('all')
     setQuery('')

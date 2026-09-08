@@ -10,6 +10,8 @@ import { MyBuilds } from './MyBuilds'
 import { QuizMode } from './QuizMode'
 import { ResistorColorCode } from './tools/ResistorColorCode'
 import { SmdLookup } from './tools/SmdLookup'
+import { UnitConverter } from './tools/UnitConverter'
+import { PinoutViewer } from './tools/PinoutViewer'
 import { CheatSheet } from './CheatSheet'
 import { useI18n, Bilingual } from '../../i18n'
 
@@ -211,9 +213,13 @@ export function LearnShell() {
         )}
 
         {section === 'tools' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ResistorColorCode />
-            <SmdLookup />
+          <div className="space-y-4">
+            <UnitConverter />
+            <PinoutViewer />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ResistorColorCode />
+              <SmdLookup />
+            </div>
           </div>
         )}
 
