@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import type { GlossaryTerm } from '../../data/learn'
 import { CATEGORIES } from '../../data/learn'
+import { Bilingual } from '../../i18n'
 
 interface Props {
   terms: GlossaryTerm[]
@@ -86,10 +87,14 @@ export function GlossaryList({ terms, bookmarked, onToggleBookmark }: Props) {
                   </button>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <dt className="font-mono font-bold text-sm text-[var(--color-fg)]">{t.term}</dt>
+                      <dt className="font-mono font-bold text-sm text-[var(--color-fg)]">
+                        <Bilingual en={t.enTerm || t.term} vn={t.term} />
+                      </dt>
                       <span className="text-[10px] uppercase tracking-wider text-[var(--color-muted)]">{t.category}</span>
                     </div>
-                    <dd className="text-sm text-[var(--color-muted)] leading-relaxed mt-0.5">{t.definition}</dd>
+                    <dd className="text-sm text-[var(--color-muted)] leading-relaxed mt-0.5">
+                      <Bilingual en={t.enDefinition || t.definition} vn={t.definition} />
+                    </dd>
                   </div>
                 </div>
               )

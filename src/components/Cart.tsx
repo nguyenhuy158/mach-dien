@@ -40,59 +40,79 @@ interface ExRow {
 }
 
 export function Cart() {
-  const [own, setOwn] = useState<Record<string, boolean>>(() => {
-    try { return JSON.parse(localStorage.getItem(OKEY) || '{}') } catch { return {} }
+  const [history, setHistory] = useState<{
+    past: Record<string, boolean>[]
+    present: Record<string, boolean>
+    future: Record<string, boolean>[]
+  }>(() => {
+    let initial: Record<string, boolean> = {}
+    try { initial = JSON.parse(localStorage.getItem(OKEY) || '{}') } catch {}
+    return { past: [], present: initial, future: [] }
   })
-  const [seeded] = useState(() => localStorage.getItem(OKEY) !== null)
+  const [seeded, setSeeded] = useState(() => localStorage.getItem(OKEY) !== null)
+
+  const own = history.present
 
   useEffect(() => {
     localStorage.setItem(OKEY, JSON.stringify(own))
   }, [own])
 
+  const toggle = (k: string, on: boolean) => {
+    setHistory(h => {
+      const next = { ...h.present }
+      if (on) next[k] = true
+      else delete next[k]
+      return {
+        past: [...h.past, h.present].slice(-20),
+        present: next,
+        future: [],
+      }
+    })
+  }
+
+  const undo = () => {
+    setHistory(h => {
+      if (h.past.length === 0) return h
+      const prev = h.past[h.past.length - 1]
+      return {
+        past: h.past.slice(0, -1),
+        present: prev,
+        future: [h.present, ...h.future].slice(-20),
+      }
+    })
+  }
+
+  const redo = () => {
+    setHistory(h => {
+      if (h.future.length === 0) return h
+      const next = h.future[0]
+      return {
+        past: [...h.past, h.present].slice(-20),
+        present: next,
+        future: h.future.slice(1),
+      }
+    })
+  }
+
+  const canUndo = history.past.length > 0
+  const canRedo = history.future.length > 0
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName
       if (tag === 'INPUT' || tag === 'TEXTAREA') return
-      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key === 'z') { e.preventDefault(); undo() }
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'Z' || e.key === 'z')) { e.preventDefault(); redo() }
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && (e.key === 'z' || e.key === 'Z')) {
+        e.preventDefault()
+        undo()
+      }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'Z' || e.key === 'z')) {
+        e.preventDefault()
+        redo()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Undo/redo history (last 20 states). Refs to avoid re-renders.
-  const past = useRef<Record<string, boolean>[]>([])
-  const future = useRef<Record<string, boolean>[]>([])
-  const commit = (next: Record<string, boolean>) => {
-    past.current = [...past.current, own].slice(-20)
-    future.current = []
-    setOwn(next)
-  }
-  const undo = () => {
-    const prev = past.current.pop()
-    if (!prev) return
-    future.current = [...future.current, own].slice(-20)
-    setOwn(prev)
-  }
-  const redo = () => {
-    const next = future.current.pop()
-    if (!next) return
-    past.current = [...past.current, own].slice(-20)
-    setOwn(next)
-  }
-
-  const toggle = (k: string, on: boolean) => {
-    setOwn(o => {
-      const n = { ...o }
-      if (on) n[k] = true
-      else delete n[k]
-      past.current = [...past.current, o].slice(-20)
-      future.current = []
-      return n
-    })
-  }
-
+  }, [undo, redo])
   const { groups, na, exRows } = useMemo(() => {
     // Aggregate parts across circuits by product URL
     const partMap = new Map<string, { name: string; spec: string; need: number; use: Set<string>; s: ReturnType<typeof getShop> }>()
@@ -135,7 +155,10 @@ export function Cart() {
       groups.forEach(i => {
         if (i.names.some(n => DEF_OWN.includes(n))) seededOwn[i.key] = true
       })
-      setTimeout(() => setOwn(seededOwn), 0)
+      setTimeout(() => {
+        setHistory(h => ({ ...h, present: { ...h.present, ...seededOwn } }))
+        setSeeded(true)
+      }, 0)
     }
 
     const exRows: ExRow[] = EXTRA.map(e => ({
@@ -167,7 +190,7 @@ export function Cart() {
       <div className="flex items-center gap-2 mb-4">
         <button
           onClick={undo}
-          disabled={past.current.length === 0}
+          disabled={!canUndo}
           className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs border border-[var(--color-border)] hover:border-[var(--color-acc)] disabled:opacity-30 transition"
           title="Hoàn tác (Ctrl+Z)"
         >
@@ -175,7 +198,7 @@ export function Cart() {
         </button>
         <button
           onClick={redo}
-          disabled={future.current.length === 0}
+          disabled={!canRedo}
           className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs border border-[var(--color-border)] hover:border-[var(--color-acc)] disabled:opacity-30 transition"
           title="Làm lại (Ctrl+Shift+Z)"
         >

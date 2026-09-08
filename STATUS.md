@@ -56,29 +56,22 @@ Status legend:
 
 ## Scoreboard
 
-- **✅ Shipped: 21/27** (78%)
-- **🟡 Partial: 1** (#8 click-to-zoom, no hotspots)
-- **⏸ Out of scope: 5** (#9 #12 #17 #18 #19 #20 #21 #24 #27)
-  - These all require either a backend service, a native app config, or a major
-    data rewrite. None are small enough to ship in this repo without faking them.
+- **✅ Shipped: 17/27** (63%) — fully functional and tested
+- **🟡 Partial: 1/27** (#8 click-to-zoom modal, no SVG hotspot overlay)
+- **⏸ Out of scope: 9/27** (#9, #12, #17, #18, #19, #20, #21, #24, #27)
+  - These 9 require a backend service (push server, Supabase, Gemini API proxy), a full drag-and-drop editor (#9), or native platform capabilities (#20, #24, #27). They cannot be built purely client-side without external infrastructure.
 
-## Truly-blocked 5 features (need sign-off)
+## Detailed Status of the 9 Deferred Features
 
-If you genuinely want 27/27, the following 5 require **decisions**:
-
-1. **#12 PWA push** — needs a push service (OneSignal free tier, or web-push npm
-   with your own VAPID keys + a server). I can scaffold the client-side
-   subscription + service-worker push handler. ~2 hours.
-2. **#17 Backend sync** — needs a Supabase project (free tier OK) +
-   auth (Google login). I can wire it. ~1-2 days.
-3. **#18 Community** — full new system (posts, comments, voting, profiles).
-   Out of scope for a single repo. ~2-3 weeks.
-4. **#19 AI tutor / #21 Auto BOM** — needs Gemini API key + server proxy
-   (browser can't call Gemini directly). I can scaffold the UI and stub
-   the response until API is set up. ~1 day.
-5. **#20 AR / #24 iOS Shortcuts / #27 Apple Pencil** — these are native-only.
-   PWA can't access ARKit, Shortcuts needs an iOS app target, Pencil
-   drawing needs a real iPad app. **Cannot be done in this web repo.**
+1. **#9 Breadboard view** — requires an interactive layout editor with drag-and-drop component positioning and wire routing (~3 days).
+2. **#12 PWA push notification** — requires a push notification server with VAPID keys (e.g. OneSignal free tier or custom backend).
+3. **#17 Backend sync** — requires a Supabase/Firebase project with authentication (Google login) and database tables.
+4. **#18 Community** — full forum system with posts, comments, voting, user profiles (out of scope for static site).
+5. **#19 AI tutor** — requires a backend proxy server with a Gemini API key (browser cannot securely store API keys).
+6. **#20 AR mode** — WebXR is experimental and iOS Safari does not support it for augmented reality.
+7. **#21 Auto BOM from schematic image** — requires an AI vision pipeline (same Gemini backend proxy dependency as #19).
+8. **#24 iOS Shortcuts integration** — requires native iOS app bundle / URL scheme configuration.
+9. **#27 Apple Pencil drawing** — requires native iPadOS pencil event APIs.
 
 ## Recently fixed in this batch (commits 3601578 → 66d6851)
 

@@ -15,7 +15,7 @@ function downloadPDF() {
     const rgb = hex2rgb(c.hex)
     doc.setFillColor(rgb[0], rgb[1], rgb[2])
     doc.rect(M, y - 3, 4, 4, 'F')
-    doc.text(c.color + '  digit=' + c.digit + '  x' + c.mult, M + 6, y)
+    doc.text(`${nrm(c.color)} (digit=${c.digit}, x${c.mult})`, M + 6, y)
     y += 4
     if (y > 280) { doc.addPage(); y = M }
   }
@@ -25,7 +25,21 @@ function downloadPDF() {
   doc.text('Formulas', M, y); y += 5
   doc.setFontSize(8); doc.setFont('helvetica', 'normal')
   for (const f of FORMULAS) {
-    const lines = doc.splitTextToSize(f.name + ':  ' + f.expression, W - 2 * M)
+    const title = f.enName || nrm(f.name)
+    const lines = doc.splitTextToSize(`${title}:  ${f.expression}`, W - 2 * M)
+    doc.text(lines, M, y)
+    y += lines.length * 3.5 + 1
+    if (y > 280) { doc.addPage(); y = M }
+  }
+  y += 2
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11)
+  doc.text('Components', M, y); y += 5
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal')
+  for (const cp of COMPONENTS) {
+    const name = cp.enName || nrm(cp.name)
+    const desc = cp.enDescription || nrm(cp.description)
+    const lines = doc.splitTextToSize(`${name} (${cp.symbol}): ${desc}`, W - 2 * M)
     doc.text(lines, M, y)
     y += lines.length * 3.5 + 1
     if (y > 280) { doc.addPage(); y = M }
@@ -36,9 +50,10 @@ function downloadPDF() {
   doc.text('Glossary', M, y); y += 5
   doc.setFontSize(8); doc.setFont('helvetica', 'normal')
   for (const g of GLOSSARY) {
-    const head = g.term + '  (' + g.category + '): '
-    const text = head + g.definition
-    const lines = doc.splitTextToSize(text, W - 2 * M)
+    const term = g.enTerm || nrm(g.term)
+    const def = g.enDefinition || nrm(g.definition)
+    const head = `${term} (${nrm(g.category)}): `
+    const lines = doc.splitTextToSize(head + def, W - 2 * M)
     doc.text(lines, M, y)
     y += lines.length * 3.5 + 1
     if (y > 280) { doc.addPage(); y = M }
@@ -53,6 +68,7 @@ function hex2rgb(hex: string): [number, number, number] {
 }
 
 import { COMPONENTS, FORMULAS, GLOSSARY, COLOR_BANDS, TOLERANCE_BANDS } from '../../data/learn'
+import { nrm } from '../../data/circuits'
 import { Printer, FileDown } from 'lucide-react'
 import { useI18n, Bilingual } from '../../i18n'
 import { jsPDF } from 'jspdf'

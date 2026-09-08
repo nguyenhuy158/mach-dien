@@ -1,5 +1,6 @@
 import type { Component } from '../../data/learn'
 import { SchematicGlyph } from './SchematicGlyph'
+import { Bilingual, useI18n } from '../../i18n'
 
 interface Props {
   c: Component
@@ -15,15 +16,17 @@ export function ComponentCard({ c, bookmarked, onToggleBookmark }: Props) {
       className="card p-5 bg-[var(--color-card)] border border-[var(--color-border)]"
     >
       <header className="flex items-start gap-3 mb-3">
-        <div className="size-16 rounded-lg bg-[var(--color-card)] ring-1 ring-[var(--color-border)] flex items-center justify-center shrink-0">
+        <div className="size-16 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-center shrink-0 text-[var(--color-acc)] shadow-sm">
           <SchematicGlyph kind={c.schematic} />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold tracking-tight">{c.name}</h3>
+          <h3 className="text-lg font-bold tracking-tight">
+            <Bilingual en={c.enName || c.name} vn={c.name} />
+          </h3>
           <div className="flex items-center gap-2 text-xs text-[var(--color-muted)] mt-0.5">
-            <span className="font-mono">ký hiệu: {c.symbol}</span>
+            <span className="font-mono">sym: {c.symbol}</span>
             <span>·</span>
-            <span>{c.category}</span>
+            <span><Bilingual en={c.enCategory || c.category} vn={c.category} /></span>
           </div>
         </div>
         <button
@@ -39,14 +42,20 @@ export function ComponentCard({ c, bookmarked, onToggleBookmark }: Props) {
         </button>
       </header>
 
-      <p className="text-sm text-[var(--color-fg)] leading-relaxed mb-3">{c.description}</p>
+      <p className="text-sm text-[var(--color-fg)] leading-relaxed mb-3">
+        <Bilingual en={c.enDescription || c.description} vn={c.description} />
+      </p>
 
       <table className="w-full text-sm mb-3">
         <tbody>
-          {c.specs.map(([k, v], i) => (
+          {c.specs.map((spec, i) => (
             <tr key={i} className="border-t border-[var(--color-border)]">
-              <td className="py-1.5 pr-3 text-[var(--color-muted)] text-xs w-32">{k}</td>
-              <td className="py-1.5 text-sm">{v}</td>
+              <td className="py-1.5 pr-3 text-[var(--color-muted)] text-xs w-32">
+                <Bilingual en={spec[2] || spec[0]} vn={spec[0]} />
+              </td>
+              <td className="py-1.5 text-sm">
+                <Bilingual en={spec[3] || spec[1]} vn={spec[1]} />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -54,7 +63,9 @@ export function ComponentCard({ c, bookmarked, onToggleBookmark }: Props) {
 
       {c.applications.length > 0 && (
         <div className="mb-3">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-1.5">Ứng dụng</h4>
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-1.5">
+            <Bilingual en="Applications" vn="Ứng dụng" />
+          </h4>
           <div className="flex flex-wrap gap-1.5">
             {c.applications.map((a, i) => (
               <span key={i} className="text-xs bg-[color-mix(in_srgb,var(--color-acc)_12%,transparent)] text-[var(--color-acc)] rounded-full px-2.5 py-0.5">
@@ -69,7 +80,9 @@ export function ComponentCard({ c, bookmarked, onToggleBookmark }: Props) {
         <div className="warn">
           <div className="flex gap-2">
             <span className="font-bold shrink-0">💡</span>
-            <span className="text-sm">{c.notes}</span>
+            <span className="text-sm">
+              <Bilingual en={c.enNotes || c.notes} vn={c.notes} />
+            </span>
           </div>
         </div>
       )}

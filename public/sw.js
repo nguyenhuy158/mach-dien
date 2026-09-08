@@ -1,5 +1,5 @@
 // Service worker for offline caching
-const CACHE = 'machdien-v1'
+const CACHE = 'machdien-v2'
 const ASSETS = ['/', '/index.html', '/manifest.json', '/brand/logo-icon.svg']
 
 self.addEventListener('install', e => {

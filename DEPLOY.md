@@ -15,7 +15,7 @@ First-time setup: `pnpm dlx wrangler login` opens browser to authenticate.
 ## Dashboard setup (one-time)
 
 1. https://dash.cloudflare.com → **Workers & Pages** → **Create application** → **Pages**
-2. **Connect to Git** → pick `Techcoop-vn/mach-dien`
+2. **Connect to Git** → pick `nguyenhuy158/mach-dien`
 3. **Build settings**:
    - Build command: `pnpm build`
    - Build output directory: `dist`

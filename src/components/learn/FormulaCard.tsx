@@ -1,5 +1,6 @@
 import type { Formula } from '../../data/learn'
 import { CalculatorPanel } from './calculators/CalculatorPanel'
+import { Bilingual } from '../../i18n'
 
 interface Props {
   f: Formula
@@ -19,7 +20,7 @@ export function FormulaCard({ f, bookmarked, onToggleBookmark }: Props) {
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)]">{f.category}</span>
           </div>
-          <h3 className="text-lg font-bold tracking-tight">{f.name}</h3>
+          <h3 className="text-lg font-bold tracking-tight"><Bilingual en={f.enName || f.name} vn={f.name} /></h3>
         </div>
         <button
           onClick={onToggleBookmark}
@@ -51,13 +52,13 @@ export function FormulaCard({ f, bookmarked, onToggleBookmark }: Props) {
         </tbody>
       </table>
 
-      <p className="text-sm text-[var(--color-fg)] leading-relaxed mb-3">{f.description}</p>
+      <p className="text-sm text-[var(--color-fg)] leading-relaxed mb-3"><Bilingual en={f.enDescription || f.description} vn={f.description} /></p>
 
       {f.notes && (
         <div className="fm mb-3">
           <div className="flex gap-2">
             <span className="font-bold shrink-0">📝</span>
-            <span className="text-sm">{f.notes}</span>
+            <span className="text-sm"><Bilingual en={f.enNotes || f.notes} vn={f.notes} /></span>
           </div>
         </div>
       )}

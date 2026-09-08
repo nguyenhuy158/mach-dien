@@ -81,24 +81,34 @@ function SlotCard({ c, onClear }: { c: Component | null; onClear: () => void }) 
   return (
     <div className="rounded-lg border border-[var(--color-border)] p-2.5 bg-[var(--color-bg)]">
       <div className="flex items-start gap-2">
-        <div className="size-10 rounded bg-[var(--color-card)] border border-[var(--color-border)] flex items-center justify-center shrink-0">
+        <div className="size-10 rounded-lg bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 flex items-center justify-center shrink-0 text-[var(--color-acc)] shadow-sm">
           <SchematicGlyph kind={c.schematic} />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-semibold leading-tight">{c.name}</div>
-          <div className="text-[10px] text-[var(--color-muted)] uppercase">{c.category}</div>
+          <div className="text-sm font-semibold leading-tight">
+            <Bilingual en={c.enName || c.name} vn={c.name} />
+          </div>
+          <div className="text-[10px] text-[var(--color-muted)] uppercase">
+            <Bilingual en={c.enCategory || c.category} vn={c.category} />
+          </div>
         </div>
         <button onClick={onClear} className="size-5 rounded-full hover:bg-[var(--color-border)] flex items-center justify-center text-[var(--color-muted)]" aria-label="Clear">
           <X className="size-3" />
         </button>
       </div>
-      <p className="text-xs text-[var(--color-muted)] mt-2 leading-snug">{c.description}</p>
+      <p className="text-xs text-[var(--color-muted)] mt-2 leading-snug">
+        <Bilingual en={c.enDescription || c.description} vn={c.description} />
+      </p>
       <table className="w-full text-xs mt-2">
         <tbody>
-          {c.specs.map(([k, v], i) => (
+          {c.specs.map((spec, i) => (
             <tr key={i} className="border-t border-[var(--color-border)]">
-              <td className="py-1 text-[var(--color-muted)]">{k}</td>
-              <td className="py-1">{v}</td>
+              <td className="py-1 text-[var(--color-muted)]">
+                <Bilingual en={spec[2] || spec[0]} vn={spec[0]} />
+              </td>
+              <td className="py-1">
+                <Bilingual en={spec[3] || spec[1]} vn={spec[1]} />
+              </td>
             </tr>
           ))}
         </tbody>

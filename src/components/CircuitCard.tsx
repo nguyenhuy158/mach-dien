@@ -160,7 +160,7 @@ function SchematicImage({ l, n }: { l: number; n: number }) {
         aria-label="Zoom schematic"
       >
         <img
-          className="sch w-full max-w-2xl mx-auto block"
+          className="sch w-full max-w-2xl mx-auto block rounded-xl p-3 bg-slate-100/60 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800"
           src={src}
           alt={`Sơ đồ ${l}.${n}`}
           loading="lazy"
