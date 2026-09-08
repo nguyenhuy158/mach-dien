@@ -249,6 +249,7 @@ function ThemeToggle() {
           <Bilingual
             en={f === 'all' ? T.filterAll : f === 'na' ? T.filterNa : T.filterLevel(parseInt(f))}
             vn={f === 'all' ? tvn.filterAll : f === 'na' ? tvn.filterNa : tvn.filterLevel(parseInt(f))}
+            vnClass="inline text-[0.8em] opacity-80 ml-1 before:content-['·'] before:mr-1 font-normal"
           />
         </button>
       ))}

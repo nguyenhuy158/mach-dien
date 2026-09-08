@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { CIRCUITS, LEVELS } from '../data/circuits'
 import { Compass, X } from 'lucide-react'
-
+import { Bilingual } from '../i18n'
 interface Props {
   onJump: (id: string) => void
   flashId?: string | null
@@ -9,6 +9,13 @@ interface Props {
 
 export function QuickNav({ onJump, flashId }: Props) {
   const [open, setOpen] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY !== 0 && scrollRef.current) {
+      scrollRef.current.scrollLeft += e.deltaY
+    }
+  }
 
   const handleJump = (l: number, n: number) => {
     onJump(`m-${l}-${n}`)
@@ -22,11 +29,11 @@ export function QuickNav({ onJump, flashId }: Props) {
           <div className="flex items-center gap-2 mb-1.5 px-1">
             <Compass className="size-3.5 text-[var(--color-acc)]" />
             <span className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">
-              Cuộn nhanh 23 mạch:
+              <Bilingual en="Quick Jump (23 circuits):" vn="Cuộn nhanh 23 mạch:" />
             </span>
           </div>
 
-          <div className="flex items-center gap-4 overflow-x-auto pb-1 text-xs no-scrollbar">
+          <div ref={scrollRef} onWheel={handleWheel} className="flex items-center gap-4 overflow-x-auto pb-1 text-xs no-scrollbar select-none">
             {LEVELS.map(L => {
               const levelCircuits = CIRCUITS.filter(c => c.l === L.n)
               return (
