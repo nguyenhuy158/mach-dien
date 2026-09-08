@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { SIM, SHOP, isNaPart, nrm } from '../data/circuits'
+import { SIM, SHOP, isNaPart, nrm, parsePrice } from '../data/circuits'
 import type { Circuit } from '../data/circuits'
 import { PriceCell, Thumb } from './Parts'
 import { SimButton } from './SimButton'
 import { ResourcesPanel } from './ResourcesPanel'
-import { Share2, Check, Printer, X } from 'lucide-react'
+import { Share2, Check, Printer, X, Calculator, Wrench, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react'
 import { useI18n, Bilingual, tStr } from '../i18n'
+import { CIRCUIT_CALCULATORS } from '../data/circuitCalculators'
+import { TROUBLESHOOTING } from '../data/troubleshooting'
+import { CalculatorPanel } from './learn/calculators/CalculatorPanel'
 
 interface Props {
   c: Circuit
@@ -13,12 +16,20 @@ interface Props {
 }
 
 export function CircuitCard({ c, flash }: Props) {
-  const simUrl = SIM[`${c.l}-${c.n}`]
+  const [showCalc, setShowCalc] = useState(false)
+  const [showTrouble, setShowTrouble] = useState(false)
+  const [checkedSteps, setCheckedSteps] = useState<Record<number, boolean>>({})
+  
+  const circuitKey = `${c.l}-${c.n}`
+  const calcs = CIRCUIT_CALCULATORS[circuitKey]
+  const [selectedCalc, setSelectedCalc] = useState<string>(calcs ? calcs[0].kind : '')
+  const trouble = TROUBLESHOOTING[circuitKey]
+
+  const simUrl = SIM[circuitKey]
   const anyNa = c.parts.some(p => isNaPart(p.name))
   const searchBlob = (
     c.name + ' ' + c.goal + ' ' + c.parts.map(p => p.name + ' ' + p.spec).join(' ')
   ).toLowerCase()
-
   return (
     <article
       id={`m-${c.l}-${c.n}`}
@@ -52,6 +63,11 @@ export function CircuitCard({ c, flash }: Props) {
           {c.parts.map((p, i) => {
             const s = SHOP[p.name] || {}
             const isNa = !s.b && !s.c && !s.s
+            const priceB = s.b?.p ? parsePrice(s.b.p) : 0
+            const priceC = s.c?.p ? parsePrice(s.c.p) : 0
+            const bothPriced = priceB > 0 && priceC > 0 && priceB !== priceC
+            const bIsCheaper = bothPriced && priceB < priceC
+            const cIsCheaper = bothPriced && priceC < priceB
             return (
               <tr key={i} className={`border-t border-[var(--color-border)] ${isNa ? 'na-row' : ''}`}>
                 <td className="im py-2">
@@ -63,10 +79,32 @@ export function CircuitCard({ c, flash }: Props) {
                 <td className="p-spec py-2 text-[var(--color-muted)] text-xs">{p.spec}</td>
                 <td className="p-qty py-2 text-center">{p.qty}</td>
                 <td className="p-blk py-2">
-                  {s.s ? <span className="nn">—</span> : <PriceCell entry={s.b} />}
+                  {s.s ? (
+                    <span className="nn">—</span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1">
+                      <PriceCell entry={s.b} />
+                      {bIsCheaper && (
+                        <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded leading-none">
+                          Rẻ hơn
+                        </span>
+                      )}
+                    </span>
+                  )}
                 </td>
                 <td className="p-caka py-2">
-                  {s.s ? <span className="nn">—</span> : <PriceCell entry={s.c} />}
+                  {s.s ? (
+                    <span className="nn">—</span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1">
+                      <PriceCell entry={s.c} />
+                      {cIsCheaper && (
+                        <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded leading-none">
+                          Rẻ hơn
+                        </span>
+                      )}
+                    </span>
+                  )}
                 </td>
               </tr>
             )
@@ -93,6 +131,113 @@ export function CircuitCard({ c, flash }: Props) {
         <div className="warn mt-3 flex gap-2">
           <span className="font-bold">⚠</span>
           <span dangerouslySetInnerHTML={{ __html: c.warn }} />
+        </div>
+      )}
+
+      {/* Interactive Tooling & Troubleshooting Action Bar */}
+      <div className="mt-4 pt-3 border-t border-[var(--color-border)] flex flex-wrap gap-2 print:hidden">
+        {calcs && calcs.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setShowCalc(v => !v)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${
+              showCalc
+                ? 'bg-[var(--color-acc)] text-[var(--color-bg)] border-[var(--color-acc)]'
+                : 'border-[var(--color-border)] hover:border-[var(--color-acc)] bg-[var(--color-card)] text-[var(--color-fg)]'
+            }`}
+          >
+            <Calculator className="size-3.5" />
+            <span>{showCalc ? 'Ẩn máy tính' : '🧮 Máy tính tham số'}</span>
+            {showCalc ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+          </button>
+        )}
+
+        {trouble && (
+          <button
+            type="button"
+            onClick={() => setShowTrouble(v => !v)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${
+              showTrouble
+                ? 'bg-amber-600 text-white border-amber-600'
+                : 'border-[var(--color-border)] hover:border-amber-500 bg-[var(--color-card)] text-[var(--color-fg)]'
+            }`}
+          >
+            <Wrench className="size-3.5 text-amber-500" />
+            <span>{showTrouble ? 'Đóng gỡ lỗi' : '🔧 Gỡ lỗi: Mạch không chạy?'}</span>
+            {showTrouble ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+          </button>
+        )}
+      </div>
+
+      {/* In-Card Interactive Calculator */}
+      {showCalc && calcs && (
+        <div className="mt-3 p-3.5 rounded-xl bg-[var(--color-bg)] border-2 border-[var(--color-acc)] animate-in fade-in">
+          <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--color-acc)] flex items-center gap-1.5">
+              <Calculator className="size-3.5" />
+              <span>Công cụ tính toán cho mạch {c.l}.{c.n}</span>
+            </div>
+            {calcs.length > 1 && (
+              <div className="flex gap-1">
+                {calcs.map(cl => (
+                  <button
+                    key={cl.kind}
+                    type="button"
+                    onClick={() => setSelectedCalc(cl.kind)}
+                    className={`px-2 py-0.5 rounded text-[11px] font-medium border transition ${
+                      selectedCalc === cl.kind
+                        ? 'bg-[var(--color-acc)] text-[var(--color-bg)] border-[var(--color-acc)]'
+                        : 'border-[var(--color-border)] hover:border-[var(--color-acc)]'
+                    }`}
+                  >
+                    {cl.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <CalculatorPanel kind={selectedCalc || calcs[0].kind} />
+        </div>
+      )}
+
+      {/* In-Card Troubleshooting Checklist */}
+      {showTrouble && trouble && (
+        <div className="mt-3 p-4 rounded-xl bg-amber-500/5 border border-amber-500/30 text-xs space-y-3 animate-in fade-in">
+          <div className="flex items-center gap-2 font-bold text-amber-600 dark:text-amber-400 text-sm">
+            <Wrench className="size-4" />
+            <span>Checklist gỡ lỗi: {trouble.title}</span>
+          </div>
+
+          <div className="space-y-2">
+            {trouble.checks.map((check, idx) => {
+              const isChecked = !!checkedSteps[idx]
+              return (
+                <label
+                  key={idx}
+                  className={`flex items-start gap-2.5 p-2 rounded-lg cursor-pointer transition border ${
+                    isChecked
+                      ? 'bg-emerald-500/10 border-emerald-500/30 text-[var(--color-fg)] line-through opacity-75'
+                      : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-amber-500/50'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={e => setCheckedSteps(prev => ({ ...prev, [idx]: e.target.checked }))}
+                    className="mt-0.5 rounded text-amber-500 focus:ring-amber-500"
+                  />
+                  <span className="leading-relaxed">{check}</span>
+                </label>
+              )
+            })}
+          </div>
+
+          <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-start gap-2">
+            <AlertCircle className="size-4 shrink-0 mt-0.5" />
+            <div>
+              <span className="font-bold">Lỗi phổ biến của người mới:</span> {trouble.commonMistake}
+            </div>
+          </div>
         </div>
       )}
 

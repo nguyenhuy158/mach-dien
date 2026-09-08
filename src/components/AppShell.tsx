@@ -10,6 +10,7 @@ import { SettingsMenu } from './SettingsMenu'
 import { Cart } from './Cart'
 import { LearnShell } from './learn/LearnShell'
 import { BackToTop } from './BackToTop'
+import { QuickNav } from './QuickNav'
 import { haptic } from '../utils/ux'
 type Filter = 'all' | '1' | '2' | '3' | 'na'
 
@@ -81,6 +82,8 @@ export function AppShell() {
         setQuery={setQuery}
         hidden={tab !== 'm'}
       />
+
+      {tab === 'm' && <QuickNav onJump={jumpTo} flashId={flashId} />}
 
       <div className="lg">
         <i /> {tStr(T.infoNa, tvn.infoNa, mode)}
