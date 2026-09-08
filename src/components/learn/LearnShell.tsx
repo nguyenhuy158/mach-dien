@@ -12,6 +12,7 @@ import { ResistorColorCode } from './tools/ResistorColorCode'
 import { SmdLookup } from './tools/SmdLookup'
 import { UnitConverter } from './tools/UnitConverter'
 import { PinoutViewer } from './tools/PinoutViewer'
+import { AudioGenerator } from './tools/AudioGenerator'
 import { CheatSheet } from './CheatSheet'
 import { useI18n, Bilingual } from '../../i18n'
 
@@ -216,6 +217,7 @@ export function LearnShell() {
           <div className="space-y-4">
             <UnitConverter />
             <PinoutViewer />
+            <AudioGenerator />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <ResistorColorCode />
               <SmdLookup />

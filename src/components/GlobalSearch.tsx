@@ -123,6 +123,12 @@ export function GlobalSearch({ onClose, onJump }: Props) {
       s: 'Giải mã 3 số, 4 số, mã R (103 = 10kΩ, 4R7 = 4.7Ω)',
       go: () => onJump('tools'),
     })
+    out.push({
+      g: 'Công cụ (Tools)', ic: '🔊',
+      t: 'Phát âm thanh tần số & PWM (Tone Generator)',
+      s: 'Phát âm thanh còi 5V 2.4kHz, xung PWM 490Hz, tiếng cạch relay, sóng vuông/sin 20Hz - 5kHz',
+      go: () => onJump('tools'),
+    })
     return out
   }, [onJump, g])
 

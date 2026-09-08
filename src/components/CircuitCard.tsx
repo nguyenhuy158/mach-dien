@@ -76,7 +76,14 @@ export function CircuitCard({ c, flash }: Props) {
 
       <SchematicImage l={c.l} n={c.n} />
 
-      {simUrl && <SimButton sim={simUrl} />}
+      {simUrl && <SimButton sim={simUrl} title="Falstad CircuitJS" />}
+      {c.l === 2 && c.n === 7 && (
+        <SimButton
+          sim="https://wokwi.com/projects/new/esp32"
+          title="Wokwi ESP32 Live Simulator"
+          isWokwi
+        />
+      )}
 
       {c.dia && <pre>{c.dia}</pre>}
 
